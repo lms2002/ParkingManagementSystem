@@ -9,11 +9,29 @@ namespace ParkingManagement
     public partial class ParkingStatusForm : Form
     {
         private ParkingManager parkingManager;
+        private Timer timer; // 시간을 표시하기 위한 Timer 추가
         public ParkingStatusForm()
         {
             InitializeComponent();
             parkingManager = new ParkingManager(); // ParkingManager 초기화
             LoadParkingStatus(); // 주차 공간 상태 로드
+            // lblCurrentTime을 폼 로드 시 바로 현재 시간으로 초기화
+            lblCurrentTime.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            InitializeTimer(); // 타이머 초기화 및 시작
+        }
+
+        // Timer 초기화 메서드
+        private void InitializeTimer()
+        {
+            timer = new Timer
+            {
+                Interval = 1000 // 1초마다 갱신
+            };
+            timer.Tick += (sender, e) =>
+            {
+                lblCurrentTime.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            };
+            timer.Start(); // 타이머 시작
         }
 
         private void ParkingStatusForm_Click(object sender, EventArgs e)
@@ -74,9 +92,14 @@ namespace ParkingManagement
         private void lblTotalAvailableSpots_Click(object sender, EventArgs e) => ShowVehicleInputForm();
         private void lblRegularAvailableSpots_Click(object sender, EventArgs e) => ShowVehicleInputForm();
         private void lblDisabledAvailableSpots_Click(object sender, EventArgs e) => ShowVehicleInputForm();
+        private void lblCurrentTime_Click(object sender, EventArgs e) => ShowVehicleInputForm();
+        private void label1_Click(object sender, EventArgs e) => ShowVehicleInputForm();
 
         private void ParkingStatusForm_FormClosed(object sender, FormClosedEventArgs e)
         {
+            // 타이머 정리
+            timer?.Stop();
+            timer?.Dispose();
             // 폼이 닫히면 애플리케이션 종료
             Application.Exit(); // 애플리케이션 종료
         }

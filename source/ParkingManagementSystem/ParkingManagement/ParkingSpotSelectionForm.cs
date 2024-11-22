@@ -98,24 +98,6 @@ namespace ParkingManagement
         }
 
 
-        // 주차 공간 상태를 DataSet에 업데이트 후 DB에 반영
-        //
-        //
-        private void UpdateParkingSpotStatus(int spotNumber, bool isOccupied)
-        {
-            try
-            {
-                parkingManager.UpdateParkingStatus(spotNumber, isOccupied, isOccupied ? selectedVehicleNumber : null);
-
-                // 버튼 색상 업데이트
-                Button btn = (Button)this.Controls.Find($"btnSpot{spotNumber}", true)[0];
-                btn.BackColor = isOccupied ? Color.Green : DefaultBackColor;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"주차 공간 상태 업데이트 중 오류가 발생했습니다: {ex.Message}", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
 
         private void ParkingSpotButton_Click(object sender, EventArgs e)
         {
@@ -143,8 +125,17 @@ namespace ParkingManagement
 
             try
             {
-                // UpdateParkingSpotStatus 메서드를 사용하여 상태 변경
-                UpdateParkingSpotStatus(spotNumber, true); // 주차 공간 점유
+                // 현재 시간 기록
+                DateTime entryTime = DateTime.Now;
+
+                // ParkingManager를 사용하여 입차 기록 저장
+                parkingManager.InsertReceiptRecord(selectedVehicleNumber, entryTime);
+
+                // 주차 공간 상태 업데이트
+                parkingManager.UpdateParkingStatus(spotNumber, true, selectedVehicleNumber);
+
+                // 버튼 색상 업데이트
+                clickedButton.BackColor = Color.Green;
 
                 // 성공 메시지 표시
                 MessageBox.Show($"{spotNumber}번 주차 공간에 차량이 등록되었습니다.", "완료", MessageBoxButtons.OK, MessageBoxIcon.Information);

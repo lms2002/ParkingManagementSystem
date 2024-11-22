@@ -81,8 +81,6 @@ namespace ParkingManagement
                     // Update 데이터베이스
                     dBAdapter.Update(dS, "ParkingSpot");
                     dS.AcceptChanges();
-
-                    MessageBox.Show("주차 상태가 성공적으로 업데이트되었습니다.", "완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
@@ -94,6 +92,38 @@ namespace ParkingManagement
                 MessageBox.Show($"주차 상태 업데이트 중 오류 발생: {ex.Message}", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        public void InsertReceiptRecord(string vehicleNumber, DateTime entryTime)
+        {
+            try
+            {
+                using (OracleConnection connection = new OracleConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string query = @"
+        INSERT INTO Receipt 
+        (receipt_id, vehicle_number, parking_fee_before_discount, discount_amount, total_fee, parking_duration, start_time)
+        VALUES 
+        (receipt_seq.NEXTVAL, :vehicle_number, 0, 0, 0, 0, TO_DATE(:start_time, 'YYYY-MM-DD HH24:MI:SS'))";
+
+                    using (OracleCommand command = new OracleCommand(query, connection))
+                    {
+                        command.Parameters.Add("vehicle_number", OracleDbType.Varchar2).Value = vehicleNumber;
+                        command.Parameters.Add("start_time", OracleDbType.Varchar2).Value = entryTime.ToString("yyyy-MM-dd HH:mm:ss");
+                        command.BindByName = true;
+
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"입차 기록 저장 중 오류 발생: {ex.Message}", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
 
         // 특정 차량이 주차 중인지 확인
         public bool IsVehicleParked(string vehicleNumber)
