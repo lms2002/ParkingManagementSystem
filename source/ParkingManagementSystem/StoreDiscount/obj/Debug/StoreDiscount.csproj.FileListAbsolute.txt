@@ -1,0 +1,10 @@
+C:\Users\lm2002\Desktop\C#_project\ParkingManagementSystem\source\ParkingManagementSystem\StoreDiscount\obj\Debug\StoreDiscount.csproj.AssemblyReference.cache
+C:\Users\lm2002\Desktop\C#_project\ParkingManagementSystem\source\ParkingManagementSystem\StoreDiscount\obj\Debug\StoreDiscount.Properties.Resources.resources
+C:\Users\lm2002\Desktop\C#_project\ParkingManagementSystem\source\ParkingManagementSystem\StoreDiscount\obj\Debug\ParkingManagement.StoreDiscountForm.resources
+C:\Users\lm2002\Desktop\C#_project\ParkingManagementSystem\source\ParkingManagementSystem\StoreDiscount\obj\Debug\StoreDiscount.csproj.GenerateResource.cache
+C:\Users\lm2002\Desktop\C#_project\ParkingManagementSystem\source\ParkingManagementSystem\StoreDiscount\obj\Debug\StoreDiscount.csproj.CoreCompileInputs.cache
+C:\Users\lm2002\Desktop\C#_project\ParkingManagementSystem\source\ParkingManagementSystem\StoreDiscount\bin\Debug\StoreDiscount.exe.config
+C:\Users\lm2002\Desktop\C#_project\ParkingManagementSystem\source\ParkingManagementSystem\StoreDiscount\bin\Debug\StoreDiscount.exe
+C:\Users\lm2002\Desktop\C#_project\ParkingManagementSystem\source\ParkingManagementSystem\StoreDiscount\bin\Debug\StoreDiscount.pdb
+C:\Users\lm2002\Desktop\C#_project\ParkingManagementSystem\source\ParkingManagementSystem\StoreDiscount\obj\Debug\StoreDiscount.exe
+C:\Users\lm2002\Desktop\C#_project\ParkingManagementSystem\source\ParkingManagementSystem\StoreDiscount\obj\Debug\StoreDiscount.pdb

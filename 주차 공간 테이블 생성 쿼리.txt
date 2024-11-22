@@ -1,0 +1,78 @@
+-- 주차 공간 테이블
+CREATE TABLE ParkingSpot (
+    spot_number NUMBER PRIMARY KEY,           -- 주차 공간 번호, PK로 사용
+    is_disabled NUMBER(1) DEFAULT 0,          -- 장애인 전용 주차 공간 여부 (기본값: 0)
+    is_occupied NUMBER(1) DEFAULT 0,          -- 주차 공간 점유 여부 (기본값: 0)
+    vehicle_number VARCHAR2(10) UNIQUE        -- 차량 번호 (고유값으로 설정)
+);
+
+-- 차량 테이블
+CREATE TABLE Vehicle (
+    vehicle_number VARCHAR2(10) PRIMARY KEY,  -- 차량 번호를 기본 키로 설정
+    vehicle_type VARCHAR2(10) CHECK (vehicle_type IN ('Standard', 'Compact')), -- 차량 타입 (일반차량, 경차)
+    start_time TIMESTAMP,                     -- 입차 시간
+    end_time TIMESTAMP,                       -- 출차 시간, NULL 허용
+    parking_fee NUMBER DEFAULT 0              -- 주차 요금 (기본값: 0)
+);
+
+-- 영수증 테이블
+CREATE TABLE Receipt (
+    receipt_id NUMBER PRIMARY KEY,            -- 영수증 고유 ID, 시퀀스로 자동 증가
+    vehicle_number VARCHAR2(10) NOT NULL,     -- 차량 번호 (외래 키)
+    parking_fee_before_discount NUMBER NOT NULL, -- 할인 전 주차 요금
+    discount_amount NUMBER DEFAULT 0,         -- 할인 금액
+    total_fee NUMBER NOT NULL,                -- 최종 요금 (할인 후)
+    parking_duration NUMBER NOT NULL,         -- 주차 시간 (분 단위)
+    start_time TIMESTAMP,                     -- 입차 시간
+    end_time TIMESTAMP,                       -- 출차 시간, NULL 허용
+    CONSTRAINT fk_vehicle FOREIGN KEY (vehicle_number) REFERENCES Vehicle(vehicle_number)
+);
+
+-- 영수증 ID를 자동 증가시키기 위한 시퀀스 생성
+CREATE SEQUENCE ReceiptSeq START WITH 1 INCREMENT BY 1;
+
+-- 스토어 할인 테이블
+CREATE TABLE StoreDiscount (
+    store_name VARCHAR2(50) PRIMARY KEY,      -- 스토어 이름, PK로 사용
+    discount_percentage NUMBER NOT NULL,      -- 할인율
+    discount_condition NUMBER NOT NULL,       -- 할인 적용 조건
+    vehicle_number VARCHAR2(10),              -- 차량 번호 (Vehicle 테이블과 연동)
+    CONSTRAINT fk_vehicle_discount FOREIGN KEY (vehicle_number) REFERENCES Vehicle(vehicle_number)
+);
+
+-- 주차 공간 초기화 데이터 삽입: 1~25번은 일반, 26~30번은 장애인 공간으로 설정
+INSERT INTO ParkingSpot (spot_number, is_disabled) VALUES (1, 0);
+INSERT INTO ParkingSpot (spot_number, is_disabled) VALUES (2, 0);
+INSERT INTO ParkingSpot (spot_number, is_disabled) VALUES (3, 0);
+INSERT INTO ParkingSpot (spot_number, is_disabled) VALUES (4, 0);
+INSERT INTO ParkingSpot (spot_number, is_disabled) VALUES (5, 0);
+INSERT INTO ParkingSpot (spot_number, is_disabled) VALUES (6, 0);
+INSERT INTO ParkingSpot (spot_number, is_disabled) VALUES (7, 0);
+INSERT INTO ParkingSpot (spot_number, is_disabled) VALUES (8, 0);
+INSERT INTO ParkingSpot (spot_number, is_disabled) VALUES (9, 0);
+INSERT INTO ParkingSpot (spot_number, is_disabled) VALUES (10, 0);
+INSERT INTO ParkingSpot (spot_number, is_disabled) VALUES (11, 0);
+INSERT INTO ParkingSpot (spot_number, is_disabled) VALUES (12, 0);
+INSERT INTO ParkingSpot (spot_number, is_disabled) VALUES (13, 0);
+INSERT INTO ParkingSpot (spot_number, is_disabled) VALUES (14, 0);
+INSERT INTO ParkingSpot (spot_number, is_disabled) VALUES (15, 0);
+INSERT INTO ParkingSpot (spot_number, is_disabled) VALUES (16, 0);
+INSERT INTO ParkingSpot (spot_number, is_disabled) VALUES (17, 0);
+INSERT INTO ParkingSpot (spot_number, is_disabled) VALUES (18, 0);
+INSERT INTO ParkingSpot (spot_number, is_disabled) VALUES (19, 0);
+INSERT INTO ParkingSpot (spot_number, is_disabled) VALUES (20, 0);
+INSERT INTO ParkingSpot (spot_number, is_disabled) VALUES (21, 0);
+INSERT INTO ParkingSpot (spot_number, is_disabled) VALUES (22, 0);
+INSERT INTO ParkingSpot (spot_number, is_disabled) VALUES (23, 0);
+INSERT INTO ParkingSpot (spot_number, is_disabled) VALUES (24, 0);
+INSERT INTO ParkingSpot (spot_number, is_disabled) VALUES (25, 0);
+INSERT INTO ParkingSpot (spot_number, is_disabled) VALUES (26, 1);
+INSERT INTO ParkingSpot (spot_number, is_disabled) VALUES (27, 1);
+INSERT INTO ParkingSpot (spot_number, is_disabled) VALUES (28, 1);
+INSERT INTO ParkingSpot (spot_number, is_disabled) VALUES (29, 1);
+INSERT INTO ParkingSpot (spot_number, is_disabled) VALUES (30, 1);
+
+-- 스토어 할인 데이터 삽입
+INSERT INTO StoreDiscount (store_name, discount_percentage, discount_condition) VALUES ('nike', 20, 50000);
+INSERT INTO StoreDiscount (store_name, discount_percentage, discount_condition) VALUES ('빵빵이의 빵집', 10, 20000);
+INSERT INTO StoreDiscount (store_name, discount_percentage, discount_condition) VALUES ('모수', 30, 150000);
