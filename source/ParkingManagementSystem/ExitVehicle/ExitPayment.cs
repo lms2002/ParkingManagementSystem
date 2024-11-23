@@ -27,6 +27,7 @@ namespace ExitVehicle
             LoadPaymentDetails();
         }
 
+
         private void LoadPaymentDetails()
         {
             try
@@ -38,12 +39,12 @@ namespace ExitVehicle
                     UpdateExitTime();
 
                     string query = @"
-                SELECT v.start_time, 
-                       v.end_time, 
-                       NVL(s.discount_percentage, 0) AS discount_percentage
-                FROM Receipt v
-                LEFT JOIN StoreDiscount s ON v.vehicle_number = s.vehicle_number
-                WHERE UPPER(TRIM(v.vehicle_number)) = :vehicleNumber";
+            SELECT v.start_time, 
+                   v.end_time, 
+                   NVL(s.discount_percentage, 0) AS discount_percentage
+            FROM Receipt v
+            LEFT JOIN StoreDiscount s ON v.vehicle_number = s.vehicle_number
+            WHERE UPPER(TRIM(v.vehicle_number)) = :vehicleNumber";
 
                     using (OracleCommand command = new OracleCommand(query, connection))
                     {
@@ -57,11 +58,17 @@ namespace ExitVehicle
                                 DateTime endTime = reader.GetDateTime(1);
                                 decimal discountPercentage = reader.GetDecimal(2);
 
+                                // 입차 시간 및 출차 시간을 지정된 형식으로 포맷
+                                string formattedStartTime = startTime.ToString("dd/MM/yy HH:mm");
+                                string formattedEndTime = endTime.ToString("dd/MM/yy HH:mm");
+
+                                // 주차 요금 계산
                                 decimal parkingFee = CalculateParkingFee(startTime, endTime);
                                 decimal discountedFee = parkingFee * (1 - discountPercentage / 100);
 
-                                lblStartTime.Text = $"입차 시간: {startTime}";
-                                lblEndTime.Text = $"출차 시간: {endTime}";
+                                // 포맷된 시간과 요금을 화면에 표시
+                                lblStartTime.Text = $"입차 시간: {formattedStartTime}";
+                                lblEndTime.Text = $"출차 시간: {formattedEndTime}";
                                 lblTotalFee.Text = $"총 요금: {discountedFee:C}";
                             }
                             else
@@ -78,6 +85,7 @@ namespace ExitVehicle
                 MessageBox.Show("결제 정보를 로드하는 중 오류가 발생했습니다: " + ex.Message, "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void UpdateExitTime()
         {
@@ -106,8 +114,6 @@ namespace ExitVehicle
 
                         if (checkResult == null || int.Parse(checkResult.ToString()) == 0)
                         {
-                            // 레코드가 없으면 메시지 표시 후 종료
-                            MessageBox.Show("출차 가능한 기록을 찾을 수 없습니다. 이미 출차된 차량일 수 있습니다.", "오류", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             return;
                         }
                     }
@@ -159,16 +165,23 @@ namespace ExitVehicle
                 {
                     connection.Open();
 
-                    // 주차 공간 상태 업데이트
+                    // ParkingSpot 테이블에서 차량 정보 초기화
                     string query = @"
-                    UPDATE ParkingSpot
-                    SET is_occupied = 0, vehicle_number = NULL
-                    WHERE UPPER(vehicle_number) = :vehicleNumber";
+                UPDATE ParkingSpot
+                SET is_occupied = 0, vehicle_number = NULL
+                WHERE UPPER(vehicle_number) = :vehicleNumber";
 
                     using (OracleCommand command = new OracleCommand(query, connection))
                     {
-                        command.Parameters.Add("vehicleNumber", OracleDbType.Varchar2).Value = vehicleNumber;
-                        command.ExecuteNonQuery();
+                        command.Parameters.Add("vehicleNumber", OracleDbType.Varchar2).Value = vehicleNumber.Trim().ToUpper();
+                        int rowsAffected = command.ExecuteNonQuery();
+
+                        if (rowsAffected == 0)
+                        {
+                            // 데이터가 없는 경우, 사용자에게 알림
+                            MessageBox.Show("출차 가능한 기록을 찾을 수 없습니다. 이미 출차된 차량일 가능성이 있습니다.", "오류", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
                     }
                 }
 
@@ -180,5 +193,8 @@ namespace ExitVehicle
                 MessageBox.Show("결제 처리 중 오류가 발생했습니다: " + ex.Message, "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
+
     }
 }
