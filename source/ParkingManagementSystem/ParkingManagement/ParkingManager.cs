@@ -14,6 +14,7 @@ namespace ParkingManagement
         private DataTable parkingTable;
         public ParkingManager() { } // 매개변수 없는 기본 생성자 추가
 
+
         // 생성자
         public ParkingManager(string connectionString)
         {
@@ -105,7 +106,7 @@ namespace ParkingManagement
         INSERT INTO Receipt 
         (receipt_id, vehicle_number, parking_fee_before_discount, discount_amount, total_fee, parking_duration, start_time)
         VALUES 
-        (receipt_seq.NEXTVAL, :vehicle_number, 0, 0, 0, 0, TO_DATE(:start_time, 'YYYY-MM-DD HH24:MI:SS'))";
+        (ReceiptSeq.NEXTVAL, :vehicle_number, 0, 0, 0, 0, TO_DATE(:start_time, 'YYYY-MM-DD HH24:MI:SS'))";
 
                     using (OracleCommand command = new OracleCommand(query, connection))
                     {
@@ -173,6 +174,68 @@ namespace ParkingManagement
             {
                 throw new Exception("신규 차량 등록 중 오류 발생: " + ex.Message);
             }
+        }
+
+        public VehicleDetails GetVehicleDetails(string vehicleNumber)
+        {
+            try
+            {
+                using (OracleConnection connection = new OracleConnection(connectionString))
+                {
+                    connection.Open();
+                    string query = @"
+            SELECT 
+                v.vehicle_type, 
+                p.spot_number AS parking_spot, 
+                p.is_disabled, 
+                p.is_occupied, 
+                p.vehicle_number, 
+                r.start_time
+            FROM Vehicle v
+            LEFT JOIN ParkingSpot p ON v.vehicle_number = p.vehicle_number
+            LEFT JOIN Receipt r ON v.vehicle_number = r.vehicle_number
+            WHERE v.vehicle_number = :vehicleNumber";
+
+                    using (OracleCommand command = new OracleCommand(query, connection))
+                    {
+                        command.Parameters.Add(new OracleParameter("vehicleNumber", vehicleNumber));
+
+                        using (OracleDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                return new VehicleDetails
+                                {
+                                    VehicleNumber = reader["vehicle_number"].ToString(), // 차량 번호 설정
+                                    VehicleType = reader["vehicle_type"].ToString(),
+                                    ParkingSpot = reader["parking_spot"] != DBNull.Value ? Convert.ToInt32(reader["parking_spot"]) : -1,
+                                    EntryTime = reader["start_time"] != DBNull.Value
+                                        ? Convert.ToDateTime(reader["start_time"])
+                                        : DateTime.MinValue
+                                };
+                            }
+                            else
+                            {
+                                MessageBox.Show($"차량 번호 '{vehicleNumber}'에 해당하는 데이터를 찾을 수 없습니다.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"데이터를 로드하는 중 오류 발생: {ex.Message}", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return null;
+        }
+
+        public class VehicleDetails
+        {
+            public string VehicleNumber { get; set; } // 차량 번호
+            public string VehicleType { get; set; }
+            public int ParkingSpot { get; set; }
+            public DateTime EntryTime { get; set; }
         }
     }
 }

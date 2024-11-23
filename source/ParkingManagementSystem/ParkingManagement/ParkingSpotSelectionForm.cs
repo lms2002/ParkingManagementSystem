@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Drawing;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Oracle.DataAccess.Client;
 
 namespace ParkingManagement
 {
@@ -123,6 +121,8 @@ namespace ParkingManagement
                 }
             }
 
+
+
             try
             {
                 // 현재 시간 기록
@@ -140,21 +140,12 @@ namespace ParkingManagement
                 // 성공 메시지 표시
                 MessageBox.Show($"{spotNumber}번 주차 공간에 차량이 등록되었습니다.", "완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // 5초 동안 다른 클릭을 차단하기 위해 폼 잠금
-                this.Enabled = false;
+                string connectionString = "User Id=ParkingAdmin; Password=1111; Data Source=(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521)) (CONNECT_DATA = (SERVER = DEDICATED) (SERVICE_NAME = xe)));";
+                parkingManager = new ParkingManager(connectionString);
 
-                // 5초 뒤에 ParkingStatusForm으로 화면 전환
-                Task.Delay(5000).ContinueWith(t =>
-                {
-                    this.Invoke((Action)(() =>
-                    {
-                        ParkingStatusForm statusForm = new ParkingStatusForm();
-                        statusForm.Show();
-                        this.Hide(); // 현재 폼 숨기기
-
-                        this.Enabled = true;
-                    }));
-                });
+                ParkingDetailsForm detailForm = new ParkingDetailsForm(connectionString, selectedVehicleNumber, spotNumber);
+                detailForm.Show();
+                this.Hide(); // 현재 폼 숨기기
             }
             catch (Exception ex)
             {

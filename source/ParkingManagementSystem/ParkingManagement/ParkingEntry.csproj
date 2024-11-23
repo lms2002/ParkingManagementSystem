@@ -48,6 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ParkingDetailsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ParkingDetailsForm.Designer.cs">
+      <DependentUpon>ParkingDetailsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ParkingSpotSelectionForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -69,6 +75,9 @@
     <Compile Include="VehicleNumberInputForm.Designer.cs">
       <DependentUpon>VehicleNumberInputForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ParkingDetailsForm.resx">
+      <DependentUpon>ParkingDetailsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ParkingSpotSelectionForm.resx">
       <DependentUpon>ParkingSpotSelectionForm.cs</DependentUpon>
     </EmbeddedResource>
