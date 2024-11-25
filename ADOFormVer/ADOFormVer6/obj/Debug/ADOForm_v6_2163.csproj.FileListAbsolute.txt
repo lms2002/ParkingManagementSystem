@@ -10,3 +10,15 @@ C:\Users\hangu\source\repos\ADOForm1v1_2163\ADOForm_v6_2163\obj\Debug\ADOForm_v6
 C:\Users\hangu\source\repos\ADOForm1v1_2163\ADOForm_v6_2163\obj\Debug\ADOForm_.9D31EDB0.Up2Date
 C:\Users\hangu\source\repos\ADOForm1v1_2163\ADOForm_v6_2163\obj\Debug\ADOForm_v6_2163.exe
 C:\Users\hangu\source\repos\ADOForm1v1_2163\ADOForm_v6_2163\obj\Debug\ADOForm_v6_2163.pdb
+C:\C# 팀플\ParkingManagementSystem\ADOFormVer\ADOFormVer6\bin\Debug\ADOForm_v6_2163.exe.config
+C:\C# 팀플\ParkingManagementSystem\ADOFormVer\ADOFormVer6\bin\Debug\ADOForm_v6_2163.exe
+C:\C# 팀플\ParkingManagementSystem\ADOFormVer\ADOFormVer6\bin\Debug\ADOForm_v6_2163.pdb
+C:\C# 팀플\ParkingManagementSystem\ADOFormVer\ADOFormVer6\bin\Debug\Oracle.DataAccess.dll
+C:\C# 팀플\ParkingManagementSystem\ADOFormVer\ADOFormVer6\obj\Debug\ADOForm_v6_2163.csproj.AssemblyReference.cache
+C:\C# 팀플\ParkingManagementSystem\ADOFormVer\ADOFormVer6\obj\Debug\ADOForm_v6_2163.Form1.resources
+C:\C# 팀플\ParkingManagementSystem\ADOFormVer\ADOFormVer6\obj\Debug\ADOForm_v6_2163.Properties.Resources.resources
+C:\C# 팀플\ParkingManagementSystem\ADOFormVer\ADOFormVer6\obj\Debug\ADOForm_v6_2163.csproj.GenerateResource.cache
+C:\C# 팀플\ParkingManagementSystem\ADOFormVer\ADOFormVer6\obj\Debug\ADOForm_v6_2163.csproj.CoreCompileInputs.cache
+C:\C# 팀플\ParkingManagementSystem\ADOFormVer\ADOFormVer6\obj\Debug\ADOForm_.9D31EDB0.Up2Date
+C:\C# 팀플\ParkingManagementSystem\ADOFormVer\ADOFormVer6\obj\Debug\ADOForm_v6_2163.exe
+C:\C# 팀플\ParkingManagementSystem\ADOFormVer\ADOFormVer6\obj\Debug\ADOForm_v6_2163.pdb

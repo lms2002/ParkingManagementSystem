@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkingEntry", "ParkingMana
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreDiscount", "StoreDiscount\StoreDiscount.csproj", "{2F3F107A-5D41-4E86-8641-86C844EC4C96}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Management", "Management\Management.csproj", "{1A997488-35B5-4460-B792-26FC29445F28}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{2F3F107A-5D41-4E86-8641-86C844EC4C96}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F3F107A-5D41-4E86-8641-86C844EC4C96}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F3F107A-5D41-4E86-8641-86C844EC4C96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A997488-35B5-4460-B792-26FC29445F28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A997488-35B5-4460-B792-26FC29445F28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A997488-35B5-4460-B792-26FC29445F28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A997488-35B5-4460-B792-26FC29445F28}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

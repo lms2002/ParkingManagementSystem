@@ -30,12 +30,12 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtSearch = new System.Windows.Forms.TextBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.searchB1 = new System.Windows.Forms.Button();
             this.searchB2 = new System.Windows.Forms.Button();
-            this.txtSearch = new System.Windows.Forms.TextBox();
             this.DBGrid = new System.Windows.Forms.DataGridView();
-            this.label2 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DBGrid)).BeginInit();
             this.SuspendLayout();
@@ -43,10 +43,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(724, 82);
-            this.label1.MinimumSize = new System.Drawing.Size(600, 100);
+            this.label1.Location = new System.Drawing.Point(507, 55);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.MinimumSize = new System.Drawing.Size(420, 67);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(600, 100);
+            this.label1.Size = new System.Drawing.Size(420, 67);
             this.label1.TabIndex = 0;
             this.label1.Text = "label1";
             // 
@@ -54,27 +55,49 @@
             // 
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.txtSearch);
-            this.groupBox1.Location = new System.Drawing.Point(111, 41);
+            this.groupBox1.Location = new System.Drawing.Point(78, 27);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(353, 141);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Size = new System.Drawing.Size(247, 94);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "이름으로 찾기";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(35, 45);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(29, 12);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "이름";
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Location = new System.Drawing.Point(113, 43);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(103, 21);
+            this.txtSearch.TabIndex = 4;
+            // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 18;
-            this.listBox1.Location = new System.Drawing.Point(111, 239);
+            this.listBox1.ItemHeight = 12;
+            this.listBox1.Location = new System.Drawing.Point(78, 159);
+            this.listBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(361, 364);
+            this.listBox1.Size = new System.Drawing.Size(254, 244);
             this.listBox1.TabIndex = 0;
             // 
             // searchB1
             // 
-            this.searchB1.Location = new System.Drawing.Point(148, 659);
+            this.searchB1.Location = new System.Drawing.Point(104, 439);
+            this.searchB1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.searchB1.Name = "searchB1";
-            this.searchB1.Size = new System.Drawing.Size(238, 65);
+            this.searchB1.Size = new System.Drawing.Size(167, 43);
             this.searchB1.TabIndex = 2;
             this.searchB1.Text = "연결 찾기";
             this.searchB1.UseVisualStyleBackColor = true;
@@ -82,51 +105,38 @@
             // 
             // searchB2
             // 
-            this.searchB2.Location = new System.Drawing.Point(930, 659);
+            this.searchB2.Location = new System.Drawing.Point(651, 439);
+            this.searchB2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.searchB2.Name = "searchB2";
-            this.searchB2.Size = new System.Drawing.Size(238, 65);
+            this.searchB2.Size = new System.Drawing.Size(167, 43);
             this.searchB2.TabIndex = 3;
             this.searchB2.Text = "비연결 찾기";
             this.searchB2.UseVisualStyleBackColor = true;
             this.searchB2.Click += new System.EventHandler(this.searchB2_Click);
             // 
-            // txtSearch
-            // 
-            this.txtSearch.Location = new System.Drawing.Point(161, 65);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(145, 28);
-            this.txtSearch.TabIndex = 4;
-            // 
             // DBGrid
             // 
             this.DBGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DBGrid.Location = new System.Drawing.Point(712, 239);
+            this.DBGrid.Location = new System.Drawing.Point(498, 159);
+            this.DBGrid.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.DBGrid.Name = "DBGrid";
             this.DBGrid.RowHeadersWidth = 62;
             this.DBGrid.RowTemplate.Height = 30;
-            this.DBGrid.Size = new System.Drawing.Size(659, 373);
+            this.DBGrid.Size = new System.Drawing.Size(461, 249);
             this.DBGrid.TabIndex = 5;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(50, 68);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 18);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "이름";
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1472, 792);
+            this.ClientSize = new System.Drawing.Size(1030, 528);
             this.Controls.Add(this.DBGrid);
             this.Controls.Add(this.searchB2);
             this.Controls.Add(this.searchB1);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.groupBox1.ResumeLayout(false);
