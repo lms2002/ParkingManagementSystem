@@ -51,7 +51,7 @@ namespace ParkingManagement
         }
 
         // 주차 상태 업데이트
-        public void UpdateParkingStatus(int spotNumber, bool isOccupied, string vehicleNumber = null)
+        public void UpdateParkingStatus(int spotNumber, bool isOccupied, int vehicleId = -1) // 수정됨: vehicleNumber 대신 vehicleId 사용
         {
             try
             {
@@ -61,19 +61,48 @@ namespace ParkingManagement
                     return;
                 }
 
+                // vehicleId로 vehicle_number 가져오기
+                string vehicleNumber = null;
+                if (isOccupied && vehicleId != -1)
+                {
+                    using (OracleConnection connection = new OracleConnection(connectionString))
+                    {
+                        connection.Open();
+                        string query = "SELECT vehicle_number FROM Vehicle WHERE vehicle_id = :vehicleId";
+                        using (OracleCommand command = new OracleCommand(query, connection))
+                        {
+                            command.Parameters.Add("vehicleId", OracleDbType.Int32).Value = vehicleId;
+                            using (OracleDataReader reader = command.ExecuteReader())
+                            {
+                                if (reader.Read())
+                                {
+                                    vehicleNumber = reader["vehicle_number"].ToString();
+                                }
+                                else
+                                {
+                                    MessageBox.Show($"차량 ID '{vehicleId}'에 해당하는 차량을 찾을 수 없습니다.", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    return;
+                                }
+                            }
+                        }
+                    }
+                }
+
                 DataRow row = parkingTable.Rows.Find(spotNumber);
                 if (row != null)
                 {
                     row["is_occupied"] = isOccupied ? 1 : 0;
 
-                    // 차량 번호 업데이트
+                    // 차량 번호 및 vehicle_id 업데이트
                     if (isOccupied && !string.IsNullOrEmpty(vehicleNumber))
                     {
-                        row["vehicle_number"] = vehicleNumber;
+                        row["vehicle_number"] = vehicleNumber; // 수정됨: vehicle_number 저장
+                        row["vehicle_id"] = vehicleId; // 수정됨: vehicle_id 저장
                     }
                     else
                     {
-                        row["vehicle_number"] = DBNull.Value;
+                        row["vehicle_number"] = DBNull.Value; // 주차 공간 비우기 시 차량 번호 삭제
+                        row["vehicle_id"] = DBNull.Value; // 주차 공간 비우기 시 vehicle_id 삭제
                     }
 
                     // UpdateCommand 설정
@@ -94,7 +123,9 @@ namespace ParkingManagement
             }
         }
 
-        public void InsertReceiptRecord(string vehicleNumber, DateTime entryTime)
+
+        // 차량 ID와 차량 번호로 영수증 기록 저장
+        public void InsertReceiptRecord(int vehicleId, string vehicleNumber, DateTime entryTime)
         {
             try
             {
@@ -102,15 +133,17 @@ namespace ParkingManagement
                 {
                     connection.Open();
 
+                    // Receipt에 데이터 삽입 (vehicle_id와 vehicle_number 모두 저장)
                     string query = @"
-        INSERT INTO Receipt 
-        (receipt_id, vehicle_number, parking_fee_before_discount, discount_amount, total_fee, parking_duration, start_time)
-        VALUES 
-        (ReceiptSeq.NEXTVAL, :vehicle_number, 0, 0, 0, 0, TO_DATE(:start_time, 'YYYY-MM-DD HH24:MI:SS'))";
+INSERT INTO Receipt 
+(receipt_id, vehicle_id, vehicle_number, parking_fee_before_discount, discount_amount, total_fee, parking_duration, start_time)
+VALUES 
+(ReceiptSeq.NEXTVAL, :vehicle_id, :vehicle_number, 0, 0, 0, 0, TO_DATE(:start_time, 'YYYY-MM-DD HH24:MI:SS'))";
 
                     using (OracleCommand command = new OracleCommand(query, connection))
                     {
-                        command.Parameters.Add("vehicle_number", OracleDbType.Varchar2).Value = vehicleNumber;
+                        command.Parameters.Add("vehicle_id", OracleDbType.Int32).Value = vehicleId; // vehicle_id 저장
+                        command.Parameters.Add("vehicle_number", OracleDbType.Varchar2).Value = vehicleNumber; // vehicle_number 저장
                         command.Parameters.Add("start_time", OracleDbType.Varchar2).Value = entryTime.ToString("yyyy-MM-dd HH:mm:ss");
                         command.BindByName = true;
 
@@ -126,8 +159,11 @@ namespace ParkingManagement
 
 
 
+
+
+
         // 특정 차량이 주차 중인지 확인
-        public bool IsVehicleParked(string vehicleNumber)
+        public bool IsVehicleParked(int vehicleId)
         {
             try
             {
@@ -135,11 +171,16 @@ namespace ParkingManagement
                 {
                     foreach (DataRow row in parkingTable.Rows)
                     {
-                        if (row["vehicle_number"] != DBNull.Value && row["vehicle_number"].ToString() == vehicleNumber)
+                        if (row["vehicle_id"] != DBNull.Value && Convert.ToInt32(row["vehicle_id"]) == vehicleId)
                         {
                             return true; // 이미 주차 중인 차량
                         }
                     }
+                }
+                else
+                {
+                    // parkingTable이 초기화되지 않았을 경우 메시지 추가
+                    MessageBox.Show("Parking table is not initialized. Please call OpenDatabase() first.", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
@@ -149,8 +190,9 @@ namespace ParkingManagement
             return false;
         }
 
+
         // 신규 차량 등록
-        public void RegisterVehicle(string vehicleNumber, string vehicleType)
+        public int RegisterVehicle(string vehicleNumber, string vehicleType) // 수정됨: 등록된 차량 ID를 반환하도록 변경
         {
             try
             {
@@ -158,9 +200,19 @@ namespace ParkingManagement
                 {
                     connection.Open();
 
-                    string query = "INSERT INTO Vehicle (vehicle_number, vehicle_type) VALUES (:vehicle_number, :vehicle_type)";
+                    // 시퀀스를 사용하여 vehicle_id 생성
+                    int vehicleId;
+                    string getIdQuery = "SELECT VehicleSeq.NEXTVAL FROM dual";
+                    using (OracleCommand getIdCommand = new OracleCommand(getIdQuery, connection))
+                    {
+                        vehicleId = Convert.ToInt32(getIdCommand.ExecuteScalar());
+                    }
+
+                    // vehicle_id를 사용하여 Vehicle 테이블에 데이터 삽입
+                    string query = "INSERT INTO Vehicle (vehicle_id, vehicle_number, vehicle_type) VALUES (:vehicle_id, :vehicle_number, :vehicle_type)";
                     using (OracleCommand command = new OracleCommand(query, connection))
                     {
+                        command.Parameters.Add("vehicle_id", OracleDbType.Int32).Value = vehicleId; // 생성된 vehicle_id 사용
                         command.Parameters.Add("vehicle_number", OracleDbType.Varchar2).Value = vehicleNumber;
                         command.Parameters.Add("vehicle_type", OracleDbType.Varchar2).Value = vehicleType;
 
@@ -168,6 +220,7 @@ namespace ParkingManagement
                     }
 
                     MessageBox.Show("차량 번호와 차종이 등록되었습니다.", "등록 완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return vehicleId; // 등록된 vehicle_id 반환
                 }
             }
             catch (Exception ex)
@@ -176,7 +229,42 @@ namespace ParkingManagement
             }
         }
 
-        public VehicleDetails GetVehicleDetails(string vehicleNumber)
+
+        // 차량 번호로 차량 ID 조회
+        public int GetVehicleIdByNumber(string vehicleNumber)
+        {
+            try
+            {
+                using (OracleConnection connection = new OracleConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string query = "SELECT vehicle_id FROM Vehicle WHERE vehicle_number = :vehicleNumber";
+                    using (OracleCommand command = new OracleCommand(query, connection))
+                    {
+                        command.Parameters.Add("vehicleNumber", OracleDbType.Varchar2).Value = vehicleNumber;
+
+                        using (OracleDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                return Convert.ToInt32(reader["vehicle_id"]); // 차량 ID 반환
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"차량 ID를 조회하는 중 오류 발생: {ex.Message}", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return -1; // 조회 실패 시 -1 반환
+        }
+
+
+        // 차량 정보 가져오기
+        public VehicleDetails GetVehicleDetails(int vehicleId)
         {
             try
             {
@@ -184,21 +272,20 @@ namespace ParkingManagement
                 {
                     connection.Open();
                     string query = @"
-            SELECT 
-                v.vehicle_type, 
-                p.spot_number AS parking_spot, 
-                p.is_disabled, 
-                p.is_occupied, 
-                p.vehicle_number, 
-                r.start_time
-            FROM Vehicle v
-            LEFT JOIN ParkingSpot p ON v.vehicle_number = p.vehicle_number
-            LEFT JOIN Receipt r ON v.vehicle_number = r.vehicle_number
-            WHERE v.vehicle_number = :vehicleNumber";
+    SELECT 
+        v.vehicle_id,
+        v.vehicle_number,
+        v.vehicle_type, 
+        p.spot_number AS parking_spot, 
+        r.start_time
+    FROM Vehicle v
+    LEFT JOIN ParkingSpot p ON v.vehicle_id = p.vehicle_id
+    LEFT JOIN Receipt r ON v.vehicle_id = r.vehicle_id
+    WHERE v.vehicle_id = :vehicleId";
 
                     using (OracleCommand command = new OracleCommand(query, connection))
                     {
-                        command.Parameters.Add(new OracleParameter("vehicleNumber", vehicleNumber));
+                        command.Parameters.Add("vehicleId", OracleDbType.Int32).Value = vehicleId;
 
                         using (OracleDataReader reader = command.ExecuteReader())
                         {
@@ -206,17 +293,18 @@ namespace ParkingManagement
                             {
                                 return new VehicleDetails
                                 {
+                                    VehicleId = vehicleId, // 차량 ID 설정 (쿼리에서 직접 가져오기 대신 매개변수 사용)
                                     VehicleNumber = reader["vehicle_number"].ToString(), // 차량 번호 설정
-                                    VehicleType = reader["vehicle_type"].ToString(),
-                                    ParkingSpot = reader["parking_spot"] != DBNull.Value ? Convert.ToInt32(reader["parking_spot"]) : -1,
+                                    VehicleType = reader["vehicle_type"].ToString(), // 차량 종류 설정
+                                    ParkingSpot = reader["parking_spot"] != DBNull.Value ? Convert.ToInt32(reader["parking_spot"]) : -1, // 주차 공간 번호 설정
                                     EntryTime = reader["start_time"] != DBNull.Value
                                         ? Convert.ToDateTime(reader["start_time"])
-                                        : DateTime.MinValue
+                                        : DateTime.MinValue // 입차 시간 설정
                                 };
                             }
                             else
                             {
-                                MessageBox.Show($"차량 번호 '{vehicleNumber}'에 해당하는 데이터를 찾을 수 없습니다.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MessageBox.Show($"차량 ID '{vehicleId}'에 해당하는 데이터를 찾을 수 없습니다.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
                         }
                     }
@@ -230,12 +318,14 @@ namespace ParkingManagement
             return null;
         }
 
+
         public class VehicleDetails
         {
+            public int VehicleId { get; set; } // 차량 ID 추가
             public string VehicleNumber { get; set; } // 차량 번호
-            public string VehicleType { get; set; }
-            public int ParkingSpot { get; set; }
-            public DateTime EntryTime { get; set; }
+            public string VehicleType { get; set; } // 차량 종류
+            public int ParkingSpot { get; set; } // 주차 공간 번호
+            public DateTime EntryTime { get; set; } // 입차 시간
         }
     }
 }

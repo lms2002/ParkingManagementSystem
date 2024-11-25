@@ -68,20 +68,40 @@ namespace ParkingManagement
         // 차량 번호 유효성 검사
         private bool ValidateInputs(string vehicleNumber, string vehicleType)
         {
+            // 차량 번호가 비어 있는지 확인
             if (string.IsNullOrEmpty(vehicleNumber))
             {
                 MessageBox.Show("차량 번호를 입력해주세요.", "입력 오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
+            // 차량 번호 형식 검사 (숫자, 한글, 띄어쓰기 허용, 2자리 이상 10자리 이하)
+            if (!System.Text.RegularExpressions.Regex.IsMatch(vehicleNumber, @"^[0-9가-힣\s]{2,10}$")) // 숫자, 한글, 띄어쓰기 허용, 2자리 이상 10자리 이하
+            {
+                MessageBox.Show("차량 번호 형식이 올바르지 않습니다. (숫자와 한글 조합, 띄어쓰기 허용, 2자리 이상 10자리 이하)", "입력 오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            // 차량 종류가 비어 있는지 확인
             if (string.IsNullOrEmpty(vehicleType))
             {
                 MessageBox.Show("차종을 선택해주세요.", "입력 오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
+            // 차량 종류의 유효성 확인 (Standard 또는 Compact만 허용)
+            if (vehicleType != "Standard" && vehicleType != "Compact")
+            {
+                MessageBox.Show("유효하지 않은 차종입니다. (Standard 또는 Compact만 선택 가능합니다.)", "입력 오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
             return true;
         }
+
+
+
+
 
         // 차량 번호 입력 후 Submit 클릭
         private void btnSubmit_Click(object sender, EventArgs e)
@@ -97,15 +117,21 @@ namespace ParkingManagement
 
             try
             {
+                // 차량 ID 조회
+                int vehicleId = parkingManager.GetVehicleIdByNumber(vehicleNumber);
+
                 // 차량 중복 확인
-                if (parkingManager.IsVehicleParked(vehicleNumber))
+                if (vehicleId != -1 && parkingManager.IsVehicleParked(vehicleId))
                 {
                     MessageBox.Show("현재 차량이 이미 주차 중입니다.", "중복 오류", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
                 // 신규 차량 등록
-                parkingManager.RegisterVehicle(vehicleNumber, vehicleType);
+                if (vehicleId == -1) // 차량이 기존에 등록되지 않은 경우에만 등록
+                {
+                    vehicleId = parkingManager.RegisterVehicle(vehicleNumber, vehicleType);
+                }
 
                 // ParkingSpotSelectionForm으로 이동
                 ParkingSpotSelectionForm parkingSpotSelectionForm = new ParkingSpotSelectionForm(vehicleNumber);
@@ -118,6 +144,7 @@ namespace ParkingManagement
                 MessageBox.Show("차량 정보를 저장하는데 문제가 발생했습니다: " + ex.Message, "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void VehicleNumberInputForm_FormClosed(object sender, FormClosedEventArgs e)
         {

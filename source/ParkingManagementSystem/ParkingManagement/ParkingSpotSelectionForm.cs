@@ -96,7 +96,7 @@ namespace ParkingManagement
         }
 
 
-
+        // 주차 자리 선택 시 일어나는 클릭이벤트
         private void ParkingSpotButton_Click(object sender, EventArgs e)
         {
             Button clickedButton = sender as Button;
@@ -121,18 +121,24 @@ namespace ParkingManagement
                 }
             }
 
-
-
             try
             {
                 // 현재 시간 기록
                 DateTime entryTime = DateTime.Now;
 
+                // vehicle_number로 vehicle_id 조회
+                int vehicleId = parkingManager.GetVehicleIdByNumber(selectedVehicleNumber);
+                if (vehicleId == -1)
+                {
+                    MessageBox.Show("차량 ID를 조회하는 중 오류가 발생했습니다. 등록되지 않은 차량일 수 있습니다.", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 // ParkingManager를 사용하여 입차 기록 저장
-                parkingManager.InsertReceiptRecord(selectedVehicleNumber, entryTime);
+                parkingManager.InsertReceiptRecord(vehicleId, selectedVehicleNumber, entryTime); // 수정됨: vehicle_id와 vehicle_number 함께 저장
 
                 // 주차 공간 상태 업데이트
-                parkingManager.UpdateParkingStatus(spotNumber, true, selectedVehicleNumber);
+                parkingManager.UpdateParkingStatus(spotNumber, true, vehicleId); // 수정됨: vehicle_id 사용
 
                 // 버튼 색상 업데이트
                 clickedButton.BackColor = Color.Green;
@@ -140,10 +146,9 @@ namespace ParkingManagement
                 // 성공 메시지 표시
                 MessageBox.Show($"{spotNumber}번 주차 공간에 차량이 등록되었습니다.", "완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                // ParkingDetailsForm으로 이동
                 string connectionString = "User Id=ParkingAdmin; Password=1111; Data Source=(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521)) (CONNECT_DATA = (SERVER = DEDICATED) (SERVICE_NAME = xe)));";
-                parkingManager = new ParkingManager(connectionString);
-
-                ParkingDetailsForm detailForm = new ParkingDetailsForm(connectionString, selectedVehicleNumber, spotNumber);
+                ParkingDetailsForm detailForm = new ParkingDetailsForm(connectionString, vehicleId, spotNumber); // 수정됨: vehicleId 전달
                 detailForm.Show();
                 this.Hide(); // 현재 폼 숨기기
             }
@@ -152,6 +157,7 @@ namespace ParkingManagement
                 MessageBox.Show($"주차 공간 업데이트 중 문제가 발생했습니다: {ex.Message}", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void ParkingSpotSelectionForm_FormClosed(object sender, FormClosedEventArgs e)
         {
