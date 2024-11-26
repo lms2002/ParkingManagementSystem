@@ -7,115 +7,123 @@ namespace Management
 {
     public partial class Form1 : Form
     {
-        public string getstrCommand; // ContextMenuStrip에서 선택한 명령어
-        public string getVehicleNumber; // 선택한 차량 번호
+        private int vehicleId; // Vehicle ID field
+        private string commandType; // Command type field (Add, Update, Delete)
+        private OracleConnection oracleConnection = new OracleConnection();
+
+        public int GetVehicleId
+        {
+            get { return vehicleId; }
+        }
+
+        public string GetCommandType
+        {
+            get { return commandType; }
+        }
+
+        private void ShowVehicleData() // Custom function to display vehicle data
+        {
+            try
+            {
+                oracleConnection.ConnectionString = "User Id=hong1;Password=1111;Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=xe)))";
+                oracleConnection.Open();
+                OracleDataAdapter oracleDataAdapter = new OracleDataAdapter();
+                oracleDataAdapter.SelectCommand = new OracleCommand("SELECT * FROM Vehicle", oracleConnection);
+                DataTable dataTable = new DataTable();
+                oracleDataAdapter.Fill(dataTable);
+                oracleConnection.Close();
+                DBGrid.DataSource = dataTable;
+                DBGrid.AutoResizeColumns();
+                DBGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                DBGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                DBGrid.AllowUserToAddRows = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error occurred: " + ex.ToString());
+                oracleConnection.Close();
+            }
+        }
+
+        private void SearchVehicleByNumber(string lastFourDigits) // Custom function to search vehicle by last 4 digits
+        {
+            try
+            {
+                oracleConnection.ConnectionString = "User Id=hong1;Password=1111;Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=xe)))";
+                oracleConnection.Open();
+                OracleDataAdapter oracleDataAdapter = new OracleDataAdapter();
+                oracleDataAdapter.SelectCommand = new OracleCommand("SELECT * FROM Vehicle WHERE SUBSTR(vehicle_number, -4) = :lastFourDigits", oracleConnection);
+                oracleDataAdapter.SelectCommand.Parameters.Add("lastFourDigits", OracleDbType.Varchar2).Value = lastFourDigits;
+                DataTable dataTable = new DataTable();
+                oracleDataAdapter.Fill(dataTable);
+                oracleConnection.Close();
+                DBGrid.DataSource = dataTable;
+                DBGrid.AutoResizeColumns();
+                DBGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                DBGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                DBGrid.AllowUserToAddRows = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error occurred: " + ex.ToString());
+                oracleConnection.Close();
+            }
+        }
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void searchB1_Click(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
-            string connectionString = "User Id=ParkingAdmin; Password=1111; Data Source=(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521)) (CONNECT_DATA = (SERVER = DEDICATED) (SERVICE_NAME = xe)));";
-            OracleConnection connection = new OracleConnection(connectionString);
-
-            try
-            {
-                connection.Open();
-
-                // SQL 쿼리: 모든 차량 정보 검색
-                string query = "SELECT * FROM Vehicle";
-                OracleDataAdapter adapter = new OracleDataAdapter(query, connection);
-
-                DataSet dataSet = new DataSet();
-                adapter.Fill(dataSet, "Vehicle");
-
-                // DataGridView에 데이터 바인딩
-                dataGridVehicles.DataSource = dataSet.Tables["Vehicle"];
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("오류 발생: " + ex.Message);
-            }
-            finally
-            {
-                connection.Close();
-            }
-        }
-
-        private void searchB2_Click(object sender, EventArgs e)
-        {
-            string connectionString = "User Id=ParkingAdmin; Password=1111; Data Source=(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521)) (CONNECT_DATA = (SERVER = DEDICATED) (SERVICE_NAME = xe)));";
-            OracleConnection connection = new OracleConnection(connectionString);
-
-            try
-            {
-                connection.Open();
-
-                // SQL 쿼리: 차량 번호 검색
-                string query = "SELECT * FROM Vehicle WHERE vehicle_number = :vehicle_number";
-                OracleCommand command = new OracleCommand(query, connection);
-                command.Parameters.Add("vehicle_number", OracleDbType.Varchar2, 10);
-                command.Parameters["vehicle_number"].Value = txtSearch.Text.Trim();
-
-                // 검색 결과를 ListBox에 추가
-                OracleDataReader reader = command.ExecuteReader();
-                listBoxResults.Items.Clear(); // 기존 항목 초기화
-                while (reader.Read())
-                {
-                    listBoxResults.Items.Add("차량 번호: " + reader["vehicle_number"].ToString());
-                    listBoxResults.Items.Add("차량 유형: " + reader["vehicle_type"].ToString());
-                    listBoxResults.Items.Add("주차 요금: " + reader["parking_fee"].ToString());
-                    listBoxResults.Items.Add("-------------------------");
-                }
-
-                reader.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("오류 발생: " + ex.Message);
-            }
-            finally
-            {
-                connection.Close();
-            }
-        }
-
-        private void 선택형업데이트ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            getstrCommand = "추가";
-            Form2 form2 = new Form2(this);
-            form2.ShowDialog();
-        }
-
-        private void 선택차량삭제ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrWhiteSpace(txtSearch.Text))
-            {
-                getstrCommand = "삭제";
-                getVehicleNumber = txtSearch.Text.Trim();
-                Form2 form2 = new Form2(this);
-                form2.ShowDialog();
-            }
-            else
-            {
-                MessageBox.Show("삭제할 차량 번호를 입력하세요.");
-            }
+            ShowVehicleData();
         }
 
         private void 선택차량수정ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(txtSearch.Text))
+            commandType = "Update";
+            vehicleId = Convert.ToInt32(DBGrid.SelectedCells[0].Value);
+            Form2 form2 = new Form2(this);
+            form2.ShowDialog();
+            form2.Dispose();
+            ShowVehicleData();
+        }
+
+        private void 선택차량삭제ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            commandType = "Delete";
+            vehicleId = Convert.ToInt32(DBGrid.SelectedCells[0].Value);
+            Form2 form2 = new Form2(this);
+            form2.ShowDialog();
+            form2.Dispose();
+            ShowVehicleData();
+        }
+
+        private void 선택형업데이트ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            commandType = "Add";
+            Form2 form2 = new Form2(this);
+            form2.ShowDialog();
+            form2.Dispose();
+            ShowVehicleData();
+        }
+
+        private void searchByVehicleNumber_Click(object sender, EventArgs e)
+        {
+            string lastFourDigits = txtLastFourDigits.Text.Trim();
+            if (!string.IsNullOrEmpty(lastFourDigits))
             {
-                getstrCommand = "업데이트";
-                getVehicleNumber = txtSearch.Text.Trim();
-                Form2 form2 = new Form2(this);
-                form2.ShowDialog();
+                SearchVehicleByNumber(lastFourDigits);
             }
             else
             {
-                MessageBox.Show("수정할 차량 번호를 입력하세요.");
+                MessageBox.Show("Please enter the last 4 digits of the vehicle number.");
             }
+        }
+
+        private void searchAllVehicles_Click(object sender, EventArgs e)
+        {
+            ShowVehicleData();
         }
     }
 }
