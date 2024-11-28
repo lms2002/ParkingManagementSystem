@@ -11,3 +11,5 @@ C:\C# 팀플\ParkingManagementSystem\source\ParkingManagementSystem\Management\o
 C:\C# 팀플\ParkingManagementSystem\source\ParkingManagementSystem\Management\obj\Debug\Management.exe
 C:\C# 팀플\ParkingManagementSystem\source\ParkingManagementSystem\Management\obj\Debug\Management.pdb
 C:\C# 팀플\ParkingManagementSystem\source\ParkingManagementSystem\Management\obj\Debug\Management.Form2.resources
+C:\C# 팀플\ParkingManagementSystem\source\ParkingManagementSystem\Management\obj\Debug\VehicleManagement.Form1.resources
+C:\C# 팀플\ParkingManagementSystem\source\ParkingManagementSystem\Management\obj\Debug\VehicleManagement.Form2.resources

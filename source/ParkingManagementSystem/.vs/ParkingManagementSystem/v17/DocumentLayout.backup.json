@@ -3,20 +3,20 @@
   "WorkspaceRootPath": "C:\\C# \uD300\uD50C\\ParkingManagementSystem\\source\\ParkingManagementSystem\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1A997488-35B5-4460-B792-26FC29445F28}|Management\\Management.csproj|c:\\c# \uD300\uD50C\\parkingmanagementsystem\\source\\parkingmanagementsystem\\management\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1A997488-35B5-4460-B792-26FC29445F28}|Management\\Management.csproj|solutionrelative:management\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D9BC7F46-33CA-4216-924D-7613783AB484}|VehicleManagement\\VehicleManagement.csproj|c:\\c# \uD300\uD50C\\parkingmanagementsystem\\source\\parkingmanagementsystem\\vehiclemanagement\\vehicle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{D9BC7F46-33CA-4216-924D-7613783AB484}|VehicleManagement\\VehicleManagement.csproj|solutionrelative:vehiclemanagement\\vehicle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1A997488-35B5-4460-B792-26FC29445F28}|Management\\Management.csproj|C:\\C# \uD300\uD50C\\ParkingManagementSystem\\source\\ParkingManagementSystem\\management\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1A997488-35B5-4460-B792-26FC29445F28}|Management\\Management.csproj|solutionrelative:management\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D9BC7F46-33CA-4216-924D-7613783AB484}|VehicleManagement\\VehicleManagement.csproj|c:\\c# \uD300\uD50C\\parkingmanagementsystem\\source\\parkingmanagementsystem\\vehiclemanagement\\vehiclecrud.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{D9BC7F46-33CA-4216-924D-7613783AB484}|VehicleManagement\\VehicleManagement.csproj|solutionrelative:vehiclemanagement\\vehiclecrud.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1A997488-35B5-4460-B792-26FC29445F28}|Management\\Management.csproj|C:\\C# \uD300\uD50C\\ParkingManagementSystem\\source\\ParkingManagementSystem\\management\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{1A997488-35B5-4460-B792-26FC29445F28}|Management\\Management.csproj|solutionrelative:management\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{D9BC7F46-33CA-4216-924D-7613783AB484}|VehicleManagement\\VehicleManagement.csproj|c:\\c# \uD300\uD50C\\parkingmanagementsystem\\source\\parkingmanagementsystem\\vehiclemanagement\\vehiclecrud.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D9BC7F46-33CA-4216-924D-7613783AB484}|VehicleManagement\\VehicleManagement.csproj|solutionrelative:vehiclemanagement\\vehiclecrud.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1A997488-35B5-4460-B792-26FC29445F28}|Management\\Management.csproj|C:\\C# \uD300\uD50C\\ParkingManagementSystem\\source\\ParkingManagementSystem\\management\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{1A997488-35B5-4460-B792-26FC29445F28}|Management\\Management.csproj|solutionrelative:management\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{D9BC7F46-33CA-4216-924D-7613783AB484}|VehicleManagement\\VehicleManagement.csproj|c:\\c# \uD300\uD50C\\parkingmanagementsystem\\source\\parkingmanagementsystem\\vehiclemanagement\\vehicle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D9BC7F46-33CA-4216-924D-7613783AB484}|VehicleManagement\\VehicleManagement.csproj|solutionrelative:vehiclemanagement\\vehicle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,45 +26,32 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Form1.cs [\uB514\uC790\uC778]",
-              "DocumentMoniker": "C:\\C# \uD300\uD50C\\ParkingManagementSystem\\source\\ParkingManagementSystem\\Management\\Form1.cs",
-              "RelativeDocumentMoniker": "Management\\Form1.cs",
-              "ToolTip": "C:\\C# \uD300\uD50C\\ParkingManagementSystem\\source\\ParkingManagementSystem\\Management\\Form1.cs [\uB514\uC790\uC778]",
-              "RelativeToolTip": "Management\\Form1.cs [\uB514\uC790\uC778]",
+              "DocumentIndex": 2,
+              "Title": "VehicleCRUD.cs",
+              "DocumentMoniker": "C:\\C# \uD300\uD50C\\ParkingManagementSystem\\source\\ParkingManagementSystem\\VehicleManagement\\VehicleCRUD.cs",
+              "RelativeDocumentMoniker": "VehicleManagement\\VehicleCRUD.cs",
+              "ToolTip": "C:\\C# \uD300\uD50C\\ParkingManagementSystem\\source\\ParkingManagementSystem\\VehicleManagement\\VehicleCRUD.cs",
+              "RelativeToolTip": "VehicleManagement\\VehicleCRUD.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABwAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-22T08:15:55.66Z",
-              "IsPinned": true,
-              "EditorCaption": " [\uB514\uC790\uC778]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Form1.cs",
-              "DocumentMoniker": "C:\\C# \uD300\uD50C\\ParkingManagementSystem\\source\\ParkingManagementSystem\\Management\\Form1.cs",
-              "RelativeDocumentMoniker": "Management\\Form1.cs",
-              "ToolTip": "C:\\C# \uD300\uD50C\\ParkingManagementSystem\\source\\ParkingManagementSystem\\Management\\Form1.cs",
-              "RelativeToolTip": "Management\\Form1.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAAywBwAAAAoAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-22T08:28:15.696Z",
+              "WhenOpened": "2024-11-28T09:51:46.306Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Form2.cs",
-              "DocumentMoniker": "C:\\C# \uD300\uD50C\\ParkingManagementSystem\\source\\ParkingManagementSystem\\Management\\Form2.cs",
-              "RelativeDocumentMoniker": "Management\\Form2.cs",
-              "ToolTip": "C:\\C# \uD300\uD50C\\ParkingManagementSystem\\source\\ParkingManagementSystem\\Management\\Form2.cs",
-              "RelativeToolTip": "Management\\Form2.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAADwvxwAAAAmAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "Vehicle.cs",
+              "DocumentMoniker": "C:\\C# \uD300\uD50C\\ParkingManagementSystem\\source\\ParkingManagementSystem\\VehicleManagement\\Vehicle.cs",
+              "RelativeDocumentMoniker": "VehicleManagement\\Vehicle.cs",
+              "ToolTip": "C:\\C# \uD300\uD50C\\ParkingManagementSystem\\source\\ParkingManagementSystem\\VehicleManagement\\Vehicle.cs",
+              "RelativeToolTip": "VehicleManagement\\Vehicle.cs",
+              "ViewState": "AgIAADgAAAAAAAAAAAAcwG0AAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-22T08:23:53.406Z",
+              "WhenOpened": "2024-11-28T09:37:27.114Z",
               "EditorCaption": ""
             },
             {
@@ -73,14 +60,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Form2.cs [\uB514\uC790\uC778]",
-              "DocumentMoniker": "C:\\C# \uD300\uD50C\\ParkingManagementSystem\\source\\ParkingManagementSystem\\Management\\Form2.cs",
-              "RelativeDocumentMoniker": "Management\\Form2.cs",
-              "ToolTip": "C:\\C# \uD300\uD50C\\ParkingManagementSystem\\source\\ParkingManagementSystem\\Management\\Form2.cs [\uB514\uC790\uC778]",
-              "RelativeToolTip": "Management\\Form2.cs [\uB514\uC790\uC778]",
+              "DocumentIndex": 0,
+              "Title": "Vehicle.cs [\uB514\uC790\uC778]",
+              "DocumentMoniker": "C:\\C# \uD300\uD50C\\ParkingManagementSystem\\source\\ParkingManagementSystem\\VehicleManagement\\Vehicle.cs",
+              "RelativeDocumentMoniker": "VehicleManagement\\Vehicle.cs",
+              "ToolTip": "C:\\C# \uD300\uD50C\\ParkingManagementSystem\\source\\ParkingManagementSystem\\VehicleManagement\\Vehicle.cs [\uB514\uC790\uC778]",
+              "RelativeToolTip": "VehicleManagement\\Vehicle.cs [\uB514\uC790\uC778]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-22T08:15:57.871Z",
+              "WhenOpened": "2024-11-28T09:19:20.266Z",
+              "EditorCaption": " [\uB514\uC790\uC778]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "VehicleCRUD.cs [\uB514\uC790\uC778]",
+              "DocumentMoniker": "C:\\C# \uD300\uD50C\\ParkingManagementSystem\\source\\ParkingManagementSystem\\VehicleManagement\\VehicleCRUD.cs",
+              "RelativeDocumentMoniker": "VehicleManagement\\VehicleCRUD.cs",
+              "ToolTip": "C:\\C# \uD300\uD50C\\ParkingManagementSystem\\source\\ParkingManagementSystem\\VehicleManagement\\VehicleCRUD.cs [\uB514\uC790\uC778]",
+              "RelativeToolTip": "VehicleManagement\\VehicleCRUD.cs [\uB514\uC790\uC778]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-28T09:27:36.717Z",
               "EditorCaption": " [\uB514\uC790\uC778]"
             }
           ]

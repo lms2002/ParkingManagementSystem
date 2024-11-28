@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Oracle.DataAccess.Client;
-using Oracle.DataAccess.Types;
 
-namespace Management
+namespace VehicleManagement
 {
     internal static class Program
     {
@@ -18,7 +16,7 @@ namespace Management
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Management());
+            Application.Run(new Vehicle());
         }
     }
 }

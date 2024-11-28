@@ -1,6 +1,6 @@
-﻿namespace Management
+﻿namespace VehicleManagement
 {
-    partial class Form2
+    partial class VehicleManagement
     {
         /// <summary>
         /// Required designer variable.
@@ -28,26 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtVehicleNumber = new System.Windows.Forms.TextBox();
-            this.txtVehicleType = new System.Windows.Forms.TextBox();
+            this.txtNumber = new System.Windows.Forms.TextBox();
+            this.txtType = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btnOK = new System.Windows.Forms.Button();
+            this.txtId = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // txtVehicleNumber
+            // txtNumber
             // 
-            this.txtVehicleNumber.Location = new System.Drawing.Point(445, 149);
-            this.txtVehicleNumber.Name = "txtVehicleNumber";
-            this.txtVehicleNumber.Size = new System.Drawing.Size(100, 21);
-            this.txtVehicleNumber.TabIndex = 0;
+            this.txtNumber.Location = new System.Drawing.Point(445, 149);
+            this.txtNumber.Name = "txtNumber";
+            this.txtNumber.Size = new System.Drawing.Size(100, 21);
+            this.txtNumber.TabIndex = 0;
             // 
-            // txtVehicleType
+            // txtType
             // 
-            this.txtVehicleType.Location = new System.Drawing.Point(445, 202);
-            this.txtVehicleType.Name = "txtVehicleType";
-            this.txtVehicleType.Size = new System.Drawing.Size(100, 21);
-            this.txtVehicleType.TabIndex = 1;
+            this.txtType.Location = new System.Drawing.Point(445, 202);
+            this.txtType.Name = "txtType";
+            this.txtType.Size = new System.Drawing.Size(100, 21);
+            this.txtType.TabIndex = 1;
             // 
             // label1
             // 
@@ -77,16 +79,34 @@
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
+            // txtId
+            // 
+            this.txtId.Location = new System.Drawing.Point(445, 96);
+            this.txtId.Name = "txtId";
+            this.txtId.Size = new System.Drawing.Size(100, 21);
+            this.txtId.TabIndex = 11;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(270, 99);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(43, 12);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "차량 id";
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.txtId);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtVehicleType);
-            this.Controls.Add(this.txtVehicleNumber);
+            this.Controls.Add(this.txtType);
+            this.Controls.Add(this.txtNumber);
             this.Name = "Form2";
             this.Text = "Form2";
             this.Load += new System.EventHandler(this.Form2_Load);
@@ -97,10 +117,12 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox txtVehicleNumber;
-        private System.Windows.Forms.TextBox txtVehicleType;
+        private System.Windows.Forms.TextBox txtNumber;
+        private System.Windows.Forms.TextBox txtType;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnOK;
+        private System.Windows.Forms.TextBox txtId;
+        private System.Windows.Forms.Label label3;
     }
 }

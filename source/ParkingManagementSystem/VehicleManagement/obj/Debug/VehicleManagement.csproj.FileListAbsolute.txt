@@ -1,0 +1,13 @@
+C:\C# 팀플\ParkingManagementSystem\source\ParkingManagementSystem\VehicleManagement\bin\Debug\VehicleManagement.exe.config
+C:\C# 팀플\ParkingManagementSystem\source\ParkingManagementSystem\VehicleManagement\bin\Debug\VehicleManagement.exe
+C:\C# 팀플\ParkingManagementSystem\source\ParkingManagementSystem\VehicleManagement\bin\Debug\VehicleManagement.pdb
+C:\C# 팀플\ParkingManagementSystem\source\ParkingManagementSystem\VehicleManagement\bin\Debug\Oracle.DataAccess.dll
+C:\C# 팀플\ParkingManagementSystem\source\ParkingManagementSystem\VehicleManagement\obj\Debug\VehicleManagement.csproj.AssemblyReference.cache
+C:\C# 팀플\ParkingManagementSystem\source\ParkingManagementSystem\VehicleManagement\obj\Debug\VehicleManagement.Properties.Resources.resources
+C:\C# 팀플\ParkingManagementSystem\source\ParkingManagementSystem\VehicleManagement\obj\Debug\VehicleManagement.VehicleCRUD.resources
+C:\C# 팀플\ParkingManagementSystem\source\ParkingManagementSystem\VehicleManagement\obj\Debug\VehicleManagement.Vehicle.resources
+C:\C# 팀플\ParkingManagementSystem\source\ParkingManagementSystem\VehicleManagement\obj\Debug\VehicleManagement.csproj.GenerateResource.cache
+C:\C# 팀플\ParkingManagementSystem\source\ParkingManagementSystem\VehicleManagement\obj\Debug\VehicleManagement.csproj.CoreCompileInputs.cache
+C:\C# 팀플\ParkingManagementSystem\source\ParkingManagementSystem\VehicleManagement\obj\Debug\VehicleM.3842A2AE.Up2Date
+C:\C# 팀플\ParkingManagementSystem\source\ParkingManagementSystem\VehicleManagement\obj\Debug\VehicleManagement.exe
+C:\C# 팀플\ParkingManagementSystem\source\ParkingManagementSystem\VehicleManagement\obj\Debug\VehicleManagement.pdb
