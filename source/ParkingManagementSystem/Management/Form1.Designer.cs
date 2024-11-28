@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.dataGridVehicles = new System.Windows.Forms.DataGridView();
+            this.showdbgrid = new System.Windows.Forms.DataGridView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.차량ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.선택형업데이트ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -41,24 +41,24 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtSearch = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridVehicles)).BeginInit();
+            this.searchdbgrid = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.showdbgrid)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchdbgrid)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridVehicles
+            // showdbgrid
             // 
-            this.dataGridVehicles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridVehicles.ContextMenuStrip = this.contextMenuStrip1;
-            this.dataGridVehicles.Location = new System.Drawing.Point(405, 47);
-            this.dataGridVehicles.Margin = new System.Windows.Forms.Padding(2);
-            this.dataGridVehicles.Name = "dataGridVehicles";
-            this.dataGridVehicles.RowHeadersWidth = 62;
-            this.dataGridVehicles.RowTemplate.Height = 30;
-            this.dataGridVehicles.Size = new System.Drawing.Size(461, 400);
-            this.dataGridVehicles.TabIndex = 11;
+            this.showdbgrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.showdbgrid.ContextMenuStrip = this.contextMenuStrip1;
+            this.showdbgrid.Location = new System.Drawing.Point(405, 47);
+            this.showdbgrid.Margin = new System.Windows.Forms.Padding(2);
+            this.showdbgrid.Name = "showdbgrid";
+            this.showdbgrid.RowHeadersWidth = 62;
+            this.showdbgrid.RowTemplate.Height = 30;
+            this.showdbgrid.Size = new System.Drawing.Size(461, 400);
+            this.showdbgrid.TabIndex = 11;
             // 
             // contextMenuStrip1
             // 
@@ -75,34 +75,34 @@
             this.선택차량삭제ToolStripMenuItem,
             this.선택차량수정ToolStripMenuItem});
             this.차량ToolStripMenuItem.Name = "차량ToolStripMenuItem";
-            this.차량ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.차량ToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.차량ToolStripMenuItem.Text = "차량 업데이트";
             // 
             // 선택형업데이트ToolStripMenuItem
             // 
             this.선택형업데이트ToolStripMenuItem.Name = "선택형업데이트ToolStripMenuItem";
-            this.선택형업데이트ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.선택형업데이트ToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.선택형업데이트ToolStripMenuItem.Text = "선택차량 추가";
             this.선택형업데이트ToolStripMenuItem.Click += new System.EventHandler(this.선택형업데이트ToolStripMenuItem_Click);
             // 
             // 선택차량삭제ToolStripMenuItem
             // 
             this.선택차량삭제ToolStripMenuItem.Name = "선택차량삭제ToolStripMenuItem";
-            this.선택차량삭제ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.선택차량삭제ToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.선택차량삭제ToolStripMenuItem.Text = "선택차량 삭제";
             this.선택차량삭제ToolStripMenuItem.Click += new System.EventHandler(this.선택차량삭제ToolStripMenuItem_Click);
             // 
             // 선택차량수정ToolStripMenuItem
             // 
             this.선택차량수정ToolStripMenuItem.Name = "선택차량수정ToolStripMenuItem";
-            this.선택차량수정ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.선택차량수정ToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.선택차량수정ToolStripMenuItem.Text = "선택차량 수정";
             this.선택차량수정ToolStripMenuItem.Click += new System.EventHandler(this.선택차량수정ToolStripMenuItem_Click);
             // 
             // 차량추가정보ToolStripMenuItem
             // 
             this.차량추가정보ToolStripMenuItem.Name = "차량추가정보ToolStripMenuItem";
-            this.차량추가정보ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.차량추가정보ToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.차량추가정보ToolStripMenuItem.Text = "차량 추가 정보";
             // 
             // searchByVehicleNumber
@@ -158,43 +158,43 @@
             this.txtSearch.Size = new System.Drawing.Size(103, 21);
             this.txtSearch.TabIndex = 4;
             // 
-            // dataGridView1
+            // searchdbgrid
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.ContextMenuStrip = this.contextMenuStrip1;
-            this.dataGridView1.Location = new System.Drawing.Point(63, 169);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 62;
-            this.dataGridView1.RowTemplate.Height = 30;
-            this.dataGridView1.Size = new System.Drawing.Size(247, 259);
-            this.dataGridView1.TabIndex = 12;
+            this.searchdbgrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.searchdbgrid.ContextMenuStrip = this.contextMenuStrip1;
+            this.searchdbgrid.Location = new System.Drawing.Point(63, 169);
+            this.searchdbgrid.Margin = new System.Windows.Forms.Padding(2);
+            this.searchdbgrid.Name = "searchdbgrid";
+            this.searchdbgrid.RowHeadersWidth = 62;
+            this.searchdbgrid.RowTemplate.Height = 30;
+            this.searchdbgrid.Size = new System.Drawing.Size(247, 259);
+            this.searchdbgrid.TabIndex = 12;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 561);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.dataGridVehicles);
+            this.Controls.Add(this.searchdbgrid);
+            this.Controls.Add(this.showdbgrid);
             this.Controls.Add(this.searchByVehicleNumber);
             this.Controls.Add(this.searchAllVehicles);
             this.Controls.Add(this.groupBox1);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridVehicles)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.showdbgrid)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchdbgrid)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridVehicles;
+        private System.Windows.Forms.DataGridView showdbgrid;
         private System.Windows.Forms.Button searchByVehicleNumber;
         private System.Windows.Forms.Button searchAllVehicles;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -206,7 +206,7 @@
         private System.Windows.Forms.ToolStripMenuItem 선택형업데이트ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 선택차량삭제ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 선택차량수정ToolStripMenuItem;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView searchdbgrid;
     }
 }
 

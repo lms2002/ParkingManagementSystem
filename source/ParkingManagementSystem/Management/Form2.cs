@@ -13,129 +13,120 @@ namespace Management
 {
     public partial class Form2 : Form
     {
-        private OracleConnection odpConn = new OracleConnection();
-        private Form1 _parent;
+        private OracleConnection oracleConnection = new OracleConnection();
+        Form1 parentForm;
 
-        public Form2(Form1 inform1)
+        public Form2(Form1 form1)
         {
             InitializeComponent();
-            _parent = inform1;
+            parentForm = form1;
         }
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            // 명령어에 따라 폼 초기화
-            if (_parent.getstrCommand == "삭제")
+            if (parentForm.GetCommandType == "Delete")
             {
-                btnOK.Text = "삭제";
+                btnOK.Text = "Delete";
                 txtVehicleNumber.Enabled = false;
-                LoadVehicleData();
+                InitializeTextBoxes();
             }
-            else if (_parent.getstrCommand == "업데이트")
+            else if (parentForm.GetCommandType == "Update")
             {
-                btnOK.Text = "업데이트";
-                txtVehicleNumber.Enabled = false;
-                LoadVehicleData();
+                btnOK.Text = "Update";
+                txtVehicleNumber.Enabled = true;
+                InitializeTextBoxes();
             }
             else
             {
-                btnOK.Text = "추가";
+                btnOK.Text = "Add";
             }
         }
-
-        // 차량 데이터 로드 (수정/삭제 시 사용)
-        private void LoadVehicleData()
+        private void InitializeTextBoxes() // Custom function to initialize text boxes
         {
-            odpConn.ConnectionString = "User Id=ParkingAdmin; Password=1111; Data Source=(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521)) (CONNECT_DATA = (SERVER = DEDICATED) (SERVICE_NAME = xe)));";
-            odpConn.Open();
-
-            string query = "SELECT * FROM Vehicle WHERE vehicle_number = :vehicle_number";
-            OracleCommand cmd = new OracleCommand(query, odpConn);
-            cmd.Parameters.Add("vehicle_number", OracleDbType.Varchar2).Value = _parent.getVehicleNumber;
-
-            OracleDataReader reader = cmd.ExecuteReader();
-            if (reader.Read())
+            oracleConnection.ConnectionString = "User Id=ParkingAdmin;Password=1111;Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=xe)))";
+            oracleConnection.Open();
+            string query = "SELECT * FROM Vehicle WHERE vehicle_id = :id";
+            OracleCommand oracleCommand = new OracleCommand(query, oracleConnection);
+            oracleCommand.Parameters.Add("number", OracleDbType.Varchar2, 10).Value = txtVehicleNumber.Text.Trim();
+            OracleDataReader dataReader = oracleCommand.ExecuteReader();
+            while (dataReader.Read())
             {
-                txtVehicleNumber.Text = reader["vehicle_number"].ToString();
-                txtVehicleType.Text = reader["vehicle_type"].ToString();
-                txtParkingFee.Text = reader["parking_fee"].ToString();
+                txtVehicleNumber.Text = Convert.ToString(dataReader.GetValue(1));
+                txtVehicleType.Text = Convert.ToString(dataReader.GetValue(2));
             }
-
-            reader.Close();
-            odpConn.Close();
+            dataReader.Close();
+            oracleConnection.Close();
         }
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if (btnOK.Text == "추가")
+            if (btnOK.Text == "Add")
             {
-                if (InsertVehicle() > 0)
-                    MessageBox.Show("차량이 추가되었습니다.");
+                if (InsertRow() > 0)
+                {
+                    MessageBox.Show("Vehicle added successfully.");
+                }
                 else
-                    MessageBox.Show("차량 추가 실패!");
+                {
+                    MessageBox.Show("Failed to add vehicle.");
+                }
+                this.Close();
             }
-            else if (btnOK.Text == "삭제")
+            else if (btnOK.Text == "Delete")
             {
-                if (DeleteVehicle() > 0)
-                    MessageBox.Show("차량이 삭제되었습니다.");
+                if (DeleteRow() > 0)
+                {
+                    MessageBox.Show("Vehicle deleted successfully.");
+                }
                 else
-                    MessageBox.Show("차량 삭제 실패!");
+                {
+                    MessageBox.Show("Failed to delete vehicle.");
+                }
+                this.Close();
             }
-            else if (btnOK.Text == "업데이트")
+            else
             {
-                if (UpdateVehicle() > 0)
-                    MessageBox.Show("차량이 수정되었습니다.");
+                if (UpdateRow() > 0)
+                {
+                    MessageBox.Show("Vehicle updated successfully.");
+                }
                 else
-                    MessageBox.Show("차량 수정 실패!");
+                {
+                    MessageBox.Show("Failed to update vehicle.");
+                }
+                this.Close();
             }
-
-            this.Close();
         }
-
-        private int InsertVehicle()
+        private int InsertRow() // Custom function to add a new vehicle
         {
-            odpConn.ConnectionString = "User Id=ParkingAdmin; Password=1111; Data Source=(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521)) (CONNECT_DATA = (SERVER = DEDICATED) (SERVICE_NAME = xe)));";
-            odpConn.Open();
+            oracleConnection.ConnectionString = "User Id=ParkingAdmin;Password=1111;Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=xe)))";
+            oracleConnection.Open();
+            string query = "INSERT INTO Vehicle (vehicle_number, vehicle_type) VALUES (:number, :type)";
+            OracleCommand oracleCommand = new OracleCommand(query, oracleConnection);
 
-            string query = "INSERT INTO Vehicle (vehicle_number, vehicle_type, parking_fee) VALUES (:vehicle_number, :vehicle_type, :parking_fee)";
-            OracleCommand cmd = new OracleCommand(query, odpConn);
-            cmd.Parameters.Add("vehicle_number", OracleDbType.Varchar2).Value = txtVehicleNumber.Text.Trim();
-            cmd.Parameters.Add("vehicle_type", OracleDbType.Varchar2).Value = txtVehicleType.Text.Trim();
-            cmd.Parameters.Add("parking_fee", OracleDbType.Int32).Value = txtParkingFee.Text.Trim();
-
-            int result = cmd.ExecuteNonQuery();
-            odpConn.Close();
-            return result;
+            oracleCommand.Parameters.Add("number", OracleDbType.Varchar2, 10).Value = txtVehicleNumber.Text.Trim();
+            oracleCommand.Parameters.Add("type", OracleDbType.Varchar2, 10).Value = txtVehicleType.Text.Trim();
+            return oracleCommand.ExecuteNonQuery();
         }
-
-        private int DeleteVehicle()
+        private int DeleteRow() // Custom function to delete a vehicle
         {
-            odpConn.ConnectionString = "User Id=ParkingAdmin; Password=1111; Data Source=(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521)) (CONNECT_DATA = (SERVER = DEDICATED) (SERVICE_NAME = xe)));";
-            odpConn.Open();
-
-            string query = "DELETE FROM Vehicle WHERE vehicle_number = :vehicle_number";
-            OracleCommand cmd = new OracleCommand(query, odpConn);
-            cmd.Parameters.Add("vehicle_number", OracleDbType.Varchar2).Value = _parent.getVehicleNumber;
-
-            int result = cmd.ExecuteNonQuery();
-            odpConn.Close();
-            return result;
+            oracleConnection.ConnectionString = "User Id=ParkingAdmin;Password=1111;Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=xe)))";
+            oracleConnection.Open();
+            string query = "DELETE FROM Vehicle WHERE vehicle_number = :number";
+            OracleCommand oracleCommand = new OracleCommand(query, oracleConnection);
+            oracleCommand.Parameters.Add("number", OracleDbType.Varchar2, 10).Value = txtVehicleNumber.Text.Trim();
+            return oracleCommand.ExecuteNonQuery();
         }
-
-        private int UpdateVehicle()
+        private int UpdateRow() // Custom function to update vehicle details
         {
-            odpConn.ConnectionString = "User Id=ParkingAdmin; Password=1111; Data Source=(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521)) (CONNECT_DATA = (SERVER = DEDICATED) (SERVICE_NAME = xe)));";
-            odpConn.Open();
-
-            string query = "UPDATE Vehicle SET vehicle_type = :vehicle_type, parking_fee = :parking_fee WHERE vehicle_number = :vehicle_number";
-            OracleCommand cmd = new OracleCommand(query, odpConn);
-            cmd.Parameters.Add("vehicle_type", OracleDbType.Varchar2).Value = txtVehicleType.Text.Trim();
-            cmd.Parameters.Add("parking_fee", OracleDbType.Int32).Value = txtParkingFee.Text.Trim();
-            cmd.Parameters.Add("vehicle_number", OracleDbType.Varchar2).Value = _parent.getVehicleNumber;
-
-            int result = cmd.ExecuteNonQuery();
-            odpConn.Close();
-            return result;
+            oracleConnection.ConnectionString = "User Id=ParkingAdmin;Password=1111;Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=xe)))";
+            oracleConnection.Open();
+            string query = "UPDATE Vehicle SET vehicle_type = :type WHERE vehicle_number = :number";
+            OracleCommand oracleCommand = new OracleCommand(query, oracleConnection);
+            oracleCommand.Parameters.Add("number", OracleDbType.Varchar2, 10).Value = txtVehicleNumber.Text.Trim();
+            oracleCommand.Parameters.Add("type", OracleDbType.Varchar2, 10).Value = txtVehicleType.Text.Trim();
+            oracleCommand.Parameters.Add("id", OracleDbType.Int32).Value = parentForm.GetVehicleId;
+            return oracleCommand.ExecuteNonQuery();
         }
     }
 }

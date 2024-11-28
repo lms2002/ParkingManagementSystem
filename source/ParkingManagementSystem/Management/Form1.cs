@@ -25,18 +25,18 @@ namespace Management
         {
             try
             {
-                oracleConnection.ConnectionString = "User Id=hong1;Password=1111;Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=xe)))";
+                oracleConnection.ConnectionString = "User Id=ParkingAdmin;Password=1111;Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=xe)))";
                 oracleConnection.Open();
                 OracleDataAdapter oracleDataAdapter = new OracleDataAdapter();
                 oracleDataAdapter.SelectCommand = new OracleCommand("SELECT * FROM Vehicle", oracleConnection);
                 DataTable dataTable = new DataTable();
                 oracleDataAdapter.Fill(dataTable);
                 oracleConnection.Close();
-                DBGrid.DataSource = dataTable;
-                DBGrid.AutoResizeColumns();
-                DBGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                DBGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-                DBGrid.AllowUserToAddRows = false;
+                showdbgrid.DataSource = dataTable;
+                showdbgrid.AutoResizeColumns();
+                showdbgrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                showdbgrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                showdbgrid.AllowUserToAddRows = false;
             }
             catch (Exception ex)
             {
@@ -49,7 +49,7 @@ namespace Management
         {
             try
             {
-                oracleConnection.ConnectionString = "User Id=hong1;Password=1111;Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=xe)))";
+                oracleConnection.ConnectionString = "User Id=ParkingAdmin;Password=1111;Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=xe)))";
                 oracleConnection.Open();
                 OracleDataAdapter oracleDataAdapter = new OracleDataAdapter();
                 oracleDataAdapter.SelectCommand = new OracleCommand("SELECT * FROM Vehicle WHERE SUBSTR(vehicle_number, -4) = :lastFourDigits", oracleConnection);
@@ -57,11 +57,11 @@ namespace Management
                 DataTable dataTable = new DataTable();
                 oracleDataAdapter.Fill(dataTable);
                 oracleConnection.Close();
-                DBGrid.DataSource = dataTable;
-                DBGrid.AutoResizeColumns();
-                DBGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                DBGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-                DBGrid.AllowUserToAddRows = false;
+                searchdbgrid.DataSource = dataTable;
+                searchdbgrid.AutoResizeColumns();
+                searchdbgrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                searchdbgrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                searchdbgrid.AllowUserToAddRows = false;
             }
             catch (Exception ex)
             {
@@ -82,7 +82,7 @@ namespace Management
         private void 선택차량수정ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             commandType = "Update";
-            vehicleId = Convert.ToInt32(DBGrid.SelectedCells[0].Value);
+            vehicleId = Convert.ToInt32(searchdbgrid.SelectedCells[0].Value);
             Form2 form2 = new Form2(this);
             form2.ShowDialog();
             form2.Dispose();
@@ -92,7 +92,7 @@ namespace Management
         private void 선택차량삭제ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             commandType = "Delete";
-            vehicleId = Convert.ToInt32(DBGrid.SelectedCells[0].Value);
+            vehicleId = Convert.ToInt32(searchdbgrid.SelectedCells[0].Value);
             Form2 form2 = new Form2(this);
             form2.ShowDialog();
             form2.Dispose();
@@ -110,7 +110,7 @@ namespace Management
 
         private void searchByVehicleNumber_Click(object sender, EventArgs e)
         {
-            string lastFourDigits = txtLastFourDigits.Text.Trim();
+            string lastFourDigits = txtSearch.Text.Trim();
             if (!string.IsNullOrEmpty(lastFourDigits))
             {
                 SearchVehicleByNumber(lastFourDigits);
