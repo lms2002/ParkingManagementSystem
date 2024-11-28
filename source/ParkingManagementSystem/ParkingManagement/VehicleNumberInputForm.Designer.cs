@@ -33,13 +33,14 @@
             this.cmbVehicleType = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblCurrentTime = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtVehicleNumber
             // 
             this.txtVehicleNumber.Font = new System.Drawing.Font("굴림", 66F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.txtVehicleNumber.Location = new System.Drawing.Point(109, 222);
+            this.txtVehicleNumber.Location = new System.Drawing.Point(83, 234);
             this.txtVehicleNumber.Name = "txtVehicleNumber";
             this.txtVehicleNumber.Size = new System.Drawing.Size(489, 109);
             this.txtVehicleNumber.TabIndex = 0;
@@ -48,8 +49,8 @@
             // 
             // btnSubmit
             // 
-            this.btnSubmit.Font = new System.Drawing.Font("굴림", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnSubmit.Location = new System.Drawing.Point(617, 222);
+            this.btnSubmit.Font = new System.Drawing.Font("나눔고딕", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSubmit.Location = new System.Drawing.Point(591, 234);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(125, 109);
             this.btnSubmit.TabIndex = 1;
@@ -73,29 +74,40 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("굴림", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label1.Location = new System.Drawing.Point(103, 62);
+            this.label1.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label1.Location = new System.Drawing.Point(112, 60);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(578, 32);
+            this.label1.Size = new System.Drawing.Size(609, 43);
             this.label1.TabIndex = 3;
             this.label1.Text = "차종을 선택하고 차번을 입력해주세요";
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.cmbVehicleType);
-            this.groupBox1.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.groupBox1.Location = new System.Drawing.Point(109, 124);
+            this.groupBox1.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.groupBox1.Location = new System.Drawing.Point(83, 136);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(159, 64);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "차종 선택";
             // 
+            // lblCurrentTime
+            // 
+            this.lblCurrentTime.AutoSize = true;
+            this.lblCurrentTime.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblCurrentTime.Location = new System.Drawing.Point(600, 409);
+            this.lblCurrentTime.Name = "lblCurrentTime";
+            this.lblCurrentTime.Size = new System.Drawing.Size(68, 17);
+            this.lblCurrentTime.TabIndex = 5;
+            this.lblCurrentTime.Text = "현재 시간";
+            // 
             // VehicleNumberInputForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lblCurrentTime);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnSubmit);
@@ -116,5 +128,6 @@
         private System.Windows.Forms.ComboBox cmbVehicleType;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label lblCurrentTime;
     }
 }

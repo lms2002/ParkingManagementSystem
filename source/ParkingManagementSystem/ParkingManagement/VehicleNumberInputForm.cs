@@ -8,9 +8,12 @@ namespace ParkingManagement
     public partial class VehicleNumberInputForm : Form
     {
         private ParkingManager parkingManager;
+        private Timer timer; // 시간을 표시하기 위한 Timer 추가
         public VehicleNumberInputForm()
         {
             InitializeComponent();
+            // 폼의 시작 위치를 화면 중앙으로 설정
+            this.StartPosition = FormStartPosition.CenterScreen;
 
             // KeyDown 이벤트 연결
             txtVehicleNumber.KeyDown += txtVehicleNumber_KeyDown;
@@ -19,6 +22,22 @@ namespace ParkingManagement
             string connectionString = "User Id=ParkingAdmin; Password=1111; Data Source=(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521)) (CONNECT_DATA = (SERVER = DEDICATED) (SERVICE_NAME = xe)));";
             parkingManager = new ParkingManager(connectionString);
             parkingManager.OpenDatabase();
+            // lblCurrentTime을 폼 로드 시 바로 현재 시간으로 초기화
+            lblCurrentTime.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            InitializeTimer(); // 타이머 초기화 및 시작
+        }
+        // Timer 초기화 메서드
+        private void InitializeTimer()
+        {
+            timer = new Timer
+            {
+                Interval = 1000 // 1초마다 갱신
+            };
+            timer.Tick += (sender, e) =>
+            {
+                lblCurrentTime.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            };
+            timer.Start(); // 타이머 시작
         }
 
         // 텍스트박스 클릭 시 가상 키보드 실행

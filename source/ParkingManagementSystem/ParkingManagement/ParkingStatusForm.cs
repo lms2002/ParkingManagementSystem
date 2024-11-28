@@ -12,8 +12,12 @@ namespace ParkingManagement
         public ParkingStatusForm()
         {
             InitializeComponent();
+            // 폼의 시작 위치를 화면 중앙으로 설정
+            this.StartPosition = FormStartPosition.CenterScreen;
+
             parkingManager = new ParkingManager(); // ParkingManager 초기화
             LoadParkingStatus(); // 주차 공간 상태 로드
+
             // lblCurrentTime을 폼 로드 시 바로 현재 시간으로 초기화
             lblCurrentTime.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             InitializeTimer(); // 타이머 초기화 및 시작

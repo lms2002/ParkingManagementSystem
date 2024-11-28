@@ -8,3 +8,15 @@ C:\Users\lm2002\Desktop\C#_project\ParkingManagementSystem\source\ParkingManagem
 C:\Users\lm2002\Desktop\C#_project\ParkingManagementSystem\source\ParkingManagementSystem\StoreDiscount\bin\Debug\StoreDiscount.pdb
 C:\Users\lm2002\Desktop\C#_project\ParkingManagementSystem\source\ParkingManagementSystem\StoreDiscount\obj\Debug\StoreDiscount.exe
 C:\Users\lm2002\Desktop\C#_project\ParkingManagementSystem\source\ParkingManagementSystem\StoreDiscount\obj\Debug\StoreDiscount.pdb
+C:\Users\002lm\Desktop\C#_github\ParkingManagementSystem\source\ParkingManagementSystem\StoreDiscount\bin\Debug\StoreDiscount.exe.config
+C:\Users\002lm\Desktop\C#_github\ParkingManagementSystem\source\ParkingManagementSystem\StoreDiscount\bin\Debug\StoreDiscount.exe
+C:\Users\002lm\Desktop\C#_github\ParkingManagementSystem\source\ParkingManagementSystem\StoreDiscount\bin\Debug\StoreDiscount.pdb
+C:\Users\002lm\Desktop\C#_github\ParkingManagementSystem\source\ParkingManagementSystem\StoreDiscount\obj\Debug\StoreDiscount.csproj.AssemblyReference.cache
+C:\Users\002lm\Desktop\C#_github\ParkingManagementSystem\source\ParkingManagementSystem\StoreDiscount\obj\Debug\StoreDiscount.Properties.Resources.resources
+C:\Users\002lm\Desktop\C#_github\ParkingManagementSystem\source\ParkingManagementSystem\StoreDiscount\obj\Debug\ParkingManagement.StoreDiscountForm.resources
+C:\Users\002lm\Desktop\C#_github\ParkingManagementSystem\source\ParkingManagementSystem\StoreDiscount\obj\Debug\StoreDiscount.csproj.GenerateResource.cache
+C:\Users\002lm\Desktop\C#_github\ParkingManagementSystem\source\ParkingManagementSystem\StoreDiscount\obj\Debug\StoreDiscount.csproj.CoreCompileInputs.cache
+C:\Users\002lm\Desktop\C#_github\ParkingManagementSystem\source\ParkingManagementSystem\StoreDiscount\obj\Debug\StoreDiscount.exe
+C:\Users\002lm\Desktop\C#_github\ParkingManagementSystem\source\ParkingManagementSystem\StoreDiscount\obj\Debug\StoreDiscount.pdb
+C:\Users\002lm\Desktop\C#_github\ParkingManagementSystem\source\ParkingManagementSystem\StoreDiscount\bin\Debug\Oracle.DataAccess.dll
+C:\Users\002lm\Desktop\C#_github\ParkingManagementSystem\source\ParkingManagementSystem\StoreDiscount\obj\Debug\StoreDis.5C3E06DF.Up2Date

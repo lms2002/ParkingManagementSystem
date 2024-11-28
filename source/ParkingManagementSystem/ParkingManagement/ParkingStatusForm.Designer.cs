@@ -28,22 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem11 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem(new string[] {
             "NIKE",
             "50,000원",
             "20% 할인"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem12 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem(new string[] {
             "빵빵이의 빵집",
             "20,000원",
             "10% 할인"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem13 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem(new string[] {
             "모수",
             "150,000원",
             "30% 할인"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem14 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem(new string[] {
             "일반 차량(Standard)",
             "10분당 1,000원"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem15 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem10 = new System.Windows.Forms.ListViewItem(new string[] {
             "경차(Compact)",
             "10분당 500원"}, -1);
             this.lblTotalAvailableSpots = new System.Windows.Forms.Label();
@@ -66,7 +66,7 @@
             // 
             // lblTotalAvailableSpots
             // 
-            this.lblTotalAvailableSpots.Font = new System.Drawing.Font("굴림", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTotalAvailableSpots.Font = new System.Drawing.Font("나눔고딕", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTotalAvailableSpots.Location = new System.Drawing.Point(146, 92);
             this.lblTotalAvailableSpots.Name = "lblTotalAvailableSpots";
             this.lblTotalAvailableSpots.Size = new System.Drawing.Size(511, 26);
@@ -76,7 +76,7 @@
             // 
             // lblRegularAvailableSpots
             // 
-            this.lblRegularAvailableSpots.Font = new System.Drawing.Font("굴림", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblRegularAvailableSpots.Font = new System.Drawing.Font("나눔고딕", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblRegularAvailableSpots.Location = new System.Drawing.Point(146, 130);
             this.lblRegularAvailableSpots.Name = "lblRegularAvailableSpots";
             this.lblRegularAvailableSpots.Size = new System.Drawing.Size(511, 26);
@@ -86,7 +86,7 @@
             // 
             // lblDisabledAvailableSpots
             // 
-            this.lblDisabledAvailableSpots.Font = new System.Drawing.Font("굴림", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblDisabledAvailableSpots.Font = new System.Drawing.Font("나눔고딕", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblDisabledAvailableSpots.Location = new System.Drawing.Point(146, 168);
             this.lblDisabledAvailableSpots.Name = "lblDisabledAvailableSpots";
             this.lblDisabledAvailableSpots.Size = new System.Drawing.Size(511, 26);
@@ -97,10 +97,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("굴림", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label1.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 24.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label1.Location = new System.Drawing.Point(123, 34);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(564, 30);
+            this.label1.Size = new System.Drawing.Size(558, 38);
             this.label1.TabIndex = 3;
             this.label1.Text = "화면 터치 시 다음 화면으로 이동합니다";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -108,10 +108,10 @@
             // lblCurrentTime
             // 
             this.lblCurrentTime.AutoSize = true;
-            this.lblCurrentTime.Font = new System.Drawing.Font("굴림", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblCurrentTime.Location = new System.Drawing.Point(619, 411);
+            this.lblCurrentTime.Font = new System.Drawing.Font("나눔고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblCurrentTime.Location = new System.Drawing.Point(600, 409);
             this.lblCurrentTime.Name = "lblCurrentTime";
-            this.lblCurrentTime.Size = new System.Drawing.Size(68, 14);
+            this.lblCurrentTime.Size = new System.Drawing.Size(68, 17);
             this.lblCurrentTime.TabIndex = 4;
             this.lblCurrentTime.Text = "현재 시간";
             this.lblCurrentTime.Click += new System.EventHandler(this.lblCurrentTime_Click);
@@ -119,6 +119,7 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.lvStoreDiscount);
+            this.groupBox2.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.groupBox2.Location = new System.Drawing.Point(420, 219);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(338, 172);
@@ -135,9 +136,9 @@
             this.lvStoreDiscount.GridLines = true;
             this.lvStoreDiscount.HideSelection = false;
             this.lvStoreDiscount.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem11,
-            listViewItem12,
-            listViewItem13});
+            listViewItem6,
+            listViewItem7,
+            listViewItem8});
             this.lvStoreDiscount.Location = new System.Drawing.Point(18, 20);
             this.lvStoreDiscount.Name = "lvStoreDiscount";
             this.lvStoreDiscount.Size = new System.Drawing.Size(289, 140);
@@ -163,6 +164,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.lvParkingFee);
+            this.groupBox1.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.groupBox1.Location = new System.Drawing.Point(58, 219);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(323, 172);
@@ -175,13 +177,13 @@
             this.lvParkingFee.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2});
-            this.lvParkingFee.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lvParkingFee.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lvParkingFee.GridLines = true;
             this.lvParkingFee.HideSelection = false;
             this.lvParkingFee.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem14,
-            listViewItem15});
-            this.lvParkingFee.Location = new System.Drawing.Point(27, 20);
+            listViewItem9,
+            listViewItem10});
+            this.lvParkingFee.Location = new System.Drawing.Point(17, 20);
             this.lvParkingFee.Name = "lvParkingFee";
             this.lvParkingFee.Size = new System.Drawing.Size(275, 140);
             this.lvParkingFee.TabIndex = 4;

@@ -10,11 +10,14 @@ namespace ParkingManagement
         private string vehicleNumber; // 차량 번호 저장
         private int spotNumber;
         private Timer timer; // 현재 시간 갱신 타이머
-        private Timer transitionTimer; // 20초 뒤 화면 전환 타이머
+        private Timer transitionTimer; // 10초 뒤 화면 전환 타이머
 
         public ParkingDetailsForm(string connectionString, int vehicleId, int spotNumber)
         {
             InitializeComponent();
+            // 폼의 시작 위치를 화면 중앙으로 설정
+            this.StartPosition = FormStartPosition.CenterScreen;
+
             this.vehicleId = vehicleId;
             this.spotNumber = spotNumber;
             parkingManager = new ParkingManager(connectionString);
@@ -71,7 +74,7 @@ namespace ParkingManagement
         private void InitializeCountdownTimer()
         {
             transitionTimer = new Timer();
-            transitionTimer.Interval = 20000; // 20초 (밀리초 단위)
+            transitionTimer.Interval = 10000; // 10초 (밀리초 단위)
             transitionTimer.Tick += (sender, e) =>
             {
                 transitionTimer.Stop(); // 타이머 중지

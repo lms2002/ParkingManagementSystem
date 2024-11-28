@@ -54,12 +54,16 @@ ALTER SESSION SET NLS_DATE_FORMAT = 'YYYY-MM-DD HH24:MI:SS';
 
 -- StoreDiscount 테이블 생성
 CREATE TABLE StoreDiscount (
-    store_name VARCHAR2(50) PRIMARY KEY,
+    discount_id NUMBER PRIMARY KEY, -- StoreDiscount만의 PK로 사용
+    vehicle_id NUMBER NOT NULL, -- Vehicle 테이블의 FK로 사용
+    store_name VARCHAR2(50) NOT NULL,
     discount_percentage NUMBER DEFAULT 0,
     discount_condition NUMBER NOT NULL,
-    vehicle_id NUMBER,
+    discount_date DATE DEFAULT SYSDATE, -- 할인 날짜 기록
     CONSTRAINT fk_vehicle_discount FOREIGN KEY (vehicle_id) REFERENCES Vehicle(vehicle_id)
 );
+
+CREATE SEQUENCE DiscountSeq START WITH 1 INCREMENT BY 1;
 
 -- ParkingSpot 초기 데이터 삽입
 BEGIN
