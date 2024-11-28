@@ -1,0 +1,53 @@
+C:\Users\user\OneDrive - 부천대학교\바탕 화면\c#_pj_\source\ParkingManagementSystem\ExitVehicle\bin\Debug\ExitVehicle.exe.config
+C:\Users\user\OneDrive - 부천대학교\바탕 화면\c#_pj_\source\ParkingManagementSystem\ExitVehicle\bin\Debug\ExitVehicle.exe
+C:\Users\user\OneDrive - 부천대학교\바탕 화면\c#_pj_\source\ParkingManagementSystem\ExitVehicle\bin\Debug\ExitVehicle.pdb
+C:\Users\user\OneDrive - 부천대학교\바탕 화면\c#_pj_\source\ParkingManagementSystem\ExitVehicle\obj\Debug\ExitVehicle.csproj.AssemblyReference.cache
+C:\Users\user\OneDrive - 부천대학교\바탕 화면\c#_pj_\source\ParkingManagementSystem\ExitVehicle\obj\Debug\ExitVehicle.ExitPayment.resources
+C:\Users\user\OneDrive - 부천대학교\바탕 화면\c#_pj_\source\ParkingManagementSystem\ExitVehicle\obj\Debug\ExitVehicle.ExitVehicleManagement.resources
+C:\Users\user\OneDrive - 부천대학교\바탕 화면\c#_pj_\source\ParkingManagementSystem\ExitVehicle\obj\Debug\ExitVehicle.Properties.Resources.resources
+C:\Users\user\OneDrive - 부천대학교\바탕 화면\c#_pj_\source\ParkingManagementSystem\ExitVehicle\obj\Debug\ExitVehicle.csproj.GenerateResource.cache
+C:\Users\user\OneDrive - 부천대학교\바탕 화면\c#_pj_\source\ParkingManagementSystem\ExitVehicle\obj\Debug\ExitVehicle.csproj.CoreCompileInputs.cache
+C:\Users\user\OneDrive - 부천대학교\바탕 화면\c#_pj_\source\ParkingManagementSystem\ExitVehicle\obj\Debug\ExitVehicle.exe
+C:\Users\user\OneDrive - 부천대학교\바탕 화면\c#_pj_\source\ParkingManagementSystem\ExitVehicle\obj\Debug\ExitVehicle.pdb
+C:\Users\user\OneDrive - 부천대학교\바탕 화면\c#_pj_\source\ParkingManagementSystem\ExitVehicle\bin\Debug\Oracle.DataAccess.dll
+C:\Users\user\OneDrive - 부천대학교\바탕 화면\c#_pj_\source\ParkingManagementSystem\ExitVehicle\obj\Debug\ExitVehi.9FCE98B3.Up2Date
+C:\Users\user\OneDrive - 부천대학교\바탕 화면\c#pj\ParkingManagementSystem\source\ParkingManagementSystem\ExitVehicle\obj\Debug\ExitVehicle.csproj.AssemblyReference.cache
+C:\Users\user\OneDrive - 부천대학교\바탕 화면\c#pj\ParkingManagementSystem\source\ParkingManagementSystem\ExitVehicle\obj\Debug\ExitVehicle.ExitPayment.resources
+C:\Users\user\OneDrive - 부천대학교\바탕 화면\c#pj\ParkingManagementSystem\source\ParkingManagementSystem\ExitVehicle\obj\Debug\ExitVehicle.ExitVehicleManagement.resources
+C:\Users\user\OneDrive - 부천대학교\바탕 화면\c#pj\ParkingManagementSystem\source\ParkingManagementSystem\ExitVehicle\obj\Debug\ExitVehicle.Properties.Resources.resources
+C:\Users\user\OneDrive - 부천대학교\바탕 화면\c#pj\ParkingManagementSystem\source\ParkingManagementSystem\ExitVehicle\obj\Debug\ExitVehicle.csproj.GenerateResource.cache
+C:\Users\user\OneDrive - 부천대학교\바탕 화면\c#pj\ParkingManagementSystem\source\ParkingManagementSystem\ExitVehicle\obj\Debug\ExitVehicle.csproj.CoreCompileInputs.cache
+C:\Users\user\OneDrive - 부천대학교\바탕 화면\c#pj\ParkingManagementSystem\source\ParkingManagementSystem\ExitVehicle\obj\Debug\ExitVehicle.exe
+C:\Users\user\OneDrive - 부천대학교\바탕 화면\c#pj\ParkingManagementSystem\source\ParkingManagementSystem\ExitVehicle\obj\Debug\ExitVehicle.pdb
+C:\Users\user\OneDrive - 부천대학교\바탕 화면\c#pj\ParkingManagementSystem\source\ParkingManagementSystem\ExitVehicle\bin\Debug\ExitVehicle.exe.config
+C:\Users\user\OneDrive - 부천대학교\바탕 화면\c#pj\ParkingManagementSystem\source\ParkingManagementSystem\ExitVehicle\bin\Debug\ExitVehicle.exe
+C:\Users\user\OneDrive - 부천대학교\바탕 화면\c#pj\ParkingManagementSystem\source\ParkingManagementSystem\ExitVehicle\bin\Debug\ExitVehicle.pdb
+C:\Users\user\OneDrive - 부천대학교\바탕 화면\c#pj\ParkingManagementSystem\source\ParkingManagementSystem\ExitVehicle\bin\Debug\Oracle.DataAccess.dll
+C:\Users\user\OneDrive - 부천대학교\바탕 화면\c#pj\ParkingManagementSystem\source\ParkingManagementSystem\ExitVehicle\obj\Debug\ExitVehi.9FCE98B3.Up2Date
+C:\Users\user\OneDrive - 부천대학교\바탕 화면\c#project\ParkingManagementSystem\source\ParkingManagementSystem\ExitVehicle\bin\Debug\ExitVehicle.exe.config
+C:\Users\user\OneDrive - 부천대학교\바탕 화면\c#project\ParkingManagementSystem\source\ParkingManagementSystem\ExitVehicle\bin\Debug\ExitVehicle.exe
+C:\Users\user\OneDrive - 부천대학교\바탕 화면\c#project\ParkingManagementSystem\source\ParkingManagementSystem\ExitVehicle\bin\Debug\ExitVehicle.pdb
+C:\Users\user\OneDrive - 부천대학교\바탕 화면\c#project\ParkingManagementSystem\source\ParkingManagementSystem\ExitVehicle\bin\Debug\Oracle.DataAccess.dll
+C:\Users\user\OneDrive - 부천대학교\바탕 화면\c#project\ParkingManagementSystem\source\ParkingManagementSystem\ExitVehicle\obj\Debug\ExitVehicle.csproj.AssemblyReference.cache
+C:\Users\user\OneDrive - 부천대학교\바탕 화면\c#project\ParkingManagementSystem\source\ParkingManagementSystem\ExitVehicle\obj\Debug\ExitVehicle.ExitPayment.resources
+C:\Users\user\OneDrive - 부천대학교\바탕 화면\c#project\ParkingManagementSystem\source\ParkingManagementSystem\ExitVehicle\obj\Debug\ExitVehicle.ExitVehicleManagement.resources
+C:\Users\user\OneDrive - 부천대학교\바탕 화면\c#project\ParkingManagementSystem\source\ParkingManagementSystem\ExitVehicle\obj\Debug\ExitVehicle.Properties.Resources.resources
+C:\Users\user\OneDrive - 부천대학교\바탕 화면\c#project\ParkingManagementSystem\source\ParkingManagementSystem\ExitVehicle\obj\Debug\ExitVehicle.csproj.GenerateResource.cache
+C:\Users\user\OneDrive - 부천대학교\바탕 화면\c#project\ParkingManagementSystem\source\ParkingManagementSystem\ExitVehicle\obj\Debug\ExitVehicle.csproj.CoreCompileInputs.cache
+C:\Users\user\OneDrive - 부천대학교\바탕 화면\c#project\ParkingManagementSystem\source\ParkingManagementSystem\ExitVehicle\obj\Debug\ExitVehi.9FCE98B3.Up2Date
+C:\Users\user\OneDrive - 부천대학교\바탕 화면\c#project\ParkingManagementSystem\source\ParkingManagementSystem\ExitVehicle\obj\Debug\ExitVehicle.exe
+C:\Users\user\OneDrive - 부천대학교\바탕 화면\c#project\ParkingManagementSystem\source\ParkingManagementSystem\ExitVehicle\obj\Debug\ExitVehicle.pdb
+C:\Users\002lm\Desktop\ExitVehicle\obj\Debug\ExitVehicle.csproj.AssemblyReference.cache
+C:\Users\002lm\Desktop\ExitVehicle\obj\Debug\ExitVehicle.ExitPayment.resources
+C:\Users\002lm\Desktop\ExitVehicle\obj\Debug\ExitVehicle.ExitVehicleManagement.resources
+C:\Users\002lm\Desktop\ExitVehicle\obj\Debug\ExitVehicle.Properties.Resources.resources
+C:\Users\002lm\Desktop\ExitVehicle\obj\Debug\ExitVehicle.ReceiptDetail.resources
+C:\Users\002lm\Desktop\ExitVehicle\obj\Debug\ExitVehicle.csproj.GenerateResource.cache
+C:\Users\002lm\Desktop\ExitVehicle\obj\Debug\ExitVehicle.csproj.CoreCompileInputs.cache
+C:\Users\002lm\Desktop\ExitVehicle\obj\Debug\ExitVehicle.exe
+C:\Users\002lm\Desktop\ExitVehicle\obj\Debug\ExitVehicle.pdb
+C:\Users\002lm\Desktop\ExitVehicle\bin\Debug\ExitVehicle.exe.config
+C:\Users\002lm\Desktop\ExitVehicle\bin\Debug\ExitVehicle.exe
+C:\Users\002lm\Desktop\ExitVehicle\bin\Debug\ExitVehicle.pdb
+C:\Users\002lm\Desktop\ExitVehicle\bin\Debug\Oracle.DataAccess.dll
+C:\Users\002lm\Desktop\ExitVehicle\obj\Debug\ExitVehi.9FCE98B3.Up2Date

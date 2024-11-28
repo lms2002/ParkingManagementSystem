@@ -1,16 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\002lm\\Desktop\\C#_github\\ParkingManagementSystem\\source\\ParkingManagementSystem\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{2F3F107A-5D41-4E86-8641-86C844EC4C96}|StoreDiscount\\StoreDiscount.csproj|c:\\users\\002lm\\desktop\\c#_github\\parkingmanagementsystem\\source\\parkingmanagementsystem\\storediscount\\storediscountform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2F3F107A-5D41-4E86-8641-86C844EC4C96}|StoreDiscount\\StoreDiscount.csproj|solutionrelative:storediscount\\storediscountform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2F3F107A-5D41-4E86-8641-86C844EC4C96}|StoreDiscount\\StoreDiscount.csproj|c:\\users\\002lm\\desktop\\c#_github\\parkingmanagementsystem\\source\\parkingmanagementsystem\\storediscount\\storediscountform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{2F3F107A-5D41-4E86-8641-86C844EC4C96}|StoreDiscount\\StoreDiscount.csproj|solutionrelative:storediscount\\storediscountform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -18,36 +9,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "StoreDiscountForm.cs",
-              "DocumentMoniker": "C:\\Users\\002lm\\Desktop\\C#_github\\ParkingManagementSystem\\source\\ParkingManagementSystem\\StoreDiscount\\StoreDiscountForm.cs",
-              "RelativeDocumentMoniker": "StoreDiscount\\StoreDiscountForm.cs",
-              "ToolTip": "C:\\Users\\002lm\\Desktop\\C#_github\\ParkingManagementSystem\\source\\ParkingManagementSystem\\StoreDiscount\\StoreDiscountForm.cs",
-              "RelativeToolTip": "StoreDiscount\\StoreDiscountForm.cs",
-              "ViewState": "AgIAAB8AAAAAAAAAAAAAADYAAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-28T16:35:20.39Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "StoreDiscountForm.cs [\uB514\uC790\uC778]",
-              "DocumentMoniker": "C:\\Users\\002lm\\Desktop\\C#_github\\ParkingManagementSystem\\source\\ParkingManagementSystem\\StoreDiscount\\StoreDiscountForm.cs",
-              "RelativeDocumentMoniker": "StoreDiscount\\StoreDiscountForm.cs",
-              "ToolTip": "C:\\Users\\002lm\\Desktop\\C#_github\\ParkingManagementSystem\\source\\ParkingManagementSystem\\StoreDiscount\\StoreDiscountForm.cs [\uB514\uC790\uC778]",
-              "RelativeToolTip": "StoreDiscount\\StoreDiscountForm.cs [\uB514\uC790\uC778]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-28T16:35:17.782Z",
-              "EditorCaption": " [\uB514\uC790\uC778]"
             }
           ]
         }
