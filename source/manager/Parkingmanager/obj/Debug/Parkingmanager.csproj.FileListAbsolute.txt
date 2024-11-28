@@ -1,0 +1,13 @@
+C:\Users\Admin\Desktop\c#_github\ParkingManagementSystem\source\manager\Parkingmanager\bin\Debug\Parkingmanager.exe.config
+C:\Users\Admin\Desktop\c#_github\ParkingManagementSystem\source\manager\Parkingmanager\bin\Debug\Parkingmanager.exe
+C:\Users\Admin\Desktop\c#_github\ParkingManagementSystem\source\manager\Parkingmanager\bin\Debug\Parkingmanager.pdb
+C:\Users\Admin\Desktop\c#_github\ParkingManagementSystem\source\manager\Parkingmanager\bin\Debug\Oracle.DataAccess.dll
+C:\Users\Admin\Desktop\c#_github\ParkingManagementSystem\source\manager\Parkingmanager\obj\Debug\Parkingmanager.csproj.AssemblyReference.cache
+C:\Users\Admin\Desktop\c#_github\ParkingManagementSystem\source\manager\Parkingmanager\obj\Debug\Parkingmanager.Form1.resources
+C:\Users\Admin\Desktop\c#_github\ParkingManagementSystem\source\manager\Parkingmanager\obj\Debug\Parkingmanager.Properties.Resources.resources
+C:\Users\Admin\Desktop\c#_github\ParkingManagementSystem\source\manager\Parkingmanager\obj\Debug\Parkingmanager.csproj.GenerateResource.cache
+C:\Users\Admin\Desktop\c#_github\ParkingManagementSystem\source\manager\Parkingmanager\obj\Debug\Parkingmanager.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Desktop\c#_github\ParkingManagementSystem\source\manager\Parkingmanager\obj\Debug\Parkingm.F6B0EB80.Up2Date
+C:\Users\Admin\Desktop\c#_github\ParkingManagementSystem\source\manager\Parkingmanager\obj\Debug\Parkingmanager.exe
+C:\Users\Admin\Desktop\c#_github\ParkingManagementSystem\source\manager\Parkingmanager\obj\Debug\Parkingmanager.pdb
+C:\Users\Admin\Desktop\c#_github\ParkingManagementSystem\source\manager\Parkingmanager\obj\Debug\Parkingmanager.Form2.resources

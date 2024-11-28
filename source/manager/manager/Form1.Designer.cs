@@ -30,13 +30,13 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.차량추가ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.차량삭제ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.차량수정ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -51,6 +51,36 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(533, 426);
             this.dataGridView1.TabIndex = 0;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.차량추가ToolStripMenuItem,
+            this.차량삭제ToolStripMenuItem,
+            this.차량수정ToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(127, 70);
+            // 
+            // 차량추가ToolStripMenuItem
+            // 
+            this.차량추가ToolStripMenuItem.Name = "차량추가ToolStripMenuItem";
+            this.차량추가ToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.차량추가ToolStripMenuItem.Text = "차량 추가";
+            this.차량추가ToolStripMenuItem.Click += new System.EventHandler(this.차량추가ToolStripMenuItem_Click);
+            // 
+            // 차량삭제ToolStripMenuItem
+            // 
+            this.차량삭제ToolStripMenuItem.Name = "차량삭제ToolStripMenuItem";
+            this.차량삭제ToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.차량삭제ToolStripMenuItem.Text = "차량 삭제";
+            this.차량삭제ToolStripMenuItem.Click += new System.EventHandler(this.차량삭제ToolStripMenuItem_Click);
+            // 
+            // 차량수정ToolStripMenuItem
+            // 
+            this.차량수정ToolStripMenuItem.Name = "차량수정ToolStripMenuItem";
+            this.차량수정ToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.차량수정ToolStripMenuItem.Text = "차량 수정";
+            this.차량수정ToolStripMenuItem.Click += new System.EventHandler(this.차량수정ToolStripMenuItem_Click);
             // 
             // label1
             // 
@@ -77,36 +107,6 @@
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.차량추가ToolStripMenuItem,
-            this.차량삭제ToolStripMenuItem,
-            this.차량수정ToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(127, 70);
-            // 
-            // 차량추가ToolStripMenuItem
-            // 
-            this.차량추가ToolStripMenuItem.Name = "차량추가ToolStripMenuItem";
-            this.차량추가ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.차량추가ToolStripMenuItem.Text = "차량 추가";
-            this.차량추가ToolStripMenuItem.Click += new System.EventHandler(this.차량추가ToolStripMenuItem_Click);
-            // 
-            // 차량삭제ToolStripMenuItem
-            // 
-            this.차량삭제ToolStripMenuItem.Name = "차량삭제ToolStripMenuItem";
-            this.차량삭제ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.차량삭제ToolStripMenuItem.Text = "차량 삭제";
-            this.차량삭제ToolStripMenuItem.Click += new System.EventHandler(this.차량삭제ToolStripMenuItem_Click);
-            // 
-            // 차량수정ToolStripMenuItem
-            // 
-            this.차량수정ToolStripMenuItem.Name = "차량수정ToolStripMenuItem";
-            this.차량수정ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.차량수정ToolStripMenuItem.Text = "차량 수정";
-            this.차량수정ToolStripMenuItem.Click += new System.EventHandler(this.차량수정ToolStripMenuItem_Click);
             // 
             // Form1
             // 
