@@ -7,15 +7,15 @@
       "RelativeMoniker": "D:0:0:{8F3FF959-D093-4C76-82CE-7391D1083EEF}|manager\\manager.csproj|solutionrelative:manager\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8F3FF959-D093-4C76-82CE-7391D1083EEF}|manager\\manager.csproj|c:\\users\\admin\\desktop\\c#_github\\parkingmanagementsystem\\source\\manager\\manager\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{8F3FF959-D093-4C76-82CE-7391D1083EEF}|manager\\manager.csproj|C:\\Users\\Admin\\Desktop\\c#_github\\ParkingManagementSystem\\source\\manager\\manager\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8F3FF959-D093-4C76-82CE-7391D1083EEF}|manager\\manager.csproj|solutionrelative:manager\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8F3FF959-D093-4C76-82CE-7391D1083EEF}|manager\\manager.csproj|c:\\users\\admin\\desktop\\c#_github\\parkingmanagementsystem\\source\\manager\\manager\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{8F3FF959-D093-4C76-82CE-7391D1083EEF}|manager\\manager.csproj|C:\\Users\\Admin\\Desktop\\c#_github\\ParkingManagementSystem\\source\\manager\\manager\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{8F3FF959-D093-4C76-82CE-7391D1083EEF}|manager\\manager.csproj|solutionrelative:manager\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8F3FF959-D093-4C76-82CE-7391D1083EEF}|manager\\manager.csproj|c:\\users\\admin\\desktop\\c#_github\\parkingmanagementsystem\\source\\manager\\manager\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{8F3FF959-D093-4C76-82CE-7391D1083EEF}|manager\\manager.csproj|C:\\Users\\Admin\\Desktop\\c#_github\\ParkingManagementSystem\\source\\manager\\manager\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{8F3FF959-D093-4C76-82CE-7391D1083EEF}|manager\\manager.csproj|solutionrelative:manager\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
@@ -36,7 +36,7 @@
               "RelativeDocumentMoniker": "manager\\Form2.cs",
               "ToolTip": "C:\\Users\\Admin\\Desktop\\c#_github\\ParkingManagementSystem\\source\\manager\\manager\\Form2.cs",
               "RelativeToolTip": "manager\\Form2.cs",
-              "ViewState": "AgIAAFoAAAAAAAAAAAAAAHAAAABRAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-28T16:27:33.785Z",
               "EditorCaption": ""
@@ -50,8 +50,7 @@
               "ToolTip": "C:\\Users\\Admin\\Desktop\\c#_github\\ParkingManagementSystem\\source\\manager\\manager\\Form1.cs [\uB514\uC790\uC778]",
               "RelativeToolTip": "manager\\Form1.cs [\uB514\uC790\uC778]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-28T15:35:57.905Z",
-              "EditorCaption": " [\uB514\uC790\uC778]"
+              "WhenOpened": "2024-11-28T15:35:57.905Z"
             },
             {
               "$type": "Document",
@@ -62,8 +61,7 @@
               "ToolTip": "C:\\Users\\Admin\\Desktop\\c#_github\\ParkingManagementSystem\\source\\manager\\manager\\Form2.cs [\uB514\uC790\uC778]",
               "RelativeToolTip": "manager\\Form2.cs [\uB514\uC790\uC778]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-28T16:17:19.013Z",
-              "EditorCaption": " [\uB514\uC790\uC778]"
+              "WhenOpened": "2024-11-28T16:17:19.013Z"
             },
             {
               "$type": "Document",
@@ -75,8 +73,7 @@
               "RelativeToolTip": "manager\\Form1.cs",
               "ViewState": "AgIAAGoAAAAAAAAAAAAAAGkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-28T15:37:54.651Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-28T15:37:54.651Z"
             }
           ]
         }
