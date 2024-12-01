@@ -11,12 +11,12 @@ using Oracle.DataAccess.Client;
 
 namespace manager
 {
-    public partial class Form1 : Form
+    public partial class Vehiclemanager : Form
     {
         private readonly string connectionString = "User Id=ParkingAdmin; Password=1111; Data Source=(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521)) (CONNECT_DATA = (SERVER = DEDICATED) (SERVICE_NAME = xe)))";
         private string commandMode; // 추가, 삭제, 수정 모드
         private int selectedVehicleId; // 선택된 Vehicle ID
-        public Form1()
+        public Vehiclemanager()
         {
             InitializeComponent();
             LoadDataGrid();
@@ -76,17 +76,17 @@ namespace manager
             }
         }
 
-        private void 차량추가ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void 차량추가ToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             commandMode = "추가";
-            using (var form2 = new Form2(connectionString, commandMode))
+            using (var form2 = new VehicleCRUD(connectionString, commandMode))
             {
                 form2.ShowDialog();
             }
             LoadDataGrid(); // 데이터 새로고침
         }
 
-        private void 차량삭제ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void 차량삭제ToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count == 0)
             {
@@ -97,14 +97,14 @@ namespace manager
             selectedVehicleId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["vehicle_id"].Value);
             commandMode = "삭제";
 
-            using (var form2 = new Form2(connectionString, commandMode, selectedVehicleId))
+            using (var form2 = new VehicleCRUD(connectionString, commandMode, selectedVehicleId))
             {
                 form2.ShowDialog();
             }
             LoadDataGrid(); // 데이터 새로고침
         }
 
-        private void 차량수정ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void 차량수정ToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count == 0)
             {
@@ -115,11 +115,37 @@ namespace manager
             selectedVehicleId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["vehicle_id"].Value);
             commandMode = "수정";
 
-            using (var form2 = new Form2(connectionString, commandMode, selectedVehicleId))
+            using (var form2 = new VehicleCRUD(connectionString, commandMode, selectedVehicleId))
             {
                 form2.ShowDialog();
             }
             LoadDataGrid(); // 데이터 새로고침
+        }
+
+        private void 차량영수증ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // DataGridView에서 선택된 차량 ID 가져오기
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                // 선택된 행의 vehicle_id 가져오기
+                int vehicleId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["vehicle_id"].Value);
+
+                // VehicleReceipt 폼 생성 및 데이터 로드
+                VehicleReceipt vehicleReceiptForm = new VehicleReceipt(connectionString);
+                vehicleReceiptForm.LoadReceipts(vehicleId);
+
+                // 폼 표시
+                vehicleReceiptForm.Show();
+            }
+            else
+            {
+                MessageBox.Show("차량을 선택하세요.", "알림", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

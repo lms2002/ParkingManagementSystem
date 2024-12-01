@@ -3,20 +3,16 @@
   "WorkspaceRootPath": "C:\\C# \uD300\uD50C\\ParkingManagementSystem\\source\\manager\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8F3FF959-D093-4C76-82CE-7391D1083EEF}|manager\\Vehiclemanager.csproj|c:\\c# \uD300\uD50C\\parkingmanagementsystem\\source\\manager\\manager\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8F3FF959-D093-4C76-82CE-7391D1083EEF}|manager\\Vehiclemanager.csproj|solutionrelative:manager\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8F3FF959-D093-4C76-82CE-7391D1083EEF}|manager\\Vehiclemanager.csproj|c:\\c# \uD300\uD50C\\parkingmanagementsystem\\source\\manager\\manager\\salesmanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{8F3FF959-D093-4C76-82CE-7391D1083EEF}|manager\\Vehiclemanager.csproj|solutionrelative:manager\\salesmanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8F3FF959-D093-4C76-82CE-7391D1083EEF}|manager\\Vehiclemanager.csproj|C:\\C# \uD300\uD50C\\ParkingManagementSystem\\source\\manager\\manager\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8F3FF959-D093-4C76-82CE-7391D1083EEF}|manager\\Vehiclemanager.csproj|solutionrelative:manager\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8F3FF959-D093-4C76-82CE-7391D1083EEF}|manager\\Vehiclemanager.csproj|c:\\c# \uD300\uD50C\\parkingmanagementsystem\\source\\manager\\manager\\salesmanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8F3FF959-D093-4C76-82CE-7391D1083EEF}|manager\\Vehiclemanager.csproj|solutionrelative:manager\\salesmanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8F3FF959-D093-4C76-82CE-7391D1083EEF}|manager\\Vehiclemanager.csproj|C:\\C# \uD300\uD50C\\ParkingManagementSystem\\source\\manager\\manager\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{8F3FF959-D093-4C76-82CE-7391D1083EEF}|manager\\Vehiclemanager.csproj|solutionrelative:manager\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8F3FF959-D093-4C76-82CE-7391D1083EEF}|manager\\Vehiclemanager.csproj|C:\\C# \uD300\uD50C\\ParkingManagementSystem\\source\\manager\\manager\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{8F3FF959-D093-4C76-82CE-7391D1083EEF}|manager\\Vehiclemanager.csproj|solutionrelative:manager\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{8F3FF959-D093-4C76-82CE-7391D1083EEF}|manager\\Vehiclemanager.csproj|c:\\c# \uD300\uD50C\\parkingmanagementsystem\\source\\manager\\manager\\manager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8F3FF959-D093-4C76-82CE-7391D1083EEF}|manager\\Vehiclemanager.csproj|solutionrelative:manager\\manager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,52 +30,41 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Form2.cs",
-              "DocumentMoniker": "C:\\C# \uD300\uD50C\\ParkingManagementSystem\\source\\manager\\manager\\Form2.cs",
-              "RelativeDocumentMoniker": "manager\\Form2.cs",
-              "ToolTip": "C:\\C# \uD300\uD50C\\ParkingManagementSystem\\source\\manager\\manager\\Form2.cs",
-              "RelativeToolTip": "manager\\Form2.cs",
-              "ViewState": "AgIAAGQAAAAAAAAAAAAqwIUAAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-29T02:25:55.835Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Form2.cs [\uB514\uC790\uC778]",
-              "DocumentMoniker": "C:\\C# \uD300\uD50C\\ParkingManagementSystem\\source\\manager\\manager\\Form2.cs",
-              "RelativeDocumentMoniker": "manager\\Form2.cs",
-              "ToolTip": "C:\\C# \uD300\uD50C\\ParkingManagementSystem\\source\\manager\\manager\\Form2.cs [\uB514\uC790\uC778]",
-              "RelativeToolTip": "manager\\Form2.cs [\uB514\uC790\uC778]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-29T02:25:54.268Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Form1.cs",
-              "DocumentMoniker": "C:\\C# \uD300\uD50C\\ParkingManagementSystem\\source\\manager\\manager\\Form1.cs",
-              "RelativeDocumentMoniker": "manager\\Form1.cs",
-              "ToolTip": "C:\\C# \uD300\uD50C\\ParkingManagementSystem\\source\\manager\\manager\\Form1.cs",
-              "RelativeToolTip": "manager\\Form1.cs",
-              "ViewState": "AgIAAFoAAAAAAAAAAAAtwHcAAAAjAAAAAAAAAA==",
+              "Title": "SalesManagement.cs",
+              "DocumentMoniker": "C:\\C# \uD300\uD50C\\ParkingManagementSystem\\source\\manager\\manager\\SalesManagement.cs",
+              "RelativeDocumentMoniker": "manager\\SalesManagement.cs",
+              "ToolTip": "C:\\C# \uD300\uD50C\\ParkingManagementSystem\\source\\manager\\manager\\SalesManagement.cs",
+              "RelativeToolTip": "manager\\SalesManagement.cs",
+              "ViewState": "AgIAAHYAAAAAAAAAAAAUwIgAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-29T02:25:40.087Z",
+              "WhenOpened": "2024-12-01T11:03:12.857Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SalesManagement.cs [\uB514\uC790\uC778]",
+              "DocumentMoniker": "C:\\C# \uD300\uD50C\\ParkingManagementSystem\\source\\manager\\manager\\SalesManagement.cs",
+              "RelativeDocumentMoniker": "manager\\SalesManagement.cs",
+              "ToolTip": "C:\\C# \uD300\uD50C\\ParkingManagementSystem\\source\\manager\\manager\\SalesManagement.cs [\uB514\uC790\uC778]",
+              "RelativeToolTip": "manager\\SalesManagement.cs [\uB514\uC790\uC778]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-01T11:00:57.793Z",
+              "EditorCaption": " [\uB514\uC790\uC778]"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Form1.cs [\uB514\uC790\uC778]",
-              "DocumentMoniker": "C:\\C# \uD300\uD50C\\ParkingManagementSystem\\source\\manager\\manager\\Form1.cs",
-              "RelativeDocumentMoniker": "manager\\Form1.cs",
-              "ToolTip": "C:\\C# \uD300\uD50C\\ParkingManagementSystem\\source\\manager\\manager\\Form1.cs [\uB514\uC790\uC778]",
-              "RelativeToolTip": "manager\\Form1.cs [\uB514\uC790\uC778]",
+              "Title": "Manager.cs",
+              "DocumentMoniker": "C:\\C# \uD300\uD50C\\ParkingManagementSystem\\source\\manager\\manager\\Manager.cs",
+              "RelativeDocumentMoniker": "manager\\Manager.cs",
+              "ToolTip": "C:\\C# \uD300\uD50C\\ParkingManagementSystem\\source\\manager\\manager\\Manager.cs",
+              "RelativeToolTip": "manager\\Manager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-29T02:13:15.643Z",
-              "EditorCaption": " [\uB514\uC790\uC778]"
+              "WhenOpened": "2024-12-01T09:54:21.064Z",
+              "EditorCaption": ""
             }
           ]
         }

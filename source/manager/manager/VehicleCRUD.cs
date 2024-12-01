@@ -11,12 +11,12 @@ using Oracle.DataAccess.Client;
 
 namespace manager
 {
-    public partial class Form2 : Form
+    public partial class VehicleCRUD : Form
     {
         private readonly string connectionString;
         private readonly string commandMode; // 추가, 삭제, 수정 모드
         private readonly int vehicleId; // 선택된 Vehicle ID (삭제/수정 시)
-        public Form2(string connectionString, string commandMode, int vehicleId = -1)
+        public VehicleCRUD(string connectionString, string commandMode, int vehicleId = -1)
         {
             InitializeComponent();
             this.connectionString = connectionString;
@@ -140,6 +140,11 @@ namespace manager
             {
                 MessageBox.Show($"작업 중 오류 발생: {ex.Message}");
             }
+        }
+
+        private void VehicleCRUD_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
