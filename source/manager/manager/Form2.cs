@@ -94,7 +94,7 @@ namespace manager
                 {
                     connection.Open();
 
-                    if (commandMode == "추가")
+                    if (btnOK.Text == "추가")
                     {
                         var query = "INSERT INTO Vehicle (vehicle_id, vehicle_number, vehicle_type) VALUES (:vehicle_id, :vehicle_number, :vehicle_type)";
                         using (var command = new OracleCommand(query, connection))
@@ -118,14 +118,15 @@ namespace manager
                         }
                         MessageBox.Show("차량이 삭제되었습니다.");
                     }
-                    else if (commandMode == "수정")
+                    else if (btnOK.Text == "수정")
                     {
-                        var query = "UPDATE Vehicle SET vehicle_number = :number, vehicle_type = :type WHERE vehicle_id = :id";
+                        var query = "UPDATE Vehicle SET vehicle_number = :vehicle_number, vehicle_type = :vehicle_type WHERE vehicle_id = :vehicle_id";
                         using (var command = new OracleCommand(query, connection))
                         {
-                            command.Parameters.Add(new OracleParameter("number", txtNumber.Text));
-                            command.Parameters.Add(new OracleParameter("type", txtType.Text));
-                            command.Parameters.Add(new OracleParameter("id", vehicleId));
+                            // 바인딩 변수 이름과 SQL 쿼리가 일치하도록 수정
+                            command.Parameters.Add(new OracleParameter("vehicle_number", txtNumber.Text.Trim()));
+                            command.Parameters.Add(new OracleParameter("vehicle_type", txtType.Text.Trim()));
+                            command.Parameters.Add(new OracleParameter("vehicle_id", OracleDbType.Int32)).Value = vehicleId;
 
                             command.ExecuteNonQuery();
                         }

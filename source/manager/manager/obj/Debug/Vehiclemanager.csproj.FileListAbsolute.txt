@@ -1,0 +1,13 @@
+C:\C# 팀플\ParkingManagementSystem\source\manager\manager\bin\Debug\manager.exe.config
+C:\C# 팀플\ParkingManagementSystem\source\manager\manager\bin\Debug\manager.exe
+C:\C# 팀플\ParkingManagementSystem\source\manager\manager\bin\Debug\manager.pdb
+C:\C# 팀플\ParkingManagementSystem\source\manager\manager\bin\Debug\Oracle.DataAccess.dll
+C:\C# 팀플\ParkingManagementSystem\source\manager\manager\obj\Debug\Vehiclemanager.csproj.AssemblyReference.cache
+C:\C# 팀플\ParkingManagementSystem\source\manager\manager\obj\Debug\manager.Form1.resources
+C:\C# 팀플\ParkingManagementSystem\source\manager\manager\obj\Debug\manager.Form2.resources
+C:\C# 팀플\ParkingManagementSystem\source\manager\manager\obj\Debug\manager.Properties.Resources.resources
+C:\C# 팀플\ParkingManagementSystem\source\manager\manager\obj\Debug\Vehiclemanager.csproj.GenerateResource.cache
+C:\C# 팀플\ParkingManagementSystem\source\manager\manager\obj\Debug\Vehiclemanager.csproj.CoreCompileInputs.cache
+C:\C# 팀플\ParkingManagementSystem\source\manager\manager\obj\Debug\Vehiclem.F555C663.Up2Date
+C:\C# 팀플\ParkingManagementSystem\source\manager\manager\obj\Debug\manager.exe
+C:\C# 팀플\ParkingManagementSystem\source\manager\manager\obj\Debug\manager.pdb
