@@ -34,5 +34,13 @@ namespace manager
                 form1.ShowDialog();
             }
         }
+
+        private void 주차석관리ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (ParkingspotManager form1 = new ParkingspotManager())
+            {
+                form1.ShowDialog();
+            }
+        }
     }
 }

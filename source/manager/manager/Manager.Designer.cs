@@ -71,6 +71,7 @@
             this.주차석관리ToolStripMenuItem.Name = "주차석관리ToolStripMenuItem";
             this.주차석관리ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.주차석관리ToolStripMenuItem.Text = "주차석 관리";
+            this.주차석관리ToolStripMenuItem.Click += new System.EventHandler(this.주차석관리ToolStripMenuItem_Click);
             // 
             // 매장할인관리ToolStripMenuItem
             // 

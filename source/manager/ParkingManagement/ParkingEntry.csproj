@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8F3FF959-D093-4C76-82CE-7391D1083EEF}</ProjectGuid>
+    <ProjectGuid>{43C8CE51-67E8-4E3E-BD73-CC8B6468EBE8}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>manager</RootNamespace>
-    <AssemblyName>manager</AssemblyName>
+    <RootNamespace>ParkingManagement</RootNamespace>
+    <AssemblyName>ParkingManagement</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -33,12 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Oracle.DataAccess, Version=4.112.2.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\..\oraclexe\app\oracle\product\11.2.0\server\odp.net\bin\2.x\Oracle.DataAccess.dll</HintPath>
-    </Reference>
+    <Reference Include="Oracle.DataAccess, Version=4.112.2.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=AMD64" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.OracleClient" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,59 +48,41 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ParkingManager.cs" />
-    <Compile Include="ParkingspotManager.cs">
+    <Compile Include="ParkingDetailsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ParkingspotManager.Designer.cs">
-      <DependentUpon>ParkingspotManager.cs</DependentUpon>
+    <Compile Include="ParkingDetailsForm.Designer.cs">
+      <DependentUpon>ParkingDetailsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="SalesManagement.cs">
+    <Compile Include="ParkingSpotSelectionForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SalesManagement.Designer.cs">
-      <DependentUpon>SalesManagement.cs</DependentUpon>
+    <Compile Include="ParkingSpotSelectionForm.Designer.cs">
+      <DependentUpon>ParkingSpotSelectionForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Vehiclemanager.cs">
+    <Compile Include="ParkingStatusForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Vehiclemanager.Designer.cs">
-      <DependentUpon>Vehiclemanager.cs</DependentUpon>
-    </Compile>
-    <Compile Include="VehicleCRUD.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="VehicleCRUD.Designer.cs">
-      <DependentUpon>VehicleCRUD.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Manager.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Manager.Designer.cs">
-      <DependentUpon>Manager.cs</DependentUpon>
+    <Compile Include="ParkingStatusForm.Designer.cs">
+      <DependentUpon>ParkingStatusForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="VehicleReceipt.cs">
+    <Compile Include="ParkingManager.cs" />
+    <Compile Include="VehicleNumberInputForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="VehicleReceipt.Designer.cs">
-      <DependentUpon>VehicleReceipt.cs</DependentUpon>
+    <Compile Include="VehicleNumberInputForm.Designer.cs">
+      <DependentUpon>VehicleNumberInputForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="ParkingspotManager.resx">
-      <DependentUpon>ParkingspotManager.cs</DependentUpon>
+    <EmbeddedResource Include="ParkingDetailsForm.resx">
+      <DependentUpon>ParkingDetailsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SalesManagement.resx">
-      <DependentUpon>SalesManagement.cs</DependentUpon>
+    <EmbeddedResource Include="ParkingSpotSelectionForm.resx">
+      <DependentUpon>ParkingSpotSelectionForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Vehiclemanager.resx">
-      <DependentUpon>Vehiclemanager.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="VehicleCRUD.resx">
-      <DependentUpon>VehicleCRUD.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Manager.resx">
-      <DependentUpon>Manager.cs</DependentUpon>
+    <EmbeddedResource Include="ParkingStatusForm.resx">
+      <DependentUpon>ParkingStatusForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -113,8 +93,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="VehicleReceipt.resx">
-      <DependentUpon>VehicleReceipt.cs</DependentUpon>
+    <EmbeddedResource Include="VehicleNumberInputForm.resx">
+      <DependentUpon>VehicleNumberInputForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -128,9 +108,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

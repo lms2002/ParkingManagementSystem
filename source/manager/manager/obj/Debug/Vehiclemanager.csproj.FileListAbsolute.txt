@@ -14,3 +14,4 @@ C:\C# 팀플\ParkingManagementSystem\source\manager\manager\obj\Debug\manager.Ve
 C:\C# 팀플\ParkingManagementSystem\source\manager\manager\obj\Debug\manager.Manager.resources
 C:\C# 팀플\ParkingManagementSystem\source\manager\manager\obj\Debug\manager.VehicleReceipt.resources
 C:\C# 팀플\ParkingManagementSystem\source\manager\manager\obj\Debug\manager.SalesManagement.resources
+C:\C# 팀플\ParkingManagementSystem\source\manager\manager\obj\Debug\manager.ParkingspotManager.resources
