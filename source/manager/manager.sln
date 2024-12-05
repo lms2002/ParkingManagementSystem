@@ -5,8 +5,6 @@ VisualStudioVersion = 17.11.35222.181
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vehiclemanager", "manager\Vehiclemanager.csproj", "{8F3FF959-D093-4C76-82CE-7391D1083EEF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkingEntry", "ParkingManagement\ParkingEntry.csproj", "{43C8CE51-67E8-4E3E-BD73-CC8B6468EBE8}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{8F3FF959-D093-4C76-82CE-7391D1083EEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F3FF959-D093-4C76-82CE-7391D1083EEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F3FF959-D093-4C76-82CE-7391D1083EEF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{43C8CE51-67E8-4E3E-BD73-CC8B6468EBE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{43C8CE51-67E8-4E3E-BD73-CC8B6468EBE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{43C8CE51-67E8-4E3E-BD73-CC8B6468EBE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{43C8CE51-67E8-4E3E-BD73-CC8B6468EBE8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
