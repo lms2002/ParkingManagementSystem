@@ -51,3 +51,17 @@ C:\Users\002lm\Desktop\ExitVehicle\bin\Debug\ExitVehicle.exe
 C:\Users\002lm\Desktop\ExitVehicle\bin\Debug\ExitVehicle.pdb
 C:\Users\002lm\Desktop\ExitVehicle\bin\Debug\Oracle.DataAccess.dll
 C:\Users\002lm\Desktop\ExitVehicle\obj\Debug\ExitVehi.9FCE98B3.Up2Date
+C:\Users\002lm\Desktop\C#_github\ParkingManagementSystem\source\ParkingManagementSystem\ExitVehicle\bin\Debug\ExitVehicle.exe.config
+C:\Users\002lm\Desktop\C#_github\ParkingManagementSystem\source\ParkingManagementSystem\ExitVehicle\bin\Debug\ExitVehicle.exe
+C:\Users\002lm\Desktop\C#_github\ParkingManagementSystem\source\ParkingManagementSystem\ExitVehicle\bin\Debug\ExitVehicle.pdb
+C:\Users\002lm\Desktop\C#_github\ParkingManagementSystem\source\ParkingManagementSystem\ExitVehicle\bin\Debug\Oracle.DataAccess.dll
+C:\Users\002lm\Desktop\C#_github\ParkingManagementSystem\source\ParkingManagementSystem\ExitVehicle\obj\Debug\ExitVehicle.csproj.AssemblyReference.cache
+C:\Users\002lm\Desktop\C#_github\ParkingManagementSystem\source\ParkingManagementSystem\ExitVehicle\obj\Debug\ExitVehicle.ExitPayment.resources
+C:\Users\002lm\Desktop\C#_github\ParkingManagementSystem\source\ParkingManagementSystem\ExitVehicle\obj\Debug\ExitVehicle.ExitVehicleManagement.resources
+C:\Users\002lm\Desktop\C#_github\ParkingManagementSystem\source\ParkingManagementSystem\ExitVehicle\obj\Debug\ExitVehicle.Properties.Resources.resources
+C:\Users\002lm\Desktop\C#_github\ParkingManagementSystem\source\ParkingManagementSystem\ExitVehicle\obj\Debug\ExitVehicle.ReceiptDetail.resources
+C:\Users\002lm\Desktop\C#_github\ParkingManagementSystem\source\ParkingManagementSystem\ExitVehicle\obj\Debug\ExitVehicle.csproj.GenerateResource.cache
+C:\Users\002lm\Desktop\C#_github\ParkingManagementSystem\source\ParkingManagementSystem\ExitVehicle\obj\Debug\ExitVehicle.csproj.CoreCompileInputs.cache
+C:\Users\002lm\Desktop\C#_github\ParkingManagementSystem\source\ParkingManagementSystem\ExitVehicle\obj\Debug\ExitVehi.9FCE98B3.Up2Date
+C:\Users\002lm\Desktop\C#_github\ParkingManagementSystem\source\ParkingManagementSystem\ExitVehicle\obj\Debug\ExitVehicle.exe
+C:\Users\002lm\Desktop\C#_github\ParkingManagementSystem\source\ParkingManagementSystem\ExitVehicle\obj\Debug\ExitVehicle.pdb

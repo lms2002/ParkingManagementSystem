@@ -40,12 +40,6 @@ namespace ParkingManagement
                     return;
                 }
 
-                if (IsVehicleDiscounted(vehicleId.Value))
-                {
-                    MessageBox.Show("이 차량은 이미 쿠폰을 등록했습니다.", "중복 등록", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
                 int discountPercentage = GetDiscountPercentage(storeName);
                 UpdateStoreDiscount(storeName, discountPercentage, vehicleId.Value);
 

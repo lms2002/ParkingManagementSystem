@@ -136,21 +136,8 @@ namespace ParkingManagement
 
             try
             {
-                // 차량 ID 조회
-                int vehicleId = parkingManager.GetVehicleIdByNumber(vehicleNumber);
-
-                // 차량 중복 확인
-                if (vehicleId != -1 && parkingManager.IsVehicleParked(vehicleId))
-                {
-                    MessageBox.Show("현재 차량이 이미 주차 중입니다.", "중복 오류", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                // 신규 차량 등록
-                if (vehicleId == -1) // 차량이 기존에 등록되지 않은 경우에만 등록
-                {
-                    vehicleId = parkingManager.RegisterVehicle(vehicleNumber, vehicleType);
-                }
+                // 차량을 항상 등록 (중복 여부와 상관없이 새로운 차량 등록)
+                int vehicleId = parkingManager.RegisterVehicle(vehicleNumber, vehicleType);
 
                 // ParkingSpotSelectionForm으로 이동
                 ParkingSpotSelectionForm parkingSpotSelectionForm = new ParkingSpotSelectionForm(vehicleNumber);

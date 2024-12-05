@@ -11,6 +11,7 @@ DROP TABLE ParkingSpot CASCADE CONSTRAINTS;
 -- 기존 시퀀스 삭제
 DROP SEQUENCE ReceiptSeq;
 DROP SEQUENCE VehicleSeq;
+DROP SEQUENCE DiscountSeq;
 
 -- Vehicle ID 시퀀스 생성
 CREATE SEQUENCE VehicleSeq START WITH 1 INCREMENT BY 1;
@@ -18,7 +19,7 @@ CREATE SEQUENCE VehicleSeq START WITH 1 INCREMENT BY 1;
 -- Vehicle 테이블 생성
 CREATE TABLE Vehicle (
     vehicle_id NUMBER PRIMARY KEY,
-    vehicle_number VARCHAR2(10) UNIQUE,
+    vehicle_number VARCHAR2(10),
     vehicle_type VARCHAR2(10) CHECK (vehicle_type IN ('Standard', 'Compact'))
 );
 
@@ -36,15 +37,17 @@ CREATE TABLE ParkingSpot (
 CREATE TABLE Receipt (
     receipt_id NUMBER PRIMARY KEY,
     vehicle_id NUMBER NOT NULL,
-    vehicle_number VARCHAR2(10), -- 차량 번호도 함께 저장
+    vehicle_number VARCHAR2(10),
     parking_fee_before_discount NUMBER NOT NULL,
     discount_amount NUMBER DEFAULT 0,
     total_fee NUMBER NOT NULL,
     parking_duration NUMBER NOT NULL,
     start_time DATE,
     end_time DATE,
+    store_name VARCHAR2(50), -- 매장 이름 저장 (외래 키 없이 단순 정보)
     CONSTRAINT fk_vehicle FOREIGN KEY (vehicle_id) REFERENCES Vehicle(vehicle_id)
 );
+
 
 -- Receipt ID 시퀀스 생성
 CREATE SEQUENCE ReceiptSeq START WITH 1 INCREMENT BY 1;

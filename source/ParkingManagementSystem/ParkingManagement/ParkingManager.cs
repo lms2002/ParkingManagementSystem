@@ -142,8 +142,9 @@ VALUES
 
                     using (OracleCommand command = new OracleCommand(query, connection))
                     {
-                        command.Parameters.Add("vehicle_id", OracleDbType.Int32).Value = vehicleId; // vehicle_id 저장
-                        command.Parameters.Add("vehicle_number", OracleDbType.Varchar2).Value = vehicleNumber; // vehicle_number 저장
+                        // 최신 vehicle_id를 이용해 데이터 저장
+                        command.Parameters.Add("vehicle_id", OracleDbType.Int32).Value = vehicleId;
+                        command.Parameters.Add("vehicle_number", OracleDbType.Varchar2).Value = vehicleNumber;
                         command.Parameters.Add("start_time", OracleDbType.Varchar2).Value = entryTime.ToString("yyyy-MM-dd HH:mm:ss");
                         command.BindByName = true;
 
@@ -156,8 +157,6 @@ VALUES
                 MessageBox.Show($"입차 기록 저장 중 오류 발생: {ex.Message}", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-
 
 
 
@@ -200,7 +199,7 @@ VALUES
                 {
                     connection.Open();
 
-                    // 시퀀스를 사용하여 vehicle_id 생성
+                    // 시퀀스를 사용하여 새로운 vehicle_id 생성
                     int vehicleId;
                     string getIdQuery = "SELECT VehicleSeq.NEXTVAL FROM dual";
                     using (OracleCommand getIdCommand = new OracleCommand(getIdQuery, connection))
@@ -208,24 +207,28 @@ VALUES
                         vehicleId = Convert.ToInt32(getIdCommand.ExecuteScalar());
                     }
 
-                    // vehicle_id를 사용하여 Vehicle 테이블에 데이터 삽입
-                    string query = "INSERT INTO Vehicle (vehicle_id, vehicle_number, vehicle_type) VALUES (:vehicle_id, :vehicle_number, :vehicle_type)";
-                    using (OracleCommand command = new OracleCommand(query, connection))
-                    {
-                        command.Parameters.Add("vehicle_id", OracleDbType.Int32).Value = vehicleId; // 생성된 vehicle_id 사용
-                        command.Parameters.Add("vehicle_number", OracleDbType.Varchar2).Value = vehicleNumber;
-                        command.Parameters.Add("vehicle_type", OracleDbType.Varchar2).Value = vehicleType;
+                    // 새로 생성된 vehicle_id와 차량 데이터를 Vehicle 테이블에 삽입
+                    string insertQuery = @"
+                INSERT INTO Vehicle (vehicle_id, vehicle_number, vehicle_type)
+                VALUES (:vehicle_id, :vehicle_number, :vehicle_type)";
 
-                        command.ExecuteNonQuery();
+                    using (OracleCommand insertCommand = new OracleCommand(insertQuery, connection))
+                    {
+                        insertCommand.Parameters.Add("vehicle_id", OracleDbType.Int32).Value = vehicleId;
+                        insertCommand.Parameters.Add("vehicle_number", OracleDbType.Varchar2).Value = vehicleNumber;
+                        insertCommand.Parameters.Add("vehicle_type", OracleDbType.Varchar2).Value = vehicleType;
+
+                        insertCommand.ExecuteNonQuery();
                     }
 
-                    MessageBox.Show("차량 번호와 차종이 등록되었습니다.", "등록 완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return vehicleId; // 등록된 vehicle_id 반환
+                    MessageBox.Show("차량 번호와 차종이 성공적으로 등록되었습니다.", "등록 완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    return vehicleId; // 새로 등록된 vehicle_id 반환
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception("신규 차량 등록 중 오류 발생: " + ex.Message);
+                throw new Exception("신규 차량 등록 중 알 수 없는 오류 발생: " + ex.Message);
             }
         }
 
@@ -239,7 +242,13 @@ VALUES
                 {
                     connection.Open();
 
-                    string query = "SELECT vehicle_id FROM Vehicle WHERE vehicle_number = :vehicleNumber";
+                    // vehicle_number로 vehicle_id 조회, 최신 vehicle_id가 반환되도록 정렬
+                    string query = @"
+            SELECT vehicle_id 
+            FROM Vehicle 
+            WHERE vehicle_number = :vehicleNumber
+            ORDER BY vehicle_id DESC"; // 최신 vehicle_id 먼저 조회하도록 내림차순 정렬
+
                     using (OracleCommand command = new OracleCommand(query, connection))
                     {
                         command.Parameters.Add("vehicleNumber", OracleDbType.Varchar2).Value = vehicleNumber;
@@ -248,7 +257,7 @@ VALUES
                         {
                             if (reader.Read())
                             {
-                                return Convert.ToInt32(reader["vehicle_id"]); // 차량 ID 반환
+                                return Convert.ToInt32(reader["vehicle_id"]); // 최신 차량 ID 반환
                             }
                         }
                     }
@@ -261,6 +270,8 @@ VALUES
 
             return -1; // 조회 실패 시 -1 반환
         }
+
+
 
 
         // 차량 정보 가져오기

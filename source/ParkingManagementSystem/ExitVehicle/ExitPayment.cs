@@ -64,10 +64,15 @@ namespace ExitVehicle
                 {
                     connection.Open();
 
-                    // Receipt 테이블에서 입차 시간 조회
-                    string query = @"SELECT start_time
-                             FROM Receipt
-                             WHERE vehicle_id = :vehicleId";
+                    string query = @"
+                SELECT start_time 
+                FROM (
+                    SELECT start_time 
+                    FROM Receipt 
+                    WHERE vehicle_id = :vehicleId
+                    ORDER BY start_time DESC
+                ) t
+                WHERE ROWNUM = 1";
 
                     using (OracleCommand command = new OracleCommand(query, connection))
                     {
@@ -77,14 +82,11 @@ namespace ExitVehicle
                         {
                             if (reader.Read())
                             {
-                                // 입차 시간 가져오기
                                 DateTime startTime = reader.GetDateTime(0);
-                                DateTime currentTime = DateTime.Now; // 현재 시간을 출차 시간으로 설정
+                                DateTime currentTime = DateTime.Now;
 
-                                // 주차 요금 계산
                                 decimal totalFee = CalculateParkingFee(startTime, currentTime, vehicleId);
 
-                                // 화면에 표시
                                 lblStartTime.Text = $"{startTime:yyyy-MM-dd HH:mm}";
                                 lblEndTime.Text = $"{currentTime:yyyy-MM-dd HH:mm}";
                                 lblTotalFee.Text = $"{totalFee:C}";
@@ -103,12 +105,13 @@ namespace ExitVehicle
                 MessageBox.Show($"입차 정보를 로드하는 중 오류가 발생했습니다: {ex.Message}", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
         private decimal CalculateParkingFee(DateTime startTime, DateTime endTime, int vehicleId)
         {
-            // 총 분 계산
             TimeSpan duration = endTime - startTime;
-            int totalMinutes = (int)Math.Ceiling(duration.TotalMinutes); // 올림 처리 (1초~59초 = 1분)
-            decimal parkingFee = totalMinutes * 1000; // 1분당 1000원 요금
+            int totalMinutes = (int)Math.Ceiling(duration.TotalMinutes);
+            decimal parkingFee = 0;
 
             try
             {
@@ -116,34 +119,52 @@ namespace ExitVehicle
                 {
                     connection.Open();
 
-                    // StoreDiscount에서 할인율 확인
-                    string query = @"SELECT NVL(discount_percentage, 0)
-                             FROM StoreDiscount
-                             WHERE vehicle_id = :vehicleId";
-
-                    using (OracleCommand command = new OracleCommand(query, connection))
+                    string typeQuery = @"SELECT vehicle_type FROM Vehicle WHERE vehicle_id = :vehicleId";
+                    using (OracleCommand typeCommand = new OracleCommand(typeQuery, connection))
                     {
-                        command.Parameters.Add("vehicleId", OracleDbType.Int32).Value = vehicleId;
-                        object result = command.ExecuteScalar();
+                        typeCommand.Parameters.Add("vehicleId", OracleDbType.Int32).Value = vehicleId;
+                        object vehicleTypeResult = typeCommand.ExecuteScalar();
+
+                        if (vehicleTypeResult != null)
+                        {
+                            string vehicleType = vehicleTypeResult.ToString();
+                            decimal ratePerMinute = vehicleType == "Compact" ? 50 : 100;
+                            parkingFee = totalMinutes * ratePerMinute;
+                        }
+                        else
+                        {
+                            MessageBox.Show("차량 유형 정보를 찾을 수 없습니다.", "오류", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return 0;
+                        }
+                    }
+
+                    string discountQuery = @"SELECT NVL(discount_percentage, 0) FROM StoreDiscount WHERE vehicle_id = :vehicleId";
+                    using (OracleCommand discountCommand = new OracleCommand(discountQuery, connection))
+                    {
+                        discountCommand.Parameters.Add("vehicleId", OracleDbType.Int32).Value = vehicleId;
+                        object result = discountCommand.ExecuteScalar();
 
                         if (result != null)
                         {
-                            // 할인율 적용
                             decimal discountPercentage = Convert.ToDecimal(result);
-                            decimal discountFactor = 1 - (discountPercentage / 100);
-                            return parkingFee * discountFactor; // 할인율 적용 후 반환
+                            if (discountPercentage > 0)
+                            {
+                                decimal discountFactor = 1 - (discountPercentage / 100);
+                                parkingFee *= discountFactor;
+                            }
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"할인 요금을 계산하는 중 오류가 발생했습니다: {ex.Message}", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"요금 계산 중 오류가 발생했습니다: {ex.Message}", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            // StoreDiscount 테이블에 차량 정보가 없는 경우, 원래 요금을 반환
             return parkingFee;
         }
+
+
 
 
         private void btnCompletePayment_Click(object sender, EventArgs e)
@@ -154,11 +175,15 @@ namespace ExitVehicle
                 {
                     connection.Open();
 
-                    // 1. Receipt에서 기존 데이터 가져오기
                     string selectQuery = @"
-            SELECT start_time 
-            FROM Receipt 
-            WHERE vehicle_id = :vehicleId";
+                SELECT start_time 
+                FROM (
+                    SELECT start_time 
+                    FROM Receipt 
+                    WHERE vehicle_id = :vehicleId
+                    ORDER BY start_time DESC
+                ) t
+                WHERE ROWNUM = 1";
 
                     DateTime startTime;
 
@@ -170,7 +195,7 @@ namespace ExitVehicle
                         {
                             if (reader.Read())
                             {
-                                startTime = reader.GetDateTime(0); // 입차 시간
+                                startTime = reader.GetDateTime(0);
                             }
                             else
                             {
@@ -180,58 +205,58 @@ namespace ExitVehicle
                         }
                     }
 
-                    // 2. 요금 계산
-                    DateTime endTime = DateTime.Now; // 출차 시간
-                    TimeSpan duration = endTime - startTime;
-                    int parkingDuration = (int)Math.Ceiling(duration.TotalMinutes); // 총 주차 시간 (분 단위)
+                    // 요금 계산
+                    DateTime endTime = DateTime.Now;
+                    decimal parkingFeeBeforeDiscount = CalculateParkingFee(startTime, endTime, vehicleId);
 
-                    if (parkingDuration <= 0)
-                    {
-                        MessageBox.Show("주차 시간이 올바르지 않습니다.", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-
-                    decimal parkingFeeBeforeDiscount = parkingDuration * 1000; // 1분당 1000원 요금
+                    // 할인율 및 매장 정보 가져오기
+                    string storeName = null;
                     decimal discountPercentage = 0;
-                    decimal discountAmount = 0;
-                    decimal totalFee = parkingFeeBeforeDiscount;
 
-                    // 3. 할인율 가져오기
                     string discountQuery = @"
-            SELECT NVL(discount_percentage, 0) 
-            FROM StoreDiscount 
-            WHERE vehicle_id = :vehicleId";
+                SELECT NVL(discount_percentage, 0) AS discount_percentage, store_name
+                FROM StoreDiscount
+                WHERE vehicle_id = :vehicleId";
 
                     using (OracleCommand discountCommand = new OracleCommand(discountQuery, connection))
                     {
                         discountCommand.Parameters.Add("vehicleId", OracleDbType.Int32).Value = vehicleId;
-                        object result = discountCommand.ExecuteScalar();
-
-                        if (result != null)
+                        using (OracleDataReader reader = discountCommand.ExecuteReader())
                         {
-                            discountPercentage = Convert.ToDecimal(result);
-                            discountAmount = parkingFeeBeforeDiscount * (discountPercentage / 100); // 할인 금액
-                            totalFee = parkingFeeBeforeDiscount - discountAmount; // 최종 요금
+                            if (reader.Read())
+                            {
+                                discountPercentage = reader["discount_percentage"] != DBNull.Value
+                                    ? Convert.ToDecimal(reader["discount_percentage"])
+                                    : 0;
+                                storeName = reader["store_name"] != DBNull.Value
+                                    ? reader["store_name"].ToString()
+                                    : null;
+                            }
                         }
                     }
 
-                    // 4. Receipt 테이블 업데이트
+                    decimal discountAmount = parkingFeeBeforeDiscount * (discountPercentage / 100);
+                    decimal totalFee = parkingFeeBeforeDiscount - discountAmount;
+
+                    // Receipt 업데이트
                     string updateReceiptQuery = @"
-            UPDATE Receipt 
-            SET parking_fee_before_discount = :parkingFeeBeforeDiscount,
-                discount_amount = :discountAmount,
-                total_fee = :totalFee,
-                parking_duration = :parkingDuration,
-                end_time = :endTime
-            WHERE vehicle_id = :vehicleId";
+                UPDATE Receipt 
+                SET parking_fee_before_discount = :parkingFeeBeforeDiscount,
+                    discount_amount = :discountAmount,
+                    total_fee = :totalFee,
+                    parking_duration = :parkingDuration,
+                    end_time = :endTime,
+                    store_name = :storeName
+                WHERE vehicle_id = :vehicleId";
 
                     using (OracleCommand updateReceiptCommand = new OracleCommand(updateReceiptQuery, connection))
                     {
                         updateReceiptCommand.Parameters.Add("parkingFeeBeforeDiscount", OracleDbType.Decimal).Value = parkingFeeBeforeDiscount;
                         updateReceiptCommand.Parameters.Add("discountAmount", OracleDbType.Decimal).Value = discountAmount;
                         updateReceiptCommand.Parameters.Add("totalFee", OracleDbType.Decimal).Value = totalFee;
-                        updateReceiptCommand.Parameters.Add("parkingDuration", OracleDbType.Int32).Value = parkingDuration;
+                        updateReceiptCommand.Parameters.Add("parkingDuration", OracleDbType.Int32).Value = (int)Math.Ceiling((endTime - startTime).TotalMinutes);
                         updateReceiptCommand.Parameters.Add("endTime", OracleDbType.Date).Value = endTime;
+                        updateReceiptCommand.Parameters.Add("storeName", OracleDbType.Varchar2).Value = storeName ?? "--";
                         updateReceiptCommand.Parameters.Add("vehicleId", OracleDbType.Int32).Value = vehicleId;
 
                         int rowsUpdated = updateReceiptCommand.ExecuteNonQuery();
@@ -243,33 +268,26 @@ namespace ExitVehicle
                         }
                     }
 
-                    // 5. 파킹스팟 초기화
+                    // ParkingSpot 초기화
                     string updateParkingSpotQuery = @"
-    UPDATE ParkingSpot 
-    SET IS_OCCUPIED = 0, 
-        VEHICLE_ID = NULL, 
-        VEHICLE_NUMBER = NULL
-    WHERE VEHICLE_ID = :vehicleId";
+                UPDATE ParkingSpot 
+                SET IS_OCCUPIED = 0, 
+                    VEHICLE_ID = NULL, 
+                    VEHICLE_NUMBER = NULL
+                WHERE VEHICLE_ID = :vehicleId";
 
                     using (OracleCommand updateParkingSpotCommand = new OracleCommand(updateParkingSpotQuery, connection))
                     {
                         updateParkingSpotCommand.Parameters.Add("vehicleId", OracleDbType.Int32).Value = vehicleId;
-                        int rowsUpdated = updateParkingSpotCommand.ExecuteNonQuery();
-
-                        if (rowsUpdated <= 0)
-                        {
-                            MessageBox.Show("파킹스팟 초기화 실패!", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return;
-                        }
+                        updateParkingSpotCommand.ExecuteNonQuery();
                     }
-
 
                     MessageBox.Show("출차 및 결제가 완료되었습니다.", "결제 완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    // 다음 화면으로 이동
+                    // 다음 화면 이동
                     ReceiptDetail receiptDetail = new ReceiptDetail(vehicleId, vehicleNumber);
                     receiptDetail.Show();
-                    this.Hide(); // 현재 화면 숨기기
+                    this.Hide();
                 }
             }
             catch (Exception ex)

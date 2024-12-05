@@ -45,9 +45,9 @@
             this.label1.Location = new System.Drawing.Point(202, 52);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(170, 40);
+            this.label1.Size = new System.Drawing.Size(246, 40);
             this.label1.TabIndex = 0;
-            this.label1.Text = "결제금액 :";
+            this.label1.Text = "예상 결제금액 :";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnCompletePayment
@@ -66,7 +66,7 @@
             // 
             this.lblStartTime.AutoSize = true;
             this.lblStartTime.Font = new System.Drawing.Font("나눔고딕", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblStartTime.Location = new System.Drawing.Point(249, 163);
+            this.lblStartTime.Location = new System.Drawing.Point(243, 163);
             this.lblStartTime.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblStartTime.Name = "lblStartTime";
             this.lblStartTime.Size = new System.Drawing.Size(90, 24);
@@ -108,7 +108,7 @@
             // 
             this.lblTotalFee.AutoSize = true;
             this.lblTotalFee.Font = new System.Drawing.Font("나눔고딕", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblTotalFee.Location = new System.Drawing.Point(376, 52);
+            this.lblTotalFee.Location = new System.Drawing.Point(452, 52);
             this.lblTotalFee.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTotalFee.Name = "lblTotalFee";
             this.lblTotalFee.Size = new System.Drawing.Size(71, 40);

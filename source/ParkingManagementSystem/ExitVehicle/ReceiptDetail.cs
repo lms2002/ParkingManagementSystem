@@ -55,7 +55,7 @@ namespace ExitVehicle
             {
                 txtVehicleNumber.Text = receiptDetails.VehicleNumber;
                 txtFeeBeforeDiscount.Text = $"{receiptDetails.FeeBeforeDiscount:C}";
-                txtDiscountAmount.Text = $"{receiptDetails.DiscountAmount:C}";
+                txtDiscountAmount.Text = receiptDetails.DiscountAmount == 0 ? "--" : $"{receiptDetails.DiscountAmount:C}";
                 txtTotalFee.Text = $"{receiptDetails.TotalFee:C}";
                 txtDuration.Text = $"{receiptDetails.ParkingDuration}분";
                 txtStartTime.Text = receiptDetails.StartTime != DateTime.MinValue
@@ -64,6 +64,9 @@ namespace ExitVehicle
                 txtEndTime.Text = receiptDetails.EndTime != DateTime.MinValue
                     ? receiptDetails.EndTime.ToString("yyyy-MM-dd HH:mm")
                     : "시간 없음";
+                lblStoreName.Text = !string.IsNullOrEmpty(receiptDetails.StoreName)
+            ? receiptDetails.StoreName
+            : "--";
             }
             else
             {
@@ -72,11 +75,12 @@ namespace ExitVehicle
                 // 기본값을 표시하거나 폼 닫지 않음
                 txtVehicleNumber.Text = "데이터 없음";
                 txtFeeBeforeDiscount.Text = "₩0";
-                txtDiscountAmount.Text = "₩0";
+                txtDiscountAmount.Text = "--";
                 txtTotalFee.Text = "₩0";
                 txtDuration.Text = "0분";
                 txtStartTime.Text = "시간 없음";
                 txtEndTime.Text = "시간 없음";
+                lblStoreName.Text = "할인 내역 X";
             }
         }
         private ReceiptDetails GetReceiptDetails(int vehicleId)
@@ -88,16 +92,16 @@ namespace ExitVehicle
                     connection.Open();
 
                     string query = @"
-                    SELECT vehicle_number, parking_fee_before_discount, discount_amount, total_fee, 
-                           parking_duration, start_time, end_time
-                    FROM (
-                        SELECT vehicle_number, parking_fee_before_discount, discount_amount, total_fee, 
-                               parking_duration, start_time, end_time
-                        FROM Receipt
-                        WHERE vehicle_id = :vehicleId
-                        ORDER BY start_time DESC
-                    )
-                    WHERE ROWNUM = 1"; // 첫 번째 결과만 가져오기
+            SELECT vehicle_id, vehicle_number, parking_fee_before_discount, discount_amount, total_fee, 
+                   parking_duration, start_time, end_time, store_name
+            FROM (
+                SELECT vehicle_id, vehicle_number, parking_fee_before_discount, discount_amount, total_fee, 
+                       parking_duration, start_time, end_time, store_name
+                FROM Receipt
+                WHERE vehicle_id = :vehicleId
+                ORDER BY start_time DESC
+            )
+            WHERE ROWNUM = 1";
 
                     using (OracleCommand command = new OracleCommand(query, connection))
                     {
@@ -127,12 +131,9 @@ namespace ExitVehicle
                                         : DateTime.MinValue,
                                     EndTime = reader["end_time"] != DBNull.Value
                                         ? Convert.ToDateTime(reader["end_time"])
-                                        : DateTime.MinValue
+                                        : DateTime.MinValue,
+                                    StoreName = reader["store_name"].ToString()
                                 };
-                            }
-                            else
-                            {
-                                MessageBox.Show("해당 차량의 결제 정보를 찾을 수 없습니다.", "오류", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
                         }
                     }
@@ -140,7 +141,7 @@ namespace ExitVehicle
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"결제 정보를 로드하는 중 오류가 발생했습니다: {ex.Message}", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"최근 주차 정보를 가져오는 중 오류 발생: {ex.Message}", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             return null;
@@ -196,6 +197,7 @@ namespace ExitVehicle
             public int ParkingDuration { get; set; }
             public DateTime StartTime { get; set; }
             public DateTime EndTime { get; set; }
+            public string StoreName { get; set; }
         }
 
         private void ReceiptDetail_FormClosed(object sender, FormClosedEventArgs e)

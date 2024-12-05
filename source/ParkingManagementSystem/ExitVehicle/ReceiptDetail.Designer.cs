@@ -45,163 +45,165 @@
             this.label6 = new System.Windows.Forms.Label();
             this.lblCurrentTime = new System.Windows.Forms.Label();
             this.lblCountdown = new System.Windows.Forms.Label();
+            this.lblStoreName = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label3.Location = new System.Drawing.Point(149, 177);
+            this.label3.Font = new System.Drawing.Font("맑은 고딕", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label3.Location = new System.Drawing.Point(149, 172);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(87, 16);
+            this.label3.Size = new System.Drawing.Size(107, 25);
             this.label3.TabIndex = 8;
-            this.label3.Text = "출차시간 :";
+            this.label3.Text = "출차 시간 :";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label2.Location = new System.Drawing.Point(149, 144);
+            this.label2.Font = new System.Drawing.Font("맑은 고딕", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label2.Location = new System.Drawing.Point(149, 139);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(87, 16);
+            this.label2.Size = new System.Drawing.Size(107, 25);
             this.label2.TabIndex = 7;
-            this.label2.Text = "입차시간 :";
+            this.label2.Text = "입차 시간 :";
             // 
             // txtEndTime
             // 
             this.txtEndTime.AutoSize = true;
-            this.txtEndTime.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.txtEndTime.Location = new System.Drawing.Point(241, 177);
+            this.txtEndTime.Font = new System.Drawing.Font("맑은 고딕", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.txtEndTime.Location = new System.Drawing.Point(261, 172);
             this.txtEndTime.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.txtEndTime.Name = "txtEndTime";
-            this.txtEndTime.Size = new System.Drawing.Size(75, 16);
+            this.txtEndTime.Size = new System.Drawing.Size(88, 25);
             this.txtEndTime.TabIndex = 5;
             this.txtEndTime.Text = "출차시간";
             // 
             // txtStartTime
             // 
             this.txtStartTime.AutoSize = true;
-            this.txtStartTime.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.txtStartTime.Location = new System.Drawing.Point(241, 144);
+            this.txtStartTime.Font = new System.Drawing.Font("맑은 고딕", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.txtStartTime.Location = new System.Drawing.Point(261, 139);
             this.txtStartTime.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.txtStartTime.Name = "txtStartTime";
-            this.txtStartTime.Size = new System.Drawing.Size(75, 16);
+            this.txtStartTime.Size = new System.Drawing.Size(88, 25);
             this.txtStartTime.TabIndex = 6;
             this.txtStartTime.Text = "입차시간";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label1.Location = new System.Drawing.Point(149, 111);
+            this.label1.Font = new System.Drawing.Font("맑은 고딕", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label1.Location = new System.Drawing.Point(149, 106);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(93, 16);
+            this.label1.Size = new System.Drawing.Size(107, 25);
             this.label1.TabIndex = 10;
             this.label1.Text = "차량 번호 :";
             // 
             // txtVehicleNumber
             // 
             this.txtVehicleNumber.AutoSize = true;
-            this.txtVehicleNumber.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.txtVehicleNumber.Location = new System.Drawing.Point(247, 111);
+            this.txtVehicleNumber.Font = new System.Drawing.Font("맑은 고딕", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.txtVehicleNumber.Location = new System.Drawing.Point(261, 106);
             this.txtVehicleNumber.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.txtVehicleNumber.Name = "txtVehicleNumber";
-            this.txtVehicleNumber.Size = new System.Drawing.Size(75, 16);
+            this.txtVehicleNumber.Size = new System.Drawing.Size(88, 25);
             this.txtVehicleNumber.TabIndex = 9;
             this.txtVehicleNumber.Text = "차량번호";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label4.Location = new System.Drawing.Point(149, 211);
+            this.label4.Font = new System.Drawing.Font("맑은 고딕", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label4.Location = new System.Drawing.Point(149, 206);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(87, 16);
+            this.label4.Size = new System.Drawing.Size(107, 25);
             this.label4.TabIndex = 12;
-            this.label4.Text = "주차시간 :";
+            this.label4.Text = "주차 시간 :";
             // 
             // txtDuration
             // 
             this.txtDuration.AutoSize = true;
-            this.txtDuration.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.txtDuration.Location = new System.Drawing.Point(241, 211);
+            this.txtDuration.Font = new System.Drawing.Font("맑은 고딕", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.txtDuration.Location = new System.Drawing.Point(261, 206);
             this.txtDuration.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.txtDuration.Name = "txtDuration";
-            this.txtDuration.Size = new System.Drawing.Size(75, 16);
+            this.txtDuration.Size = new System.Drawing.Size(88, 25);
             this.txtDuration.TabIndex = 11;
             this.txtDuration.Text = "주차시간";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label5.Location = new System.Drawing.Point(149, 248);
+            this.label5.Font = new System.Drawing.Font("맑은 고딕", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label5.Location = new System.Drawing.Point(149, 243);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(93, 16);
+            this.label5.Size = new System.Drawing.Size(107, 25);
             this.label5.TabIndex = 14;
             this.label5.Text = "주차 요금 :";
             // 
             // txtFeeBeforeDiscount
             // 
             this.txtFeeBeforeDiscount.AutoSize = true;
-            this.txtFeeBeforeDiscount.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.txtFeeBeforeDiscount.Location = new System.Drawing.Point(247, 248);
+            this.txtFeeBeforeDiscount.Font = new System.Drawing.Font("맑은 고딕", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.txtFeeBeforeDiscount.Location = new System.Drawing.Point(261, 243);
             this.txtFeeBeforeDiscount.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.txtFeeBeforeDiscount.Name = "txtFeeBeforeDiscount";
-            this.txtFeeBeforeDiscount.Size = new System.Drawing.Size(75, 16);
+            this.txtFeeBeforeDiscount.Size = new System.Drawing.Size(88, 25);
             this.txtFeeBeforeDiscount.TabIndex = 13;
             this.txtFeeBeforeDiscount.Text = "주차요금";
             // 
             // txtDiscountAmount
             // 
             this.txtDiscountAmount.AutoSize = true;
-            this.txtDiscountAmount.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.txtDiscountAmount.Location = new System.Drawing.Point(241, 284);
+            this.txtDiscountAmount.Font = new System.Drawing.Font("맑은 고딕", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.txtDiscountAmount.Location = new System.Drawing.Point(261, 313);
             this.txtDiscountAmount.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.txtDiscountAmount.Name = "txtDiscountAmount";
-            this.txtDiscountAmount.Size = new System.Drawing.Size(75, 16);
+            this.txtDiscountAmount.Size = new System.Drawing.Size(88, 25);
             this.txtDiscountAmount.TabIndex = 13;
             this.txtDiscountAmount.Text = "할인금액";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label8.Location = new System.Drawing.Point(149, 284);
+            this.label8.Font = new System.Drawing.Font("맑은 고딕", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label8.Location = new System.Drawing.Point(149, 313);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(87, 16);
+            this.label8.Size = new System.Drawing.Size(107, 25);
             this.label8.TabIndex = 14;
-            this.label8.Text = "할인금액 :";
+            this.label8.Text = "할인 금액 :";
             // 
             // txtTotalFee
             // 
             this.txtTotalFee.AutoSize = true;
-            this.txtTotalFee.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.txtTotalFee.Font = new System.Drawing.Font("맑은 고딕", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.txtTotalFee.ForeColor = System.Drawing.Color.Red;
-            this.txtTotalFee.Location = new System.Drawing.Point(270, 331);
+            this.txtTotalFee.Location = new System.Drawing.Point(270, 345);
             this.txtTotalFee.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.txtTotalFee.Name = "txtTotalFee";
-            this.txtTotalFee.Size = new System.Drawing.Size(104, 16);
+            this.txtTotalFee.Size = new System.Drawing.Size(132, 30);
             this.txtTotalFee.TabIndex = 13;
             this.txtTotalFee.Text = "총 결제 금액";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label10.Location = new System.Drawing.Point(149, 331);
+            this.label10.Font = new System.Drawing.Font("맑은 고딕", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label10.Location = new System.Drawing.Point(149, 345);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(116, 16);
+            this.label10.Size = new System.Drawing.Size(144, 30);
             this.label10.TabIndex = 14;
             this.label10.Text = "총 결제 금액 :";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("굴림", 23.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label6.Location = new System.Drawing.Point(238, 21);
+            this.label6.Font = new System.Drawing.Font("맑은 고딕", 23.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label6.Location = new System.Drawing.Point(243, 12);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(249, 31);
+            this.label6.Size = new System.Drawing.Size(246, 42);
             this.label6.TabIndex = 15;
             this.label6.Text = "주차요금 영수증";
             // 
@@ -218,13 +220,33 @@
             // lblCountdown
             // 
             this.lblCountdown.AutoSize = true;
-            this.lblCountdown.Font = new System.Drawing.Font("굴림", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblCountdown.Font = new System.Drawing.Font("나눔명조 ExtraBold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblCountdown.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.lblCountdown.Location = new System.Drawing.Point(168, 69);
+            this.lblCountdown.Location = new System.Drawing.Point(192, 64);
             this.lblCountdown.Name = "lblCountdown";
-            this.lblCountdown.Size = new System.Drawing.Size(346, 19);
+            this.lblCountdown.Size = new System.Drawing.Size(342, 24);
             this.lblCountdown.TabIndex = 17;
             this.lblCountdown.Text = "10초 뒤에 초기 화면으로 전환됩니다.";
+            // 
+            // lblStoreName
+            // 
+            this.lblStoreName.Font = new System.Drawing.Font("맑은 고딕", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblStoreName.Location = new System.Drawing.Point(261, 279);
+            this.lblStoreName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblStoreName.Name = "lblStoreName";
+            this.lblStoreName.Size = new System.Drawing.Size(224, 25);
+            this.lblStoreName.TabIndex = 13;
+            this.lblStoreName.Text = "할인 매장";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("맑은 고딕", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label9.Location = new System.Drawing.Point(149, 279);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(107, 25);
+            this.label9.TabIndex = 14;
+            this.label9.Text = "할인 매장 :";
             // 
             // ReceiptDetail
             // 
@@ -236,6 +258,8 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.txtTotalFee);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.lblStoreName);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.txtDiscountAmount);
             this.Controls.Add(this.label5);
@@ -275,5 +299,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label lblCurrentTime;
         private System.Windows.Forms.Label lblCountdown;
+        private System.Windows.Forms.Label lblStoreName;
+        private System.Windows.Forms.Label label9;
     }
 }
