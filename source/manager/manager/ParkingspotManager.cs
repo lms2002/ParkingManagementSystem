@@ -85,26 +85,27 @@ namespace manager
             // 자리 이동 중인지 확인
             if (selectedSpotButton != null && clickedButton.BackColor != Color.Green)
             {
-                // 이동 처리
                 int fromSpotNumber = int.Parse(selectedSpotButton.Name.Replace("btnSpot", ""));
-                int vehicleId = parkingManager.GetVehicleIdByNumber(selectedSpotButton.Text); // 차량 번호로 ID 조회
-
-                if (vehicleId == -1)
-                {
-                    MessageBox.Show("차량 정보를 가져오는 중 오류가 발생했습니다.", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
 
                 try
                 {
+                    // 이동 전 주차석에 차량이 있는지 확인
+                    int vehicleId = parkingManager.GetVehicleIdBySpotNumber(fromSpotNumber); // 주차석 번호로 차량 ID 조회
+
+                    if (vehicleId == -1)
+                    {
+                        MessageBox.Show("이동할 차량을 찾을 수 없습니다.", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
                     // 이동 전 주차석 상태 업데이트
                     parkingManager.UpdateParkingStatus(fromSpotNumber, false);
 
                     // 이동 후 주차석 상태 업데이트
                     parkingManager.UpdateParkingStatus(spotNumber, true, vehicleId);
 
-                    // 버튼 색상 업데이트
-                    selectedSpotButton.BackColor = DefaultBackColor;
+                    // UI 업데이트
+                    selectedSpotButton.BackColor = SystemColors.Control;
                     clickedButton.BackColor = Color.Green;
 
                     MessageBox.Show($"차량이 {fromSpotNumber}번에서 {spotNumber}번으로 이동되었습니다.", "완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -132,13 +133,15 @@ namespace manager
 
                     // 주차 공간 버튼 찾기
                     Button btn = (Button)this.Controls.Find($"btnSpot{spotNumber}", true)[0];
-                    btn.BackColor = isOccupied ? Color.Green : DefaultBackColor;
+                    btn.BackColor = isOccupied ? Color.Green : SystemColors.Control; // 빈 자리는 기본 색상(SystemColors.Control)
+                    btn.Text = spotNumber.ToString(); // 항상 주차석 번호 표시
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error loading parking spots: {ex.Message}");
+                MessageBox.Show($"주차 공간 상태를 로드하는 중 오류가 발생했습니다: {ex.Message}", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
     }
 }
