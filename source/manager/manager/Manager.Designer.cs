@@ -78,6 +78,7 @@
             this.매장할인관리ToolStripMenuItem.Name = "매장할인관리ToolStripMenuItem";
             this.매장할인관리ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.매장할인관리ToolStripMenuItem.Text = "매장관리";
+            this.매장할인관리ToolStripMenuItem.Click += new System.EventHandler(this.매장할인관리ToolStripMenuItem_Click);
             // 
             // 매출관리ToolStripMenuItem
             // 
@@ -88,7 +89,7 @@
             // 
             // label1
             // 
-            this.label1.Font = new System.Drawing.Font("한컴 말랑말랑 Regular", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label1.Location = new System.Drawing.Point(165, 124);
             this.label1.Name = "label1";
             this.label1.RightToLeft = System.Windows.Forms.RightToLeft.No;

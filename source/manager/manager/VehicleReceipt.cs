@@ -23,18 +23,19 @@ namespace manager
         {
             // Receipt 데이터를 조회하는 SQL 쿼리
             string query = @"
-                SELECT 
-                    receipt_id AS ""영수증 ID"",
-                    vehicle_id AS ""차량 ID"",
-                    vehicle_number AS ""차량 번호"",
-                    parking_fee_before_discount AS ""할인 전 요금"",
-                    discount_amount AS ""할인 금액"",
-                    total_fee AS ""최종 요금"",
-                    parking_duration AS ""주차 시간"",
-                    start_time AS ""주차 시작"",
-                    end_time AS ""주차 종료""
-                FROM Receipt
-                WHERE vehicle_id = :vehicle_id";
+        SELECT 
+            receipt_id AS ""영수증 ID"",
+            vehicle_id AS ""차량 ID"",
+            vehicle_number AS ""차량 번호"",
+            parking_fee_before_discount AS ""할인 전 요금"",
+            discount_amount AS ""할인 금액"",
+            total_fee AS ""최종 요금"",
+            parking_duration AS ""주차 시간"",
+            start_time AS ""주차 시작"",
+            end_time AS ""주차 종료"",
+            store_name AS ""매장 이름""
+        FROM Receipt
+        WHERE vehicle_id = :vehicle_id";
 
             try
             {

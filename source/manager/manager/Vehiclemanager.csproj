@@ -63,6 +63,12 @@
     <Compile Include="SalesManagement.Designer.cs">
       <DependentUpon>SalesManagement.cs</DependentUpon>
     </Compile>
+    <Compile Include="StoreDiscountEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StoreDiscountEditForm.Designer.cs">
+      <DependentUpon>StoreDiscountEditForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="StoreManager.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,6 +106,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SalesManagement.resx">
       <DependentUpon>SalesManagement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StoreDiscountEditForm.resx">
+      <DependentUpon>StoreDiscountEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StoreManager.resx">
       <DependentUpon>StoreManager.cs</DependentUpon>

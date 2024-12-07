@@ -42,5 +42,13 @@ namespace manager
                 form1.ShowDialog();
             }
         }
+
+        private void 매장할인관리ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (StoreManager form1 = new StoreManager(connectionString))
+            {
+                form1.ShowDialog();
+            }
+        }
     }
 }
