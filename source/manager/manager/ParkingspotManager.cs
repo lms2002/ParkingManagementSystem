@@ -9,6 +9,7 @@ namespace manager
     {
         private ParkingManager parkingManager; // 주차 관리 객체
         private Button selectedSpotButton; // 선택된 주차 버튼 저장
+        private Color originalSelectedColor = Color.Orange; // 임시 색상
 
         public ParkingspotManager()
         {
@@ -24,6 +25,8 @@ namespace manager
 
             LoadParkingSpotStatus();
         }
+
+
 
         // 주차석 버튼 초기화
         private void InitializeParkingSpots()
@@ -72,6 +75,8 @@ namespace manager
                 return;
             }
 
+            // 선택된 자리 색상 변경
+            selectedSpotButton.BackColor = originalSelectedColor;
             MessageBox.Show("빈 주차석을 선택하여 차량을 이동하세요.", "안내", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
@@ -106,7 +111,12 @@ namespace manager
 
                     // UI 업데이트
                     selectedSpotButton.BackColor = SystemColors.Control;
+                    selectedSpotButton.Text = selectedSpotButton.Name.Replace("btnSpot", ""); // 원래 자리 번호로 복원
                     clickedButton.BackColor = Color.Green;
+
+                    // 차량 번호로 버튼 텍스트 업데이트
+                    string vehicleNumber = parkingManager.GetVehicleNumberByVehicleId(vehicleId);
+                    clickedButton.Text = vehicleNumber;
 
                     MessageBox.Show($"차량이 {fromSpotNumber}번에서 {spotNumber}번으로 이동되었습니다.", "완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -119,7 +129,7 @@ namespace manager
             }
         }
 
-        // 주차 공간 상태를 데이터베이스에서 불러와 버튼 색상 설정
+        // 주차 공간 상태를 데이터베이스에서 불러와 버튼 색상 및 텍스트 설정
         private void LoadParkingSpotStatus()
         {
             try
@@ -133,8 +143,24 @@ namespace manager
 
                     // 주차 공간 버튼 찾기
                     Button btn = (Button)this.Controls.Find($"btnSpot{spotNumber}", true)[0];
-                    btn.BackColor = isOccupied ? Color.Green : SystemColors.Control; // 빈 자리는 기본 색상(SystemColors.Control)
-                    btn.Text = spotNumber.ToString(); // 항상 주차석 번호 표시
+
+                    if (isOccupied)
+                    {
+                        btn.BackColor = Color.Green;
+
+                        // 차량 번호를 버튼 텍스트에 설정
+                        string vehicleNumber = row["vehicle_number"].ToString();
+                        btn.Text = vehicleNumber; // 차량 번호 설정
+                        btn.Font = new Font("Arial", 10, FontStyle.Bold); // 폰트 크기 조정
+                        btn.TextAlign = ContentAlignment.MiddleCenter; // 텍스트 중앙 정렬
+                    }
+                    else
+                    {
+                        btn.BackColor = SystemColors.Control;
+                        btn.Text = spotNumber.ToString(); // 빈 자리는 주차석 번호 표시
+                        btn.Font = new Font("Arial", 10, FontStyle.Regular); // 폰트 크기 조정
+                        btn.TextAlign = ContentAlignment.MiddleCenter; // 텍스트 중앙 정렬
+                    }
                 }
             }
             catch (Exception ex)
@@ -142,6 +168,5 @@ namespace manager
                 MessageBox.Show($"주차 공간 상태를 로드하는 중 오류가 발생했습니다: {ex.Message}", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
     }
 }

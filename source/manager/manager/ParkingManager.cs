@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data;
-using System.Drawing;
 using System.Windows.Forms;
 using Oracle.DataAccess.Client;
 
@@ -88,9 +87,7 @@ namespace manager
             }
         }
 
-
-
-        // 차량 번호로 차량 ID 조회
+        // 주차 공간 번호로 차량 ID 조회
         public int GetVehicleIdBySpotNumber(int spotNumber)
         {
             try
@@ -120,6 +117,33 @@ namespace manager
             }
 
             return -1; // 조회 실패 시 -1 반환
+        }
+
+        // 차량 ID로 차량 번호 조회
+        public string GetVehicleNumberByVehicleId(int vehicleId)
+        {
+            string query = "SELECT vehicle_number FROM Vehicle WHERE vehicle_id = :vehicle_id";
+            try
+            {
+                using (OracleConnection connection = new OracleConnection(connectionString))
+                {
+                    connection.Open();
+
+                    using (var command = new OracleCommand(query, connection))
+                    {
+                        command.Parameters.Add(new OracleParameter("vehicle_id", vehicleId));
+
+                        var result = command.ExecuteScalar();
+                        return result != null ? result.ToString() : string.Empty;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"차량 번호를 조회하는 중 오류 발생: {ex.Message}", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return string.Empty; // 조회 실패 시 빈 문자열 반환
         }
     }
 }
