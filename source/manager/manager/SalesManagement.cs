@@ -8,7 +8,7 @@ namespace manager
     public partial class SalesManagement : Form
     {
         private readonly string connectionString;
-
+        private DateTime selectedMonth;
         public SalesManagement(string connectionString)
         {
             InitializeComponent();
@@ -21,7 +21,6 @@ namespace manager
             DataTable dailySales = new DataTable();
             int monthlyTotal = 0;
 
-            // 일별 매출과 당월 총 매출 쿼리
             string salesQuery = @"
                 SELECT 
                     TO_CHAR(start_time, 'YYYY-MM-DD') AS sale_date,
@@ -45,7 +44,6 @@ namespace manager
                         {
                             adapter.Fill(dailySales);
 
-                            // 당월 총 매출 계산 (첫 번째 행의 monthly_total 컬럼 사용)
                             if (dailySales.Rows.Count > 0)
                             {
                                 monthlyTotal = Convert.ToInt32(dailySales.Rows[0]["monthly_total"]);
@@ -56,10 +54,7 @@ namespace manager
             }
             catch (Exception ex)
             {
-                // 사용자 친화적인 메시지 표시
-                MessageBox.Show("매출 데이터를 가져오는 중 오류가 발생했습니다. 관리자에게 문의하세요.", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                // 디버깅용 예외 로그
+                MessageBox.Show("매출 데이터를 가져오는 중 오류가 발생했습니다.", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Console.WriteLine(ex.ToString());
             }
 
@@ -72,14 +67,12 @@ namespace manager
             dgvCalendar.Rows.Clear();
             dgvCalendar.Columns.Clear();
 
-            // 요일 열 추가
             string[] weekDays = { "일", "월", "화", "수", "목", "금", "토" };
             foreach (var day in weekDays)
             {
                 dgvCalendar.Columns.Add(day, day);
             }
 
-            // 주 합계 열 추가
             dgvCalendar.Columns.Add("주 합계", "주 합계");
         }
 
@@ -88,15 +81,13 @@ namespace manager
         {
             var (dailySales, monthlyTotal) = GetSalesData(targetMonth);
 
-            // DataGridView 초기화
             InitializeCalendar();
 
-            // 달력 데이터 구성
             DateTime firstDayOfMonth = DateTime.Parse(targetMonth + "-01");
             int daysInMonth = DateTime.DaysInMonth(firstDayOfMonth.Year, firstDayOfMonth.Month);
             int startDayOfWeek = (int)firstDayOfMonth.DayOfWeek;
 
-            int currentRowIndex = dgvCalendar.Rows.Add(); // 첫 번째 행 추가
+            int currentRowIndex = dgvCalendar.Rows.Add();
             int weekTotal = 0;
 
             for (int i = 1; i <= daysInMonth; i++)
@@ -104,36 +95,50 @@ namespace manager
                 DateTime currentDate = firstDayOfMonth.AddDays(i - 1);
                 int currentColumn = (startDayOfWeek + i - 1) % 7;
 
-                // 해당 날짜 매출 가져오기
                 var salesRow = dailySales.Select($"sale_date = '{currentDate:yyyy-MM-dd}'");
                 int dailyTotal = salesRow.Length > 0 ? Convert.ToInt32(salesRow[0]["daily_total"]) : 0;
 
-                // 날짜와 매출 설정
                 dgvCalendar[currentColumn, currentRowIndex].Value = $"{i}일 - {dailyTotal:N0}원";
-
-                // 주 매출 합계 계산
                 weekTotal += dailyTotal;
 
-                // 주가 끝나면 주 매출 합계를 추가
                 if (currentColumn == 6 || i == daysInMonth)
                 {
                     dgvCalendar["주 합계", currentRowIndex].Value = weekTotal.ToString("N0");
 
-                    // 다음 행 추가
                     if (i != daysInMonth) currentRowIndex = dgvCalendar.Rows.Add();
-                    weekTotal = 0; // 새로운 주 매출 합계 초기화
+                    weekTotal = 0;
                 }
             }
 
-            // 당월 총 매출 표시
             txtMonthlyTotal.Text = $"{monthlyTotal:N0}원";
+
+            // 레이블 업데이트
+            UpdateMonthYearLabel();
         }
+
+        private void UpdateMonthYearLabel()
+        {
+            lblMonthYear.Text = $"{selectedMonth:yyyy년 MM월}";
+        }
+
 
         // 폼 로드 이벤트
         private void SalesManagement_Load(object sender, EventArgs e)
         {
-            string targetMonth = DateTime.Now.ToString("yyyy-MM");
-            DisplaySalesData(targetMonth);
+            selectedMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+            DisplaySalesData(selectedMonth.ToString("yyyy-MM"));
+        }
+
+        private void btnPreviousMonth_Click(object sender, EventArgs e)
+        {
+            selectedMonth = selectedMonth.AddMonths(-1);
+            DisplaySalesData(selectedMonth.ToString("yyyy-MM"));
+        }
+
+        private void btnNextMonth_Click(object sender, EventArgs e)
+        {
+            selectedMonth = selectedMonth.AddMonths(1);
+            DisplaySalesData(selectedMonth.ToString("yyyy-MM"));
         }
     }
 }

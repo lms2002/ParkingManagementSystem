@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Oracle.DataAccess.Client;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -43,11 +44,44 @@ namespace manager
             }
         }
 
-        private void 매장할인관리ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void Manager_Load(object sender, EventArgs e)
         {
-            using (StoreManager form1 = new StoreManager(connectionString))
+            LoadStoreDiscounts();
+        }
+        private void LoadStoreDiscounts()
+        {
+            string query = @"
+                SELECT 
+                    discount_id AS StoreID,
+                    store_name AS StoreName,
+                    discount_percentage AS DiscountPercentage,
+                    discount_condition AS DiscountCondition
+                FROM StoreDiscount
+                ORDER BY store_name";
+
+            try
             {
-                form1.ShowDialog();
+                using (var connection = new OracleConnection(connectionString))
+                {
+                    connection.Open();
+                    using (var command = new OracleCommand(query, connection))
+                    using (var reader = command.ExecuteReader())
+                    {
+                        lvStoreDiscount.Items.Clear(); // 기존 항목 초기화
+                        while (reader.Read())
+                        {
+                            var item = new ListViewItem(reader["StoreID"].ToString());
+                            item.SubItems.Add(reader["StoreName"].ToString());
+                            item.SubItems.Add(reader["DiscountPercentage"].ToString());
+                            item.SubItems.Add(reader["DiscountCondition"].ToString());
+                            lvStoreDiscount.Items.Add(item);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"데이터를 로드하는 중 오류가 발생했습니다: {ex.Message}", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
