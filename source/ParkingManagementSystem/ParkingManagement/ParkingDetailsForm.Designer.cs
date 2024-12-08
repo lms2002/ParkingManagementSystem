@@ -44,7 +44,7 @@
             // lblVehicleNumber
             // 
             this.lblVehicleNumber.Font = new System.Drawing.Font("나눔고딕", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblVehicleNumber.Location = new System.Drawing.Point(230, 148);
+            this.lblVehicleNumber.Location = new System.Drawing.Point(222, 148);
             this.lblVehicleNumber.Name = "lblVehicleNumber";
             this.lblVehicleNumber.Size = new System.Drawing.Size(332, 29);
             this.lblVehicleNumber.TabIndex = 1;
@@ -53,7 +53,7 @@
             // lblEntryTime
             // 
             this.lblEntryTime.Font = new System.Drawing.Font("나눔고딕", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblEntryTime.Location = new System.Drawing.Point(286, 300);
+            this.lblEntryTime.Location = new System.Drawing.Point(272, 300);
             this.lblEntryTime.Name = "lblEntryTime";
             this.lblEntryTime.Size = new System.Drawing.Size(470, 35);
             this.lblEntryTime.TabIndex = 3;
@@ -82,7 +82,7 @@
             // lblParkingSpot
             // 
             this.lblParkingSpot.Font = new System.Drawing.Font("나눔고딕", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblParkingSpot.Location = new System.Drawing.Point(258, 244);
+            this.lblParkingSpot.Location = new System.Drawing.Point(247, 248);
             this.lblParkingSpot.Name = "lblParkingSpot";
             this.lblParkingSpot.Size = new System.Drawing.Size(96, 29);
             this.lblParkingSpot.TabIndex = 11;
@@ -112,7 +112,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("나눔고딕", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label2.Location = new System.Drawing.Point(136, 246);
+            this.label2.Location = new System.Drawing.Point(136, 248);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(105, 31);
             this.label2.TabIndex = 14;
@@ -121,7 +121,7 @@
             // lblVehicleType
             // 
             this.lblVehicleType.Font = new System.Drawing.Font("나눔고딕", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblVehicleType.Location = new System.Drawing.Point(230, 196);
+            this.lblVehicleType.Location = new System.Drawing.Point(222, 198);
             this.lblVehicleType.Name = "lblVehicleType";
             this.lblVehicleType.Size = new System.Drawing.Size(272, 29);
             this.lblVehicleType.TabIndex = 13;

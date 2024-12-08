@@ -51,18 +51,19 @@ namespace ParkingManagement
             timer.Start(); // 타이머 시작
         }
 
-        // 각 버튼에 클릭 이벤트 할당
+        // 폼 로드 시 주차석 버튼에 이벤트를 연결하고 장애인 전용 표시 설정
         private void InitializeButtonEvents()
         {
             for (int i = 1; i <= 30; i++)
             {
+                // 주차석 버튼 찾기
                 Button btn = (Button)this.Controls.Find($"btnSpot{i}", true)[0];
-                btn.Click += ParkingSpotButton_Click;
+                btn.Click += ParkingSpotButton_Click; // 클릭 이벤트 연결
 
-                // 장애인 주차석 표시를 위한 Paint 이벤트 추가
-                if (i >= 26 && i <= 30) // 장애인 전용 주차석 (26~30)
+                // 장애인 전용 주차석(26~30번)에 표시 설정
+                if (i >= 26 && i <= 30)
                 {
-                    btn.Paint += Button_Paint_DisabledSpot;
+                    btn.Paint += Button_Paint_DisabledSpot; // Paint 이벤트를 사용해 시각적 표시 추가
                 }
             }
         }
@@ -73,20 +74,21 @@ namespace ParkingManagement
             Button btn = sender as Button;
             Graphics g = e.Graphics;
 
+            // 노란색 원으로 장애인 주차석 표시
             int diameter = 8; // 원의 지름
-            int x = btn.Width - diameter - 2;
+            int x = btn.Width - diameter - 2; // 버튼 오른쪽 상단 위치
             int y = 2;
 
             // 노란색 원 그리기
             using (SolidBrush yellowBrush = new SolidBrush(Color.Yellow))
             {
-                g.FillEllipse(yellowBrush, x, y, diameter, diameter);
+                g.FillEllipse(yellowBrush, x, y, diameter, diameter); // 원 채우기
             }
 
             // 검은색 테두리 그리기
             using (Pen blackPen = new Pen(Color.Black, 1))
             {
-                g.DrawEllipse(blackPen, x, y, diameter, diameter);
+                g.DrawEllipse(blackPen, x, y, diameter, diameter); // 원 테두리
             }
         }
 
@@ -95,20 +97,23 @@ namespace ParkingManagement
         {
             try
             {
+                // ParkingSpot 테이블 데이터를 DataTable 형식으로 불러옴
                 DataTable parkingTable = parkingManager.GetParkingTable();
 
+                // 각 주차석 상태를 읽어와 버튼 색상을 설정
                 foreach (DataRow row in parkingTable.Rows)
                 {
-                    int spotNumber = Convert.ToInt32(row["spot_number"]);
-                    bool isOccupied = Convert.ToInt32(row["is_occupied"]) == 1;
+                    int spotNumber = Convert.ToInt32(row["spot_number"]); // 주차석 번호
+                    bool isOccupied = Convert.ToInt32(row["is_occupied"]) == 1; // 주차 여부 확인
 
-                    // 주차 공간 버튼 찾기
+                    // 해당 주차석 번호에 해당하는 버튼 찾기
                     Button btn = (Button)this.Controls.Find($"btnSpot{spotNumber}", true)[0];
-                    btn.BackColor = isOccupied ? Color.Green : DefaultBackColor;
+                    btn.BackColor = isOccupied ? Color.Green : DefaultBackColor; // 주차 여부에 따라 색상 변경
                 }
             }
             catch (Exception ex)
             {
+                // 데이터베이스에서 주차 상태를 불러오지 못한 경우 오류 메시지 표시
                 MessageBox.Show($"Error loading parking spots: {ex.Message}");
             }
         }
@@ -162,7 +167,7 @@ namespace ParkingManagement
                 clickedButton.BackColor = Color.Green;
 
                 // 성공 메시지 표시
-                MessageBox.Show($"{spotNumber}번 주차 공간에 차량이 등록되었습니다.", "완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"{spotNumber}번 주차 공간에 주차해주시기 바랍니다.", "완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 // ParkingDetailsForm으로 이동
                 string connectionString = "User Id=ParkingAdmin; Password=1111; Data Source=(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521)) (CONNECT_DATA = (SERVER = DEDICATED) (SERVICE_NAME = xe)));";

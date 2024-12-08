@@ -118,10 +118,6 @@ namespace ParkingManagement
             return true;
         }
 
-
-
-
-
         // 차량 번호 입력 후 Submit 클릭
         private void btnSubmit_Click(object sender, EventArgs e)
         {

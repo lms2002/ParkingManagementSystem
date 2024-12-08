@@ -91,6 +91,7 @@ namespace ParkingManagement
                 MessageBox.Show($"주차 상태를 로드하는 중 오류 발생: {ex.Message}", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         // 각 라벨 클릭 시 차량 번호 입력 폼으로 전환
         private void lblTotalAvailableSpots_Click(object sender, EventArgs e) => ShowVehicleInputForm();
         private void lblRegularAvailableSpots_Click(object sender, EventArgs e) => ShowVehicleInputForm();
