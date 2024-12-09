@@ -5,35 +5,30 @@ using Oracle.DataAccess.Client;
 
 namespace manager
 {
-    internal class ParkingManager
+    public class ParkingManager
     {
-        // 필드
         private string connectionString;
         private OracleDataAdapter dBAdapter;
         private DataSet dS;
         private DataTable parkingTable;
 
-        // 생성자
         public ParkingManager(string connectionString)
         {
             this.connectionString = connectionString;
         }
 
-        // 주차 데이터베이스 열기
         public void OpenDatabase()
         {
             try
             {
                 string query = "SELECT * FROM ParkingSpot";
 
-                // DataAdapter 및 DataSet 초기화
                 dBAdapter = new OracleDataAdapter(query, connectionString);
                 dS = new DataSet();
                 dBAdapter.Fill(dS, "ParkingSpot");
 
-                // DataTable 가져오기
                 parkingTable = dS.Tables["ParkingSpot"];
-                parkingTable.PrimaryKey = new DataColumn[] { parkingTable.Columns["spot_number"] }; // 기본 키 설정
+                parkingTable.PrimaryKey = new DataColumn[] { parkingTable.Columns["spot_number"] };
             }
             catch (Exception ex)
             {
@@ -41,13 +36,11 @@ namespace manager
             }
         }
 
-        // 주차 공간 데이터 가져오기
         public DataTable GetParkingTable()
         {
             return parkingTable;
         }
 
-        // 주차 상태 업데이트
         public void UpdateParkingStatus(int spotNumber, bool isOccupied, int vehicleId = -1)
         {
             try
@@ -61,7 +54,6 @@ namespace manager
                 if (row != null)
                 {
                     row["is_occupied"] = isOccupied ? 1 : 0;
-
                     if (isOccupied && vehicleId != -1)
                     {
                         row["vehicle_id"] = vehicleId;
@@ -71,7 +63,6 @@ namespace manager
                         row["vehicle_id"] = DBNull.Value;
                     }
 
-                    // UpdateCommand 설정
                     OracleCommandBuilder commandBuilder = new OracleCommandBuilder(dBAdapter);
                     dBAdapter.Update(dS, "ParkingSpot");
                     dS.AcceptChanges();
@@ -83,11 +74,10 @@ namespace manager
             }
             catch (Exception ex)
             {
-                throw new Exception($"주차 상태 업데이트 중 오류 발생: {ex.Message}");
+                MessageBox.Show($"주차 상태 업데이트 중 오류 발생: {ex.Message}", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        // 주차 공간 번호로 차량 ID 조회
         public int GetVehicleIdBySpotNumber(int spotNumber)
         {
             try
@@ -116,10 +106,39 @@ namespace manager
                 MessageBox.Show($"차량 ID를 조회하는 중 오류 발생: {ex.Message}", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            return -1; // 조회 실패 시 -1 반환
+            return -1;
+        }
+        public int AddVehicle(string vehicleNumber, string vehicleType)
+        {
+            string query = "INSERT INTO Vehicle (vehicle_id, vehicle_number, vehicle_type) VALUES (VehicleSeq.NEXTVAL, :vehicleNumber, :vehicleType) RETURNING vehicle_id INTO :vehicleId";
+
+            try
+            {
+                using (OracleConnection connection = new OracleConnection(connectionString))
+                {
+                    connection.Open();
+
+                    using (OracleCommand command = new OracleCommand(query, connection))
+                    {
+                        command.Parameters.Add("vehicleNumber", OracleDbType.Varchar2).Value = vehicleNumber;
+                        command.Parameters.Add("vehicleType", OracleDbType.Varchar2).Value = vehicleType;
+
+                        OracleParameter vehicleIdParam = new OracleParameter("vehicleId", OracleDbType.Int32);
+                        vehicleIdParam.Direction = ParameterDirection.Output;
+                        command.Parameters.Add(vehicleIdParam);
+
+                        command.ExecuteNonQuery();
+
+                        return Convert.ToInt32(vehicleIdParam.Value); // 생성된 vehicle_id 반환
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"차량 추가 중 오류 발생: {ex.Message}");
+            }
         }
 
-        // 차량 ID로 차량 번호 조회
         public string GetVehicleNumberByVehicleId(int vehicleId)
         {
             string query = "SELECT vehicle_number FROM Vehicle WHERE vehicle_id = :vehicle_id";
@@ -143,7 +162,8 @@ namespace manager
                 MessageBox.Show($"차량 번호를 조회하는 중 오류 발생: {ex.Message}", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            return string.Empty; // 조회 실패 시 빈 문자열 반환
+            return string.Empty;
         }
+
     }
 }

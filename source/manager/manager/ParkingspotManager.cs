@@ -26,8 +26,6 @@ namespace manager
             LoadParkingSpotStatus();
         }
 
-
-
         // 주차석 버튼 초기화
         private void InitializeParkingSpots()
         {
@@ -43,9 +41,18 @@ namespace manager
         private void InitializeContextMenu()
         {
             contextMenuParkingSpot = new ContextMenuStrip();
+
             ToolStripMenuItem moveMenuItem = new ToolStripMenuItem("자리 이동");
             moveMenuItem.Click += MoveSpotMenuItem_Click; // 자리 이동 이벤트 추가
             contextMenuParkingSpot.Items.Add(moveMenuItem);
+
+            ToolStripMenuItem entryMenuItem = new ToolStripMenuItem("입차");
+            entryMenuItem.Click += EntrySpotMenuItem_Click; // 입차 이벤트 추가
+            contextMenuParkingSpot.Items.Add(entryMenuItem);
+
+            ToolStripMenuItem exitMenuItem = new ToolStripMenuItem("출차");
+            exitMenuItem.Click += ExitSpotMenuItem_Click; // 출차 이벤트 추가
+            contextMenuParkingSpot.Items.Add(exitMenuItem);
         }
 
         // 마우스 우클릭 이벤트 처리
@@ -78,6 +85,47 @@ namespace manager
             // 선택된 자리 색상 변경
             selectedSpotButton.BackColor = originalSelectedColor;
             MessageBox.Show("빈 주차석을 선택하여 차량을 이동하세요.", "안내", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        // 입차 메뉴 클릭 이벤트
+        private void EntrySpotMenuItem_Click(object sender, EventArgs e)
+        {
+            // 선택된 주차 번호 가져오기
+            Button clickedButton = selectedSpotButton;
+            if (clickedButton == null)
+            {
+                MessageBox.Show("입차할 주차석을 선택하세요.", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            int spotNumber = int.Parse(clickedButton.Name.Replace("btnSpot", ""));
+
+            // ParkingSpotCRUD 폼 열기
+            ParkingSpotCRUD entryForm = new ParkingSpotCRUD(parkingManager, spotNumber); // parkingManager 전달
+            entryForm.ShowDialog();
+
+            // 입차 후 상태 갱신
+            LoadParkingSpotStatus();
+        }
+
+        // 출차 메뉴 클릭 이벤트
+        private void ExitSpotMenuItem_Click(object sender, EventArgs e)
+        {
+            if (selectedSpotButton == null)
+            {
+                MessageBox.Show("출차할 차량이 선택되지 않았습니다.", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // 출차 처리
+            int spotNumber = int.Parse(selectedSpotButton.Name.Replace("btnSpot", ""));
+            parkingManager.UpdateParkingStatus(spotNumber, false);
+
+            selectedSpotButton.BackColor = SystemColors.Control;
+            selectedSpotButton.Text = spotNumber.ToString(); // 빈 자리로 표시
+            MessageBox.Show("차량이 출차되었습니다.", "완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            selectedSpotButton = null; // 선택 초기화
         }
 
         // 주차 자리 클릭 이벤트

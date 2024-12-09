@@ -63,6 +63,8 @@
             this.btnSpot1 = new System.Windows.Forms.Button();
             this.contextMenuParkingSpot = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.MoveSpotMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.EntrySpotMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ExitSpotMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuParkingSpot.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -79,10 +81,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label1.Location = new System.Drawing.Point(315, 25);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(333, 36);
+            this.label1.Size = new System.Drawing.Size(287, 37);
             this.label1.TabIndex = 47;
             this.label1.Text = "주차 공간을 선택하세요";
             // 
@@ -389,15 +391,29 @@
             // contextMenuParkingSpot
             // 
             this.contextMenuParkingSpot.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MoveSpotMenuItem});
+            this.MoveSpotMenuItem,
+            this.EntrySpotMenuItem,
+            this.ExitSpotMenuItem});
             this.contextMenuParkingSpot.Name = "contextMenuParkingSpot";
-            this.contextMenuParkingSpot.Size = new System.Drawing.Size(127, 26);
+            this.contextMenuParkingSpot.Size = new System.Drawing.Size(127, 70);
             // 
             // MoveSpotMenuItem
             // 
             this.MoveSpotMenuItem.Name = "MoveSpotMenuItem";
             this.MoveSpotMenuItem.Size = new System.Drawing.Size(126, 22);
             this.MoveSpotMenuItem.Text = "자리 이동";
+            // 
+            // EntrySpotMenuItem
+            // 
+            this.EntrySpotMenuItem.Name = "EntrySpotMenuItem";
+            this.EntrySpotMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.EntrySpotMenuItem.Text = "입차";
+            // 
+            // ExitSpotMenuItem
+            // 
+            this.ExitSpotMenuItem.Name = "ExitSpotMenuItem";
+            this.ExitSpotMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.ExitSpotMenuItem.Text = "출자";
             // 
             // ParkingspotManager
             // 
@@ -480,5 +496,7 @@
         private System.Windows.Forms.Button btnSpot1;
         private System.Windows.Forms.ContextMenuStrip contextMenuParkingSpot;
         private System.Windows.Forms.ToolStripMenuItem MoveSpotMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem EntrySpotMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ExitSpotMenuItem;
     }
 }

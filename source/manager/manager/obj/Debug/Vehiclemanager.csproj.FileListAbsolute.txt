@@ -22,7 +22,6 @@ C:\Users\Admin\Desktop\c#_github\ParkingManagementSystem\source\manager\manager\
 C:\Users\Admin\Desktop\c#_github\ParkingManagementSystem\source\manager\manager\obj\Debug\Vehiclemanager.csproj.AssemblyReference.cache
 C:\Users\Admin\Desktop\c#_github\ParkingManagementSystem\source\manager\manager\obj\Debug\manager.ParkingspotManager.resources
 C:\Users\Admin\Desktop\c#_github\ParkingManagementSystem\source\manager\manager\obj\Debug\manager.SalesManagement.resources
-C:\Users\Admin\Desktop\c#_github\ParkingManagementSystem\source\manager\manager\obj\Debug\manager.StoreManager.resources
 C:\Users\Admin\Desktop\c#_github\ParkingManagementSystem\source\manager\manager\obj\Debug\manager.Vehiclemanager.resources
 C:\Users\Admin\Desktop\c#_github\ParkingManagementSystem\source\manager\manager\obj\Debug\manager.VehicleCRUD.resources
 C:\Users\Admin\Desktop\c#_github\ParkingManagementSystem\source\manager\manager\obj\Debug\manager.Manager.resources
@@ -33,4 +32,4 @@ C:\Users\Admin\Desktop\c#_github\ParkingManagementSystem\source\manager\manager\
 C:\Users\Admin\Desktop\c#_github\ParkingManagementSystem\source\manager\manager\obj\Debug\Vehiclem.F555C663.Up2Date
 C:\Users\Admin\Desktop\c#_github\ParkingManagementSystem\source\manager\manager\obj\Debug\manager.exe
 C:\Users\Admin\Desktop\c#_github\ParkingManagementSystem\source\manager\manager\obj\Debug\manager.pdb
-C:\Users\Admin\Desktop\c#_github\ParkingManagementSystem\source\manager\manager\obj\Debug\manager.StoreDiscountEditForm.resources
+C:\Users\Admin\Desktop\c#_github\ParkingManagementSystem\source\manager\manager\obj\Debug\manager.ParkingSpotCRUD.resources
