@@ -2,6 +2,7 @@
 using System.Data;
 using System.Windows.Forms;
 using Oracle.DataAccess.Client;
+using Oracle.DataAccess.Types;
 
 namespace manager
 {
@@ -41,7 +42,7 @@ namespace manager
             return parkingTable;
         }
 
-        public void UpdateParkingStatus(int spotNumber, bool isOccupied, int vehicleId = -1)
+        public void UpdateParkingStatus(int spotNumber, bool isOccupied, int vehicleId = -1, string vehicleNumber = null)
         {
             try
             {
@@ -54,15 +55,19 @@ namespace manager
                 if (row != null)
                 {
                     row["is_occupied"] = isOccupied ? 1 : 0;
-                    if (isOccupied && vehicleId != -1)
+
+                    if (isOccupied && vehicleId != -1 && !string.IsNullOrEmpty(vehicleNumber))
                     {
                         row["vehicle_id"] = vehicleId;
+                        row["vehicle_number"] = vehicleNumber; // 차량 번호 업데이트
                     }
                     else
                     {
                         row["vehicle_id"] = DBNull.Value;
+                        row["vehicle_number"] = DBNull.Value; // 차량 번호 초기화
                     }
 
+                    // UpdateCommand 설정
                     OracleCommandBuilder commandBuilder = new OracleCommandBuilder(dBAdapter);
                     dBAdapter.Update(dS, "ParkingSpot");
                     dS.AcceptChanges();
@@ -74,9 +79,11 @@ namespace manager
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"주차 상태 업데이트 중 오류 발생: {ex.Message}", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw new Exception($"주차 상태 업데이트 중 오류 발생: {ex.Message}");
             }
         }
+
+
 
         public int GetVehicleIdBySpotNumber(int spotNumber)
         {
@@ -120,16 +127,20 @@ namespace manager
 
                     using (OracleCommand command = new OracleCommand(query, connection))
                     {
+                        // 파라미터 설정
                         command.Parameters.Add("vehicleNumber", OracleDbType.Varchar2).Value = vehicleNumber;
                         command.Parameters.Add("vehicleType", OracleDbType.Varchar2).Value = vehicleType;
 
-                        OracleParameter vehicleIdParam = new OracleParameter("vehicleId", OracleDbType.Int32);
+                        OracleParameter vehicleIdParam = new OracleParameter("vehicleId", OracleDbType.Decimal);
                         vehicleIdParam.Direction = ParameterDirection.Output;
                         command.Parameters.Add(vehicleIdParam);
 
+                        // 쿼리 실행
                         command.ExecuteNonQuery();
 
-                        return Convert.ToInt32(vehicleIdParam.Value); // 생성된 vehicle_id 반환
+                        // OracleDecimal -> int 변환
+                        OracleDecimal oracleDecimal = (OracleDecimal)vehicleIdParam.Value;
+                        return oracleDecimal.ToInt32(); // OracleDecimal을 int로 변환
                     }
                 }
             }
@@ -138,6 +149,8 @@ namespace manager
                 throw new Exception($"차량 추가 중 오류 발생: {ex.Message}");
             }
         }
+
+
 
         public string GetVehicleNumberByVehicleId(int vehicleId)
         {

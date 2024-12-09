@@ -77,6 +77,7 @@
             this.btnAddVehicle.TabIndex = 4;
             this.btnAddVehicle.Text = "추가";
             this.btnAddVehicle.UseVisualStyleBackColor = true;
+            this.btnAddVehicle.Click += new System.EventHandler(this.btnAddVehicle_Click_1);
             // 
             // label3
             // 

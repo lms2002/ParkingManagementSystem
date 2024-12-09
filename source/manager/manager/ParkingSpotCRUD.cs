@@ -19,7 +19,7 @@ namespace manager
             lblSpotNumber.Text = $"주차 번호: {spotNumber}번"; // 선택된 주차 번호 표시
         }
 
-        private void btnAddVehicle_Click(object sender, EventArgs e)
+        private void btnAddVehicle_Click_1(object sender, EventArgs e)
         {
             string vehicleNumber = txtVehicleNumber.Text.Trim();
             string vehicleType = txtVehicleType.Text.Trim();
@@ -42,7 +42,7 @@ namespace manager
                 int vehicleId = parkingManager.AddVehicle(vehicleNumber, vehicleType);
 
                 // 선택된 주차 공간에 차량 입차 처리
-                parkingManager.UpdateParkingStatus(selectedSpotNumber, true, vehicleId);
+                parkingManager.UpdateParkingStatus(selectedSpotNumber, true, vehicleId, vehicleNumber);
 
                 MessageBox.Show($"차량이 {selectedSpotNumber}번 주차 공간에 입차되었습니다.", "완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
