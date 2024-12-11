@@ -108,7 +108,8 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "ParkingSpotCRUD";
-            this.Text = "ParkingSpotCRUD";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "입차정보";
             this.ResumeLayout(false);
             this.PerformLayout();
 

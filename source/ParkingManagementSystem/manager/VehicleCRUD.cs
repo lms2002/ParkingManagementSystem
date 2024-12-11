@@ -15,7 +15,7 @@ namespace manager
     {
         private readonly string connectionString;
         private readonly string commandMode; // 추가, 삭제, 수정 모드
-        private readonly int vehicleId; // 선택된 Vehicle ID (삭제/수정 시)
+        private readonly int vehicleId; // 선택된 Vehicle ID
         public VehicleCRUD(string connectionString, string commandMode, int vehicleId = -1)
         {
             InitializeComponent();
@@ -36,6 +36,7 @@ namespace manager
             {
                 LoadVehicleDetails();
                 txtId.ReadOnly = true;
+
                 if (commandMode == "삭제")
                 {
                     txtNumber.ReadOnly = true;
@@ -70,7 +71,6 @@ namespace manager
                 var query = "SELECT * FROM Vehicle WHERE vehicle_id = :id";
                 using (var command = new OracleCommand(query, connection))
                 {
-                    // 바인드 변수 이름과 SQL 쿼리의 :id가 동일한지 확인
                     command.Parameters.Add(new OracleParameter("id", vehicleId));
 
                     using (var reader = command.ExecuteReader())
@@ -93,44 +93,97 @@ namespace manager
                 using (var connection = new OracleConnection(connectionString))
                 {
                     connection.Open();
-
-                    if (btnOK.Text == "추가")
+                    if (btnOK.Text == "삭제")
                     {
-                        var query = "INSERT INTO Vehicle (vehicle_id, vehicle_number, vehicle_type) VALUES (:vehicle_id, :vehicle_number, :vehicle_type)";
-                        using (var command = new OracleCommand(query, connection))
+                        try
                         {
-                            // 변수 이름이 SQL 쿼리와 일치해야 함
-                            command.Parameters.Add(new OracleParameter(":vehicle_id", OracleDbType.Int32)).Value = int.Parse(txtId.Text.Trim());
-                            command.Parameters.Add(new OracleParameter(":vehicle_number", OracleDbType.Varchar2)).Value = txtNumber.Text.Trim();
-                            command.Parameters.Add(new OracleParameter(":vehicle_type", OracleDbType.Varchar2)).Value = txtType.Text.Trim();
+                            using (var transaction = connection.BeginTransaction()) // 트랜잭션 시작
+                            {
+                                // Receipt 테이블에서 연결된 데이터 삭제
+                                var deleteReceiptQuery = "DELETE FROM Receipt WHERE vehicle_id = :vehicle_id";
+                                using (var deleteReceiptCommand = new OracleCommand(deleteReceiptQuery, connection))
+                                {
+                                    deleteReceiptCommand.Parameters.Add(new OracleParameter(":vehicle_id", vehicleId));
+                                    deleteReceiptCommand.ExecuteNonQuery();
+                                }
 
-                            command.ExecuteNonQuery();
+                                // StoreDiscount 테이블에서 연결된 데이터 삭제
+                                var deleteDiscountQuery = "DELETE FROM StoreDiscount WHERE vehicle_id = :vehicle_id";
+                                using (var deleteDiscountCommand = new OracleCommand(deleteDiscountQuery, connection))
+                                {
+                                    deleteDiscountCommand.Parameters.Add(new OracleParameter(":vehicle_id", vehicleId));
+                                    deleteDiscountCommand.ExecuteNonQuery();
+                                }
+
+                                // ParkingSpot 테이블에서 연결된 차량 데이터 초기화
+                                var updateParkingSpotQuery = "UPDATE ParkingSpot SET vehicle_id = NULL, vehicle_number = NULL, is_occupied = 0 WHERE vehicle_id = :vehicle_id";
+                                using (var updateSpotCommand = new OracleCommand(updateParkingSpotQuery, connection))
+                                {
+                                    updateSpotCommand.Parameters.Add(new OracleParameter(":vehicle_id", vehicleId));
+                                    updateSpotCommand.ExecuteNonQuery();
+                                }
+
+                                // Vehicle 테이블에서 데이터 삭제
+                                var deleteVehicleQuery = "DELETE FROM Vehicle WHERE vehicle_id = :vehicle_id";
+                                using (var deleteVehicleCommand = new OracleCommand(deleteVehicleQuery, connection))
+                                {
+                                    deleteVehicleCommand.Parameters.Add(new OracleParameter(":vehicle_id", vehicleId));
+                                    deleteVehicleCommand.ExecuteNonQuery();
+                                }
+
+                                transaction.Commit(); // 트랜잭션 커밋
+                                MessageBox.Show("차량과 관련된 모든 데이터가 성공적으로 삭제되었습니다.");
+                            }
                         }
-                        MessageBox.Show("차량이 추가되었습니다.");
-                    }
-                    else if (commandMode == "삭제")
-                    {
-                        var query = "DELETE FROM Vehicle WHERE vehicle_id = :id";
-                        using (var command = new OracleCommand(query, connection))
+                        catch (Exception ex)
                         {
-                            command.Parameters.Add(new OracleParameter("id", vehicleId));
-                            command.ExecuteNonQuery();
+                            MessageBox.Show($"삭제 중 오류 발생: {ex.Message}");
                         }
-                        MessageBox.Show("차량이 삭제되었습니다.");
                     }
                     else if (btnOK.Text == "수정")
                     {
-                        var query = "UPDATE Vehicle SET vehicle_number = :vehicle_number, vehicle_type = :vehicle_type WHERE vehicle_id = :vehicle_id";
-                        using (var command = new OracleCommand(query, connection))
+                        try
                         {
-                            // 바인딩 변수 이름과 SQL 쿼리가 일치하도록 수정
-                            command.Parameters.Add(new OracleParameter("vehicle_number", txtNumber.Text.Trim()));
-                            command.Parameters.Add(new OracleParameter("vehicle_type", txtType.Text.Trim()));
-                            command.Parameters.Add(new OracleParameter("vehicle_id", OracleDbType.Int32)).Value = vehicleId;
+                            using (var transaction = connection.BeginTransaction()) // 트랜잭션 시작
+                            {
+                                // ParkingSpot 테이블에서 차량 번호 업데이트
+                                var updateParkingSpotQuery = "UPDATE ParkingSpot SET vehicle_number = :vehicle_number WHERE vehicle_id = :vehicle_id";
+                                using (var updateSpotCommand = new OracleCommand(updateParkingSpotQuery, connection))
+                                {
+                                    updateSpotCommand.Parameters.Add(new OracleParameter(":vehicle_number", txtNumber.Text.Trim()));
+                                    updateSpotCommand.Parameters.Add(new OracleParameter(":vehicle_id", vehicleId));
+                                    updateSpotCommand.ExecuteNonQuery();
+                                }
 
-                            command.ExecuteNonQuery();
+                                // Receipt 테이블에서 차량 번호 업데이트
+                                var updateReceiptQuery = "UPDATE Receipt SET vehicle_number = :vehicle_number WHERE vehicle_id = :vehicle_id";
+                                using (var updateReceiptCommand = new OracleCommand(updateReceiptQuery, connection))
+                                {
+                                    updateReceiptCommand.Parameters.Add(new OracleParameter(":vehicle_number", txtNumber.Text.Trim()));
+                                    updateReceiptCommand.Parameters.Add(new OracleParameter(":vehicle_id", vehicleId));
+                                    updateReceiptCommand.ExecuteNonQuery();
+                                }
+
+                                // StoreDiscount 테이블은 vehicle_number 컬럼이 없으므로 업데이트 생략
+
+                                // Vehicle 테이블에서 차량 번호 및 차량 유형 업데이트
+                                var updateVehicleQuery = "UPDATE Vehicle SET vehicle_number = :vehicle_number, vehicle_type = :vehicle_type WHERE vehicle_id = :vehicle_id";
+                                using (var updateVehicleCommand = new OracleCommand(updateVehicleQuery, connection))
+                                {
+                                    updateVehicleCommand.Parameters.Add(new OracleParameter(":vehicle_number", txtNumber.Text.Trim()));
+                                    updateVehicleCommand.Parameters.Add(new OracleParameter(":vehicle_type", txtType.Text.Trim()));
+                                    updateVehicleCommand.Parameters.Add(new OracleParameter(":vehicle_id", vehicleId));
+                                    updateVehicleCommand.ExecuteNonQuery();
+                                }
+
+                                transaction.Commit(); // 트랜잭션 커밋
+                                MessageBox.Show("차량 정보와 관련된 데이터가 성공적으로 수정되었습니다.");
+                            }
                         }
-                        MessageBox.Show("차량 정보가 수정되었습니다.");
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"수정 중 오류 발생: {ex.Message}");
+                        }
                     }
 
                     this.Close();

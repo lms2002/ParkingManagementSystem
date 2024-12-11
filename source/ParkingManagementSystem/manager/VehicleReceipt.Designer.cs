@@ -130,7 +130,8 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgvReceipt);
             this.Name = "VehicleReceipt";
-            this.Text = "VehicleReceipt";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "차량 영수증";
             ((System.ComponentModel.ISupportInitialize)(this.dgvReceipt)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

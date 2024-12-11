@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.lblCurrentTime = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnSpot30 = new System.Windows.Forms.Button();
             this.btnSpot24 = new System.Windows.Forms.Button();
@@ -68,21 +67,11 @@
             this.contextMenuParkingSpot.SuspendLayout();
             this.SuspendLayout();
             // 
-            // lblCurrentTime
-            // 
-            this.lblCurrentTime.AutoSize = true;
-            this.lblCurrentTime.Font = new System.Drawing.Font("굴림", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblCurrentTime.Location = new System.Drawing.Point(790, 485);
-            this.lblCurrentTime.Name = "lblCurrentTime";
-            this.lblCurrentTime.Size = new System.Drawing.Size(68, 14);
-            this.lblCurrentTime.TabIndex = 48;
-            this.lblCurrentTime.Text = "현재 시간";
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label1.Location = new System.Drawing.Point(315, 25);
+            this.label1.Location = new System.Drawing.Point(335, 28);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(287, 37);
             this.label1.TabIndex = 47;
@@ -420,7 +409,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1018, 558);
-            this.Controls.Add(this.lblCurrentTime);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnSpot30);
             this.Controls.Add(this.btnSpot24);
@@ -453,7 +441,8 @@
             this.Controls.Add(this.btnSpot7);
             this.Controls.Add(this.btnSpot1);
             this.Name = "ParkingspotManager";
-            this.Text = "ParkingspotManager";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "주차자리";
             this.contextMenuParkingSpot.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -461,8 +450,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label lblCurrentTime;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnSpot30;
         private System.Windows.Forms.Button btnSpot24;

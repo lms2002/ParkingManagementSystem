@@ -140,5 +140,58 @@ namespace manager
             selectedMonth = selectedMonth.AddMonths(1);
             DisplaySalesData(selectedMonth.ToString("yyyy-MM"));
         }
+        private int GetVehicleCountForDate(string selectedDate)
+        {
+            int vehicleCount = 0;
+
+            string vehicleCountQuery = @"
+        SELECT COUNT(*) AS vehicle_count
+        FROM Receipt
+        WHERE TO_CHAR(start_time, 'YYYY-MM-DD') = :selected_date";
+
+            try
+            {
+                using (var connection = new OracleConnection(connectionString))
+                {
+                    connection.Open();
+
+                    using (var command = new OracleCommand(vehicleCountQuery, connection))
+                    {
+                        command.Parameters.Add(new OracleParameter(":selected_date", selectedDate));
+
+                        vehicleCount = Convert.ToInt32(command.ExecuteScalar());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("차량 데이터를 가져오는 중 오류가 발생했습니다.", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Console.WriteLine(ex.ToString());
+            }
+
+            return vehicleCount;
+        }
+
+        private void dgvCalendar_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
+
+            var cellValue = dgvCalendar[e.ColumnIndex, e.RowIndex]?.Value?.ToString();
+            if (string.IsNullOrEmpty(cellValue)) return;
+
+            // 셀의 날짜 부분 추출
+            var datePart = cellValue.Split(' ')[0].Replace("일", "");
+            if (int.TryParse(datePart, out int day))
+            {
+                var selectedDate = new DateTime(selectedMonth.Year, selectedMonth.Month, day).ToString("yyyy-MM-dd");
+
+                // 선택된 날짜의 차량 수 가져오기
+                int vehicleCount = GetVehicleCountForDate(selectedDate);
+                txtDailyVehicleCount.Text = $"{vehicleCount}대";
+
+                // Label에 선택된 날짜 표시
+                lblSelectedDate.Text = selectedDate;
+            }
+        }
     }
 }

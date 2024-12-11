@@ -29,31 +29,20 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.차량관리ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.차량추가ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.차량삭제ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.차량수정ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.차량영수증ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.ContextMenuStrip = this.contextMenuStrip1;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 12);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(533, 426);
-            this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // contextMenuStrip1
             // 
@@ -66,19 +55,11 @@
             // 차량관리ToolStripMenuItem
             // 
             this.차량관리ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.차량추가ToolStripMenuItem,
             this.차량삭제ToolStripMenuItem,
             this.차량수정ToolStripMenuItem});
             this.차량관리ToolStripMenuItem.Name = "차량관리ToolStripMenuItem";
             this.차량관리ToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.차량관리ToolStripMenuItem.Text = "차량 관리";
-            // 
-            // 차량추가ToolStripMenuItem
-            // 
-            this.차량추가ToolStripMenuItem.Name = "차량추가ToolStripMenuItem";
-            this.차량추가ToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
-            this.차량추가ToolStripMenuItem.Text = "차량 추가";
-            this.차량추가ToolStripMenuItem.Click += new System.EventHandler(this.차량추가ToolStripMenuItem_Click_1);
             // 
             // 차량삭제ToolStripMenuItem
             // 
@@ -104,15 +85,15 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(628, 136);
+            this.label1.Location = new System.Drawing.Point(606, 138);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(91, 12);
+            this.label1.Size = new System.Drawing.Size(119, 12);
             this.label1.TabIndex = 1;
-            this.label1.Text = "뒤 4자리로 검색";
+            this.label1.Text = "차량 뒤 4자리로 검색";
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(594, 183);
+            this.textBox1.Location = new System.Drawing.Point(594, 173);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(158, 21);
             this.textBox1.TabIndex = 2;
@@ -123,22 +104,54 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(158, 59);
             this.button1.TabIndex = 3;
-            this.button1.Text = "button1";
+            this.button1.Text = "조회";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // listView1
+            // 
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3});
+            this.listView1.ContextMenuStrip = this.contextMenuStrip1;
+            this.listView1.FullRowSelect = true;
+            this.listView1.GridLines = true;
+            this.listView1.HideSelection = false;
+            this.listView1.Location = new System.Drawing.Point(12, 12);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(530, 426);
+            this.listView1.TabIndex = 4;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "차량키";
+            this.columnHeader1.Width = 79;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "차량 번호";
+            this.columnHeader2.Width = 204;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "차량 종류";
+            this.columnHeader3.Width = 242;
             // 
             // Vehiclemanager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.listView1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.dataGridView1);
             this.Name = "Vehiclemanager";
-            this.Text = "Form2";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "차량목록";
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -146,17 +159,18 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 차량관리ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 차량추가ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 차량삭제ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 차량수정ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 차량영수증ToolStripMenuItem;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
     }
 }
 
