@@ -23,11 +23,9 @@ namespace manager
             try
             {
                 string query = "SELECT * FROM ParkingSpot";
-
                 dBAdapter = new OracleDataAdapter(query, connectionString);
                 dS = new DataSet();
                 dBAdapter.Fill(dS, "ParkingSpot");
-
                 parkingTable = dS.Tables["ParkingSpot"];
                 parkingTable.PrimaryKey = new DataColumn[] { parkingTable.Columns["spot_number"] };
             }
@@ -42,7 +40,7 @@ namespace manager
             return parkingTable;
         }
 
-        public void UpdateParkingStatus(int spotNumber, bool isOccupied, int vehicleId = -1, string vehicleNumber = null)
+        public void UpdateParkingStatus(int spotNumber, bool isOccupiedParam, int vehicleIdParam = -1, string vehicleNumberParam = null)
         {
             try
             {
@@ -54,20 +52,14 @@ namespace manager
                 DataRow row = parkingTable.Rows.Find(spotNumber);
                 if (row != null)
                 {
-                    row["is_occupied"] = isOccupied ? 1 : 0;
+                    int occupiedStatus = isOccupiedParam ? 1 : 0;
+                    int vehicleIdentifier = vehicleIdParam;
+                    string vehiclePlateNumber = vehicleNumberParam ?? string.Empty;
 
-                    if (isOccupied && vehicleId != -1 && !string.IsNullOrEmpty(vehicleNumber))
-                    {
-                        row["vehicle_id"] = vehicleId;
-                        row["vehicle_number"] = vehicleNumber; // 차량 번호 업데이트
-                    }
-                    else
-                    {
-                        row["vehicle_id"] = DBNull.Value;
-                        row["vehicle_number"] = DBNull.Value; // 차량 번호 초기화
-                    }
+                    row["is_occupied"] = occupiedStatus;
+                    row["vehicle_id"] = vehicleIdentifier != -1 ? (object)vehicleIdentifier : DBNull.Value;
+                    row["vehicle_number"] = !string.IsNullOrEmpty(vehiclePlateNumber) ? (object)vehiclePlateNumber : DBNull.Value;
 
-                    // UpdateCommand 설정
                     OracleCommandBuilder commandBuilder = new OracleCommandBuilder(dBAdapter);
                     dBAdapter.Update(dS, "ParkingSpot");
                     dS.AcceptChanges();
@@ -84,63 +76,175 @@ namespace manager
         }
 
 
-
         public int GetVehicleIdBySpotNumber(int spotNumber)
         {
+            string query = "SELECT vehicle_id FROM ParkingSpot WHERE spot_number = :spotNumber";
+            try
+            {
+                using (OracleConnection connection = new OracleConnection(connectionString))
+                {
+                    connection.Open();
+                    using (var command = new OracleCommand(query, connection))
+                    {
+                        command.Parameters.Add("spotNumber", OracleDbType.Int32).Value = spotNumber;
+                        var result = command.ExecuteScalar();
+                        return result != null ? Convert.ToInt32(result) : -1;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"차량 ID 조회 중 오류 발생: {ex.Message}", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+        }
+
+        public string GetVehicleNumberByVehicleId(int vehicleId)
+        {
+            string query = "SELECT vehicle_number FROM Vehicle WHERE vehicle_id = :vehicleId";
+            try
+            {
+                using (OracleConnection connection = new OracleConnection(connectionString))
+                {
+                    connection.Open();
+                    using (var command = new OracleCommand(query, connection))
+                    {
+                        command.Parameters.Add("vehicleId", OracleDbType.Int32).Value = vehicleId;
+                        var result = command.ExecuteScalar();
+                        return result?.ToString();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"차량 번호 조회 중 오류 발생: {ex.Message}", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return string.Empty;
+            }
+        }
+
+        public void HandleReceiptEntry(int vehicleId, string vehicleNumber)
+        {
+            string query = "INSERT INTO Receipt (receipt_id, vehicle_id, vehicle_number, start_time, parking_fee_before_discount, discount_amount, total_fee, parking_duration) " +
+                           "VALUES (ReceiptSeq.NEXTVAL, :vehicleId, :vehicleNumber, :startTime, 0, 0, 0, 0)";
+
+            try
+            {
+                using (OracleConnection connection = new OracleConnection(connectionString))
+                {
+                    connection.Open();
+                    using (OracleCommand command = new OracleCommand(query, connection))
+                    {
+                        command.Parameters.Add("vehicleId", OracleDbType.Int32).Value = vehicleId;
+                        command.Parameters.Add("vehicleNumber", OracleDbType.Varchar2).Value = vehicleNumber;
+                        command.Parameters.Add("startTime", OracleDbType.Date).Value = DateTime.Now;
+
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"영수증 생성 중 오류 발생: {ex.Message}");
+            }
+        }
+
+
+        public void HandleReceiptExit(int vehicleId)
+        {
+            string query = "UPDATE Receipt SET parking_fee_before_discount = :parkingFee, " +
+                           "discount_amount = :discount, total_fee = :totalFee, parking_duration = :duration, " +
+                           "end_time = :endTime WHERE vehicle_id = :vehicleId";
+
             try
             {
                 using (OracleConnection connection = new OracleConnection(connectionString))
                 {
                     connection.Open();
 
-                    string query = "SELECT vehicle_id FROM ParkingSpot WHERE spot_number = :spotNumber AND is_occupied = 1";
+                    DateTime startTime = GetReceiptStartTime(vehicleId);
+                    DateTime endTime = DateTime.Now;
+                    int duration = (int)(endTime - startTime).TotalHours + 1; // 최소 1시간으로 계산
+                    double parkingFee = duration * 100; // 시간당 100원
+                    double discount = 0; // 할인 없음
+                    double totalFee = parkingFee - discount;
+
                     using (OracleCommand command = new OracleCommand(query, connection))
                     {
-                        command.Parameters.Add("spotNumber", OracleDbType.Int32).Value = spotNumber;
+                        command.Parameters.Add("parkingFee", OracleDbType.Double).Value = parkingFee;
+                        command.Parameters.Add("discount", OracleDbType.Double).Value = discount;
+                        command.Parameters.Add("totalFee", OracleDbType.Double).Value = totalFee;
+                        command.Parameters.Add("duration", OracleDbType.Int32).Value = duration;
+                        command.Parameters.Add("endTime", OracleDbType.Date).Value = endTime;
+                        command.Parameters.Add("vehicleId", OracleDbType.Int32).Value = vehicleId;
 
-                        using (OracleDataReader reader = command.ExecuteReader())
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"영수증 완료 처리 중 오류 발생: {ex.Message}");
+            }
+        }
+
+
+        private DateTime GetReceiptStartTime(int vehicleId)
+        {
+            string query = "SELECT start_time FROM Receipt WHERE vehicle_id = :vehicleId AND end_time IS NULL";
+
+            try
+            {
+                using (OracleConnection connection = new OracleConnection(connectionString))
+                {
+                    connection.Open();
+
+                    using (OracleCommand command = new OracleCommand(query, connection))
+                    {
+                        command.Parameters.Add("vehicleId", OracleDbType.Int32).Value = vehicleId;
+
+                        var result = command.ExecuteScalar();
+                        if (result != null)
                         {
-                            if (reader.Read())
-                            {
-                                return Convert.ToInt32(reader["vehicle_id"]);
-                            }
+                            return Convert.ToDateTime(result);
+                        }
+                        else
+                        {
+                            throw new Exception("영수증 시작 시간을 찾을 수 없습니다.");
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"차량 ID를 조회하는 중 오류 발생: {ex.Message}", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw new Exception($"영수증 시작 시간 조회 중 오류 발생: {ex.Message}");
             }
-
-            return -1;
         }
         public int AddVehicle(string vehicleNumber, string vehicleType)
         {
-            string query = "INSERT INTO Vehicle (vehicle_id, vehicle_number, vehicle_type) VALUES (VehicleSeq.NEXTVAL, :vehicleNumber, :vehicleType) RETURNING vehicle_id INTO :vehicleId";
+            string query = "INSERT INTO Vehicle (vehicle_id, vehicle_number, vehicle_type) " +
+                           "VALUES (VehicleSeq.NEXTVAL, :vehicleNumber, :vehicleType) " +
+                           "RETURNING vehicle_id INTO :vehicleId";
 
             try
             {
                 using (OracleConnection connection = new OracleConnection(connectionString))
                 {
                     connection.Open();
-
                     using (OracleCommand command = new OracleCommand(query, connection))
                     {
-                        // 파라미터 설정
                         command.Parameters.Add("vehicleNumber", OracleDbType.Varchar2).Value = vehicleNumber;
                         command.Parameters.Add("vehicleType", OracleDbType.Varchar2).Value = vehicleType;
 
+                        // RETURNING 값 처리
                         OracleParameter vehicleIdParam = new OracleParameter("vehicleId", OracleDbType.Decimal);
                         vehicleIdParam.Direction = ParameterDirection.Output;
                         command.Parameters.Add(vehicleIdParam);
 
-                        // 쿼리 실행
                         command.ExecuteNonQuery();
 
-                        // OracleDecimal -> int 변환
-                        OracleDecimal oracleDecimal = (OracleDecimal)vehicleIdParam.Value;
-                        return oracleDecimal.ToInt32(); // OracleDecimal을 int로 변환
+                        // 반환된 OracleDecimal 값을 int로 변환
+                        int vehicleId = Convert.ToInt32(((OracleDecimal)vehicleIdParam.Value).Value);
+                        return vehicleId;
                     }
                 }
             }
@@ -149,34 +253,5 @@ namespace manager
                 throw new Exception($"차량 추가 중 오류 발생: {ex.Message}");
             }
         }
-
-
-
-        public string GetVehicleNumberByVehicleId(int vehicleId)
-        {
-            string query = "SELECT vehicle_number FROM Vehicle WHERE vehicle_id = :vehicle_id";
-            try
-            {
-                using (OracleConnection connection = new OracleConnection(connectionString))
-                {
-                    connection.Open();
-
-                    using (var command = new OracleCommand(query, connection))
-                    {
-                        command.Parameters.Add(new OracleParameter("vehicle_id", vehicleId));
-
-                        var result = command.ExecuteScalar();
-                        return result != null ? result.ToString() : string.Empty;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"차량 번호를 조회하는 중 오류 발생: {ex.Message}", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-            return string.Empty;
-        }
-
     }
 }

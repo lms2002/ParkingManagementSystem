@@ -33,3 +33,4 @@ C:\Users\Admin\Desktop\c#_github\ParkingManagementSystem\source\manager\manager\
 C:\Users\Admin\Desktop\c#_github\ParkingManagementSystem\source\manager\manager\obj\Debug\manager.exe
 C:\Users\Admin\Desktop\c#_github\ParkingManagementSystem\source\manager\manager\obj\Debug\manager.pdb
 C:\Users\Admin\Desktop\c#_github\ParkingManagementSystem\source\manager\manager\obj\Debug\manager.ParkingSpotCRUD.resources
+C:\C# 팀플\ParkingManagementSystem\source\manager\manager\obj\Debug\manager.ParkingSpotCRUD.resources

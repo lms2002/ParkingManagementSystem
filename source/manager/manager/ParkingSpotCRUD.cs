@@ -38,15 +38,15 @@ namespace manager
 
             try
             {
-                // 차량 정보 DB에 삽입
+                // 차량 추가
                 int vehicleId = parkingManager.AddVehicle(vehicleNumber, vehicleType);
 
-                // 선택된 주차 공간에 차량 입차 처리
-                parkingManager.UpdateParkingStatus(selectedSpotNumber, true, vehicleId, vehicleNumber);
+                // 선택된 주차 공간 업데이트
+                int spotNumber = int.Parse(lblSpotNumber.Text.Replace("주차 번호: ", "").Replace("번", ""));
+                parkingManager.UpdateParkingStatus(spotNumber, true, vehicleId, vehicleNumber);
 
-                MessageBox.Show($"차량이 {selectedSpotNumber}번 주차 공간에 입차되었습니다.", "완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"차량 {vehicleNumber}가 {spotNumber}번 주차 공간에 추가되었습니다.", "완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // 폼 닫기
                 this.Close();
             }
             catch (Exception ex)

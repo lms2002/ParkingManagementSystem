@@ -85,13 +85,23 @@ namespace manager
             }
 
             int spotNumber = int.Parse(selectedSpotButton.Name.Replace("btnSpot", ""));
-            parkingManager.UpdateParkingStatus(spotNumber, false);
+            int vehicleId = parkingManager.GetVehicleIdBySpotNumber(spotNumber);
 
-            selectedSpotButton.BackColor = SystemColors.Control;
-            selectedSpotButton.Text = spotNumber.ToString(); // 빈 자리로 표시
-            MessageBox.Show("차량이 출차되었습니다.", "완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            try
+            {
+                parkingManager.UpdateParkingStatus(spotNumber, false);
+                parkingManager.HandleReceiptExit(vehicleId);
 
-            selectedSpotButton = null; // 선택 초기화
+                selectedSpotButton.BackColor = SystemColors.Control;
+                selectedSpotButton.Text = spotNumber.ToString();
+                MessageBox.Show("차량이 출차되었습니다.", "완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"출차 처리 중 오류 발생: {ex.Message}", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            selectedSpotButton = null;
         }
 
         // 입차 메뉴 클릭 이벤트
@@ -108,7 +118,18 @@ namespace manager
             entryForm.ShowDialog();
 
             // 입차 후 상태 갱신
-            LoadParkingSpotStatus();
+            try
+            {
+                int vehicleId = parkingManager.GetVehicleIdBySpotNumber(spotNumber);
+                string vehicleNumber = parkingManager.GetVehicleNumberByVehicleId(vehicleId);
+                parkingManager.HandleReceiptEntry(vehicleId, vehicleNumber);
+
+                LoadParkingSpotStatus();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"입차 처리 중 오류 발생: {ex.Message}", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         // 좌클릭 이벤트 처리
