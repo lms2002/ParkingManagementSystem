@@ -30,7 +30,7 @@ namespace manager
             parking_fee_before_discount AS ""할인 전 요금"",
             discount_amount AS ""할인 금액"",
             total_fee AS ""최종 요금"",
-            parking_duration AS ""주차 시간"",
+            parking_duration AS ""주차 시간(분)"",
             start_time AS ""주차 시작"",
             end_time AS ""주차 종료"",
             store_name AS ""매장 이름""

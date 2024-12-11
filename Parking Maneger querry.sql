@@ -1,3 +1,6 @@
+SET LINESIZE 300
+SET PAGESIZE 50
+
 -- 기존 외래 키 제약 조건 삭제
 ALTER TABLE Receipt DROP CONSTRAINT fk_vehicle;
 ALTER TABLE StoreDiscount DROP CONSTRAINT fk_vehicle_discount;

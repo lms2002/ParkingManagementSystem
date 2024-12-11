@@ -45,16 +45,16 @@
             this.dgvReceipt.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvReceipt.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvReceipt.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvReceipt.Location = new System.Drawing.Point(64, 66);
+            this.dgvReceipt.Location = new System.Drawing.Point(39, 68);
             this.dgvReceipt.Name = "dgvReceipt";
             this.dgvReceipt.RowTemplate.Height = 23;
-            this.dgvReceipt.Size = new System.Drawing.Size(660, 300);
+            this.dgvReceipt.Size = new System.Drawing.Size(847, 319);
             this.dgvReceipt.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(46, 401);
+            this.label1.Location = new System.Drawing.Point(108, 423);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(73, 12);
             this.label1.TabIndex = 1;
@@ -63,7 +63,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(415, 401);
+            this.label2.Location = new System.Drawing.Point(477, 423);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(45, 12);
             this.label2.TabIndex = 2;
@@ -72,7 +72,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(572, 401);
+            this.label3.Location = new System.Drawing.Point(634, 423);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(69, 12);
             this.label3.TabIndex = 3;
@@ -80,21 +80,21 @@
             // 
             // txtTotalParkingCount
             // 
-            this.txtTotalParkingCount.Location = new System.Drawing.Point(125, 398);
+            this.txtTotalParkingCount.Location = new System.Drawing.Point(187, 420);
             this.txtTotalParkingCount.Name = "txtTotalParkingCount";
             this.txtTotalParkingCount.Size = new System.Drawing.Size(100, 21);
             this.txtTotalParkingCount.TabIndex = 4;
             // 
             // txtTotalFee
             // 
-            this.txtTotalFee.Location = new System.Drawing.Point(466, 398);
+            this.txtTotalFee.Location = new System.Drawing.Point(528, 420);
             this.txtTotalFee.Name = "txtTotalFee";
             this.txtTotalFee.Size = new System.Drawing.Size(100, 21);
             this.txtTotalFee.TabIndex = 5;
             // 
             // txtTotalDuration
             // 
-            this.txtTotalDuration.Location = new System.Drawing.Point(647, 398);
+            this.txtTotalDuration.Location = new System.Drawing.Point(709, 420);
             this.txtTotalDuration.Name = "txtTotalDuration";
             this.txtTotalDuration.Size = new System.Drawing.Size(100, 21);
             this.txtTotalDuration.TabIndex = 6;
@@ -102,7 +102,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(234, 401);
+            this.label4.Location = new System.Drawing.Point(296, 423);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(69, 12);
             this.label4.TabIndex = 7;
@@ -110,7 +110,7 @@
             // 
             // txtTotalDiscountAmount
             // 
-            this.txtTotalDiscountAmount.Location = new System.Drawing.Point(309, 398);
+            this.txtTotalDiscountAmount.Location = new System.Drawing.Point(371, 420);
             this.txtTotalDiscountAmount.Name = "txtTotalDiscountAmount";
             this.txtTotalDiscountAmount.Size = new System.Drawing.Size(100, 21);
             this.txtTotalDiscountAmount.TabIndex = 8;
@@ -119,7 +119,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(945, 478);
             this.Controls.Add(this.txtTotalDiscountAmount);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtTotalDuration);
