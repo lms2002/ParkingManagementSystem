@@ -16,7 +16,7 @@ namespace manager
             parkingManager = manager;
             selectedSpotNumber = spotNumber;
 
-            lblSpotNumber.Text = $"주차 번호: {spotNumber}번"; // 선택된 주차 번호 표시
+            lblSpotNumber.Text = $"{spotNumber}번"; // 선택된 주차 번호 표시
         }
 
         private void btnAddVehicle_Click_1(object sender, EventArgs e)

@@ -73,7 +73,7 @@
             // 
             this.lblMonthYear.AutoSize = true;
             this.lblMonthYear.Font = new System.Drawing.Font("Yu Gothic UI", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMonthYear.Location = new System.Drawing.Point(444, 11);
+            this.lblMonthYear.Location = new System.Drawing.Point(397, 11);
             this.lblMonthYear.Name = "lblMonthYear";
             this.lblMonthYear.Size = new System.Drawing.Size(71, 37);
             this.lblMonthYear.TabIndex = 3;

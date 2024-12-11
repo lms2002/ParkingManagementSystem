@@ -161,13 +161,21 @@ namespace manager
                 {
                     connection.Open();
 
+                    // 1. 시작 시간 가져오기
                     DateTime startTime = GetReceiptStartTime(vehicleId);
                     DateTime endTime = DateTime.Now;
+
+                    // 2. 주차 시간 및 요금 계산
                     int duration = (int)(endTime - startTime).TotalHours + 1; // 최소 1시간으로 계산
                     double parkingFee = duration * 100; // 시간당 100원
-                    double discount = 0; // 할인 없음
+
+                    // 3. 할인 값 가져오기
+                    double discount = GetDiscountForVehicle(vehicleId);
+
+                    // 4. 최종 요금 계산
                     double totalFee = parkingFee - discount;
 
+                    // 5. Receipt 업데이트
                     using (OracleCommand command = new OracleCommand(query, connection))
                     {
                         command.Parameters.Add("parkingFee", OracleDbType.Double).Value = parkingFee;
@@ -184,6 +192,31 @@ namespace manager
             catch (Exception ex)
             {
                 throw new Exception($"영수증 완료 처리 중 오류 발생: {ex.Message}");
+            }
+        }
+        private double GetDiscountForVehicle(int vehicleId)
+        {
+            string query = "SELECT NVL(MAX(discount_percentage), 0) AS discount " +
+                           "FROM StoreDiscount WHERE vehicle_id = :vehicleId";
+
+            try
+            {
+                using (OracleConnection connection = new OracleConnection(connectionString))
+                {
+                    connection.Open();
+
+                    using (OracleCommand command = new OracleCommand(query, connection))
+                    {
+                        command.Parameters.Add("vehicleId", OracleDbType.Int32).Value = vehicleId;
+
+                        var result = command.ExecuteScalar();
+                        return result != null ? Convert.ToDouble(result) : 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"할인 정보 조회 중 오류 발생: {ex.Message}");
             }
         }
 
