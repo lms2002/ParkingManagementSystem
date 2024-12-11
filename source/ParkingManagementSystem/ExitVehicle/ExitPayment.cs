@@ -134,24 +134,6 @@ namespace ExitVehicle
                         else
                         {
                             MessageBox.Show("차량 유형 정보를 찾을 수 없습니다.", "오류", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            return 0;
-                        }
-                    }
-
-                    string discountQuery = @"SELECT NVL(discount_percentage, 0) FROM StoreDiscount WHERE vehicle_id = :vehicleId";
-                    using (OracleCommand discountCommand = new OracleCommand(discountQuery, connection))
-                    {
-                        discountCommand.Parameters.Add("vehicleId", OracleDbType.Int32).Value = vehicleId;
-                        object result = discountCommand.ExecuteScalar();
-
-                        if (result != null)
-                        {
-                            decimal discountPercentage = Convert.ToDecimal(result);
-                            if (discountPercentage > 0)
-                            {
-                                decimal discountFactor = 1 - (discountPercentage / 100);
-                                parkingFee *= discountFactor;
-                            }
                         }
                     }
                 }
@@ -161,8 +143,9 @@ namespace ExitVehicle
                 MessageBox.Show($"요금 계산 중 오류가 발생했습니다: {ex.Message}", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            return parkingFee;
+            return parkingFee; // 할인을 적용하지 않고 반환
         }
+
 
 
 
@@ -176,14 +159,14 @@ namespace ExitVehicle
                     connection.Open();
 
                     string selectQuery = @"
+            SELECT start_time 
+            FROM (
                 SELECT start_time 
-                FROM (
-                    SELECT start_time 
-                    FROM Receipt 
-                    WHERE vehicle_id = :vehicleId
-                    ORDER BY start_time DESC
-                ) t
-                WHERE ROWNUM = 1";
+                FROM Receipt 
+                WHERE vehicle_id = :vehicleId
+                ORDER BY start_time DESC
+            ) t
+            WHERE ROWNUM = 1";
 
                     DateTime startTime;
 
@@ -214,9 +197,9 @@ namespace ExitVehicle
                     decimal discountPercentage = 0;
 
                     string discountQuery = @"
-                SELECT NVL(discount_percentage, 0) AS discount_percentage, store_name
-                FROM StoreDiscount
-                WHERE vehicle_id = :vehicleId";
+            SELECT NVL(discount_percentage, 0) AS discount_percentage, store_name
+            FROM StoreDiscount
+            WHERE vehicle_id = :vehicleId";
 
                     using (OracleCommand discountCommand = new OracleCommand(discountQuery, connection))
                     {
@@ -235,19 +218,21 @@ namespace ExitVehicle
                         }
                     }
 
+                    // 최종 요금 계산
                     decimal discountAmount = parkingFeeBeforeDiscount * (discountPercentage / 100);
                     decimal totalFee = parkingFeeBeforeDiscount - discountAmount;
 
                     // Receipt 업데이트
                     string updateReceiptQuery = @"
-                UPDATE Receipt 
-                SET parking_fee_before_discount = :parkingFeeBeforeDiscount,
-                    discount_amount = :discountAmount,
-                    total_fee = :totalFee,
-                    parking_duration = :parkingDuration,
-                    end_time = :endTime,
-                    store_name = :storeName
-                WHERE vehicle_id = :vehicleId";
+            UPDATE Receipt 
+            SET parking_fee_before_discount = :parkingFeeBeforeDiscount,
+                discount_amount = :discountAmount,
+                total_fee = :totalFee,
+                parking_duration = :parkingDuration,
+                end_time = :endTime,
+                store_name = :storeName
+            WHERE vehicle_id = :vehicleId
+              AND end_time IS NULL"; // 이미 처리된 출차 데이터는 건너뜀
 
                     using (OracleCommand updateReceiptCommand = new OracleCommand(updateReceiptQuery, connection))
                     {
@@ -270,11 +255,11 @@ namespace ExitVehicle
 
                     // ParkingSpot 초기화
                     string updateParkingSpotQuery = @"
-                UPDATE ParkingSpot 
-                SET IS_OCCUPIED = 0, 
-                    VEHICLE_ID = NULL, 
-                    VEHICLE_NUMBER = NULL
-                WHERE VEHICLE_ID = :vehicleId";
+            UPDATE ParkingSpot 
+            SET IS_OCCUPIED = 0, 
+                VEHICLE_ID = NULL, 
+                VEHICLE_NUMBER = NULL
+            WHERE VEHICLE_ID = :vehicleId";
 
                     using (OracleCommand updateParkingSpotCommand = new OracleCommand(updateParkingSpotQuery, connection))
                     {
