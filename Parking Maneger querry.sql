@@ -1,20 +1,103 @@
+conn system/system
+
+-- ParkingAdmin 사용자가 존재하면 삭제
+BEGIN
+    FOR user_rec IN (
+        SELECT 1 
+        FROM dba_users 
+        WHERE username = 'PARKINGADMIN'
+    ) LOOP
+        EXECUTE IMMEDIATE 'DROP USER ParkingAdmin CASCADE';
+    END LOOP;
+END;
+/
+
+-- ParkingAdmin 사용자 생성
+CREATE USER ParkingAdmin IDENTIFIED BY 1111;
+
+-- 권한 부여
+grant create session to ParkingAdmin;
+grant resource, create view, create table to ParkingAdmin;
+
 SET LINESIZE 300
 SET PAGESIZE 50
 
--- 기존 외래 키 제약 조건 삭제
-ALTER TABLE Receipt DROP CONSTRAINT fk_vehicle;
-ALTER TABLE StoreDiscount DROP CONSTRAINT fk_vehicle_discount;
+conn ParkingAdmin/1111
 
--- 기존 테이블 삭제
-DROP TABLE StoreDiscount CASCADE CONSTRAINTS;
-DROP TABLE Receipt CASCADE CONSTRAINTS;
-DROP TABLE Vehicle CASCADE CONSTRAINTS;
-DROP TABLE ParkingSpot CASCADE CONSTRAINTS;
+-- 외래 키 제약 조건 삭제
+BEGIN
+    EXECUTE IMMEDIATE 'ALTER TABLE Receipt DROP CONSTRAINT fk_vehicle';
+EXCEPTION
+    WHEN OTHERS THEN
+        NULL; -- 외래 키가 없으면 오류 무시
+END;
+/
 
--- 기존 시퀀스 삭제
-DROP SEQUENCE ReceiptSeq;
-DROP SEQUENCE VehicleSeq;
-DROP SEQUENCE DiscountSeq;
+BEGIN
+    EXECUTE IMMEDIATE 'ALTER TABLE StoreDiscount DROP CONSTRAINT fk_vehicle_discount';
+EXCEPTION
+    WHEN OTHERS THEN
+        NULL; -- 외래 키가 없으면 오류 무시
+END;
+/
+
+-- 테이블 삭제
+BEGIN
+    EXECUTE IMMEDIATE 'DROP TABLE StoreDiscount CASCADE CONSTRAINTS';
+EXCEPTION
+    WHEN OTHERS THEN
+        NULL; -- 테이블이 없으면 오류 무시
+END;
+/
+
+BEGIN
+    EXECUTE IMMEDIATE 'DROP TABLE Receipt CASCADE CONSTRAINTS';
+EXCEPTION
+    WHEN OTHERS THEN
+        NULL; -- 테이블이 없으면 오류 무시
+END;
+/
+
+BEGIN
+    EXECUTE IMMEDIATE 'DROP TABLE Vehicle CASCADE CONSTRAINTS';
+EXCEPTION
+    WHEN OTHERS THEN
+        NULL; -- 테이블이 없으면 오류 무시
+END;
+/
+
+BEGIN
+    EXECUTE IMMEDIATE 'DROP TABLE ParkingSpot CASCADE CONSTRAINTS';
+EXCEPTION
+    WHEN OTHERS THEN
+        NULL; -- 테이블이 없으면 오류 무시
+END;
+/
+
+-- 시퀀스 삭제
+BEGIN
+    EXECUTE IMMEDIATE 'DROP SEQUENCE ReceiptSeq';
+EXCEPTION
+    WHEN OTHERS THEN
+        NULL; -- 시퀀스가 없으면 오류 무시
+END;
+/
+
+BEGIN
+    EXECUTE IMMEDIATE 'DROP SEQUENCE VehicleSeq';
+EXCEPTION
+    WHEN OTHERS THEN
+        NULL; -- 시퀀스가 없으면 오류 무시
+END;
+/
+
+BEGIN
+    EXECUTE IMMEDIATE 'DROP SEQUENCE DiscountSeq';
+EXCEPTION
+    WHEN OTHERS THEN
+        NULL; -- 시퀀스가 없으면 오류 무시
+END;
+/
 
 -- Vehicle ID 시퀀스 생성
 CREATE SEQUENCE VehicleSeq START WITH 1 INCREMENT BY 1;
@@ -81,3 +164,5 @@ BEGIN
     END LOOP;
 END;
 /
+
+commit;

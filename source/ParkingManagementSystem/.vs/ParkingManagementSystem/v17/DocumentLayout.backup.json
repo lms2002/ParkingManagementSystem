@@ -3,48 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\002lm\\Desktop\\C#_github\\ParkingManagementSystem\\source\\ParkingManagementSystem\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8F3FF959-D093-4C76-82CE-7391D1083EEF}|manager\\Vehiclemanager.csproj|c:\\users\\002lm\\desktop\\c#_github\\parkingmanagementsystem\\source\\parkingmanagementsystem\\manager\\vehiclereceipt.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{8F3FF959-D093-4C76-82CE-7391D1083EEF}|manager\\Vehiclemanager.csproj|solutionrelative:manager\\vehiclereceipt.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{8F3FF959-D093-4C76-82CE-7391D1083EEF}|manager\\Vehiclemanager.csproj|c:\\users\\002lm\\desktop\\c#_github\\parkingmanagementsystem\\source\\parkingmanagementsystem\\manager\\manager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8F3FF959-D093-4C76-82CE-7391D1083EEF}|manager\\Vehiclemanager.csproj|solutionrelative:manager\\manager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8F3FF959-D093-4C76-82CE-7391D1083EEF}|manager\\Vehiclemanager.csproj|c:\\users\\002lm\\desktop\\c#_github\\parkingmanagementsystem\\source\\parkingmanagementsystem\\manager\\parkingspotcrud.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{8F3FF959-D093-4C76-82CE-7391D1083EEF}|manager\\Vehiclemanager.csproj|solutionrelative:manager\\parkingspotcrud.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8F3FF959-D093-4C76-82CE-7391D1083EEF}|manager\\Vehiclemanager.csproj|c:\\users\\002lm\\desktop\\c#_github\\parkingmanagementsystem\\source\\parkingmanagementsystem\\manager\\parkingspotmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{8F3FF959-D093-4C76-82CE-7391D1083EEF}|manager\\Vehiclemanager.csproj|solutionrelative:manager\\parkingspotmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8F3FF959-D093-4C76-82CE-7391D1083EEF}|manager\\Vehiclemanager.csproj|c:\\users\\002lm\\desktop\\c#_github\\parkingmanagementsystem\\source\\parkingmanagementsystem\\manager\\vehiclecrud.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{8F3FF959-D093-4C76-82CE-7391D1083EEF}|manager\\Vehiclemanager.csproj|solutionrelative:manager\\vehiclecrud.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8F3FF959-D093-4C76-82CE-7391D1083EEF}|manager\\Vehiclemanager.csproj|c:\\users\\002lm\\desktop\\c#_github\\parkingmanagementsystem\\source\\parkingmanagementsystem\\manager\\vehiclereceipt.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8F3FF959-D093-4C76-82CE-7391D1083EEF}|manager\\Vehiclemanager.csproj|solutionrelative:manager\\vehiclereceipt.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8F3FF959-D093-4C76-82CE-7391D1083EEF}|manager\\Vehiclemanager.csproj|c:\\users\\002lm\\desktop\\c#_github\\parkingmanagementsystem\\source\\parkingmanagementsystem\\manager\\manager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{8F3FF959-D093-4C76-82CE-7391D1083EEF}|manager\\Vehiclemanager.csproj|solutionrelative:manager\\manager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B11EF92C-D539-4BED-AD84-9713853941A0}|ExitVehicle\\ExitVehicle.csproj|c:\\users\\002lm\\desktop\\c#_github\\parkingmanagementsystem\\source\\parkingmanagementsystem\\exitvehicle\\exitpayment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B11EF92C-D539-4BED-AD84-9713853941A0}|ExitVehicle\\ExitVehicle.csproj|solutionrelative:exitvehicle\\exitpayment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B11EF92C-D539-4BED-AD84-9713853941A0}|ExitVehicle\\ExitVehicle.csproj|C:\\Users\\002lm\\Desktop\\C#_github\\ParkingManagementSystem\\source\\ParkingManagementSystem\\exitvehicle\\exitpayment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{B11EF92C-D539-4BED-AD84-9713853941A0}|ExitVehicle\\ExitVehicle.csproj|solutionrelative:exitvehicle\\exitpayment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B11EF92C-D539-4BED-AD84-9713853941A0}|ExitVehicle\\ExitVehicle.csproj|C:\\Users\\002lm\\Desktop\\C#_github\\ParkingManagementSystem\\source\\ParkingManagementSystem\\exitvehicle\\receiptdetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{B11EF92C-D539-4BED-AD84-9713853941A0}|ExitVehicle\\ExitVehicle.csproj|solutionrelative:exitvehicle\\receiptdetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B11EF92C-D539-4BED-AD84-9713853941A0}|ExitVehicle\\ExitVehicle.csproj|C:\\Users\\002lm\\Desktop\\C#_github\\ParkingManagementSystem\\source\\ParkingManagementSystem\\exitvehicle\\exitvehiclemanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{B11EF92C-D539-4BED-AD84-9713853941A0}|ExitVehicle\\ExitVehicle.csproj|solutionrelative:exitvehicle\\exitvehiclemanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B11EF92C-D539-4BED-AD84-9713853941A0}|ExitVehicle\\ExitVehicle.csproj|C:\\Users\\002lm\\Desktop\\C#_github\\ParkingManagementSystem\\source\\ParkingManagementSystem\\exitvehicle\\receiptdetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B11EF92C-D539-4BED-AD84-9713853941A0}|ExitVehicle\\ExitVehicle.csproj|solutionrelative:exitvehicle\\receiptdetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{43C8CE51-67E8-4E3E-BD73-CC8B6468EBE8}|ParkingManagement\\ParkingEntry.csproj|c:\\users\\002lm\\desktop\\c#_github\\parkingmanagementsystem\\source\\parkingmanagementsystem\\parkingmanagement\\parkingstatusform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43C8CE51-67E8-4E3E-BD73-CC8B6468EBE8}|ParkingManagement\\ParkingEntry.csproj|solutionrelative:parkingmanagement\\parkingstatusform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -54,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -62,134 +26,29 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "VehicleReceipt.cs",
-              "DocumentMoniker": "C:\\Users\\002lm\\Desktop\\C#_github\\ParkingManagementSystem\\source\\ParkingManagementSystem\\manager\\VehicleReceipt.cs",
-              "RelativeDocumentMoniker": "manager\\VehicleReceipt.cs",
-              "ToolTip": "C:\\Users\\002lm\\Desktop\\C#_github\\ParkingManagementSystem\\source\\ParkingManagementSystem\\manager\\VehicleReceipt.cs",
-              "RelativeToolTip": "manager\\VehicleReceipt.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAADwvyAAAAAtAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "ParkingStatusForm.cs",
+              "DocumentMoniker": "C:\\Users\\002lm\\Desktop\\C#_github\\ParkingManagementSystem\\source\\ParkingManagementSystem\\ParkingManagement\\ParkingStatusForm.cs",
+              "RelativeDocumentMoniker": "ParkingManagement\\ParkingStatusForm.cs",
+              "ToolTip": "C:\\Users\\002lm\\Desktop\\C#_github\\ParkingManagementSystem\\source\\ParkingManagementSystem\\ParkingManagement\\ParkingStatusForm.cs",
+              "RelativeToolTip": "ParkingManagement\\ParkingStatusForm.cs",
+              "ViewState": "AgIAACkAAAAAAAAAAAAuwD8AAAB+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-11T16:18:46.681Z",
+              "WhenOpened": "2024-12-12T05:15:55.838Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "VehicleCRUD.cs [\uB514\uC790\uC778]",
-              "DocumentMoniker": "C:\\Users\\002lm\\Desktop\\C#_github\\ParkingManagementSystem\\source\\ParkingManagementSystem\\manager\\VehicleCRUD.cs",
-              "RelativeDocumentMoniker": "manager\\VehicleCRUD.cs",
-              "ToolTip": "C:\\Users\\002lm\\Desktop\\C#_github\\ParkingManagementSystem\\source\\ParkingManagementSystem\\manager\\VehicleCRUD.cs [\uB514\uC790\uC778]",
-              "RelativeToolTip": "manager\\VehicleCRUD.cs [\uB514\uC790\uC778]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-11T16:11:47.805Z",
-              "EditorCaption": " [\uB514\uC790\uC778]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ParkingspotManager.cs [\uB514\uC790\uC778]",
-              "DocumentMoniker": "C:\\Users\\002lm\\Desktop\\C#_github\\ParkingManagementSystem\\source\\ParkingManagementSystem\\manager\\ParkingspotManager.cs",
-              "RelativeDocumentMoniker": "manager\\ParkingspotManager.cs",
-              "ToolTip": "C:\\Users\\002lm\\Desktop\\C#_github\\ParkingManagementSystem\\source\\ParkingManagementSystem\\manager\\ParkingspotManager.cs [\uB514\uC790\uC778]",
-              "RelativeToolTip": "manager\\ParkingspotManager.cs [\uB514\uC790\uC778]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-11T16:11:36.504Z",
-              "EditorCaption": " [\uB514\uC790\uC778]"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "VehicleReceipt.cs [\uB514\uC790\uC778]",
-              "DocumentMoniker": "C:\\Users\\002lm\\Desktop\\C#_github\\ParkingManagementSystem\\source\\ParkingManagementSystem\\manager\\VehicleReceipt.cs",
-              "RelativeDocumentMoniker": "manager\\VehicleReceipt.cs",
-              "ToolTip": "C:\\Users\\002lm\\Desktop\\C#_github\\ParkingManagementSystem\\source\\ParkingManagementSystem\\manager\\VehicleReceipt.cs [\uB514\uC790\uC778]",
-              "RelativeToolTip": "manager\\VehicleReceipt.cs [\uB514\uC790\uC778]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-11T16:11:42.739Z",
-              "EditorCaption": " [\uB514\uC790\uC778]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ParkingSpotCRUD.cs [\uB514\uC790\uC778]",
-              "DocumentMoniker": "C:\\Users\\002lm\\Desktop\\C#_github\\ParkingManagementSystem\\source\\ParkingManagementSystem\\manager\\ParkingSpotCRUD.cs",
-              "RelativeDocumentMoniker": "manager\\ParkingSpotCRUD.cs",
-              "ToolTip": "C:\\Users\\002lm\\Desktop\\C#_github\\ParkingManagementSystem\\source\\ParkingManagementSystem\\manager\\ParkingSpotCRUD.cs [\uB514\uC790\uC778]",
-              "RelativeToolTip": "manager\\ParkingSpotCRUD.cs [\uB514\uC790\uC778]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-11T16:11:37.502Z",
-              "EditorCaption": " [\uB514\uC790\uC778]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Manager.cs [\uB514\uC790\uC778]",
+              "Title": "Manager.cs",
               "DocumentMoniker": "C:\\Users\\002lm\\Desktop\\C#_github\\ParkingManagementSystem\\source\\ParkingManagementSystem\\manager\\Manager.cs",
               "RelativeDocumentMoniker": "manager\\Manager.cs",
-              "ToolTip": "C:\\Users\\002lm\\Desktop\\C#_github\\ParkingManagementSystem\\source\\ParkingManagementSystem\\manager\\Manager.cs [\uB514\uC790\uC778]",
-              "RelativeToolTip": "manager\\Manager.cs [\uB514\uC790\uC778]",
+              "ToolTip": "C:\\Users\\002lm\\Desktop\\C#_github\\ParkingManagementSystem\\source\\ParkingManagementSystem\\manager\\Manager.cs",
+              "RelativeToolTip": "manager\\Manager.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAAACoAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-11T16:11:40.484Z",
-              "EditorCaption": " [\uB514\uC790\uC778]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "ExitVehicleManagement.cs [\uB514\uC790\uC778]",
-              "DocumentMoniker": "C:\\Users\\002lm\\Desktop\\C#_github\\ParkingManagementSystem\\source\\ParkingManagementSystem\\ExitVehicle\\ExitVehicleManagement.cs",
-              "RelativeDocumentMoniker": "ExitVehicle\\ExitVehicleManagement.cs",
-              "ToolTip": "C:\\Users\\002lm\\Desktop\\C#_github\\ParkingManagementSystem\\source\\ParkingManagementSystem\\ExitVehicle\\ExitVehicleManagement.cs [\uB514\uC790\uC778]",
-              "RelativeToolTip": "ExitVehicle\\ExitVehicleManagement.cs [\uB514\uC790\uC778]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-11T15:26:55.451Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "ExitPayment.cs",
-              "DocumentMoniker": "C:\\Users\\002lm\\Desktop\\C#_github\\ParkingManagementSystem\\source\\ParkingManagementSystem\\ExitVehicle\\ExitPayment.cs",
-              "RelativeDocumentMoniker": "ExitVehicle\\ExitPayment.cs",
-              "ToolTip": "C:\\Users\\002lm\\Desktop\\C#_github\\ParkingManagementSystem\\source\\ParkingManagementSystem\\ExitVehicle\\ExitPayment.cs",
-              "RelativeToolTip": "ExitVehicle\\ExitPayment.cs",
-              "ViewState": "AgIAAPAAAAAAAAAAAAAAAAEBAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-11T15:19:54.419Z",
+              "WhenOpened": "2024-12-12T05:13:38.077Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "ReceiptDetail.cs",
-              "DocumentMoniker": "C:\\Users\\002lm\\Desktop\\C#_github\\ParkingManagementSystem\\source\\ParkingManagementSystem\\ExitVehicle\\ReceiptDetail.cs",
-              "RelativeDocumentMoniker": "ExitVehicle\\ReceiptDetail.cs",
-              "ToolTip": "C:\\Users\\002lm\\Desktop\\C#_github\\ParkingManagementSystem\\source\\ParkingManagementSystem\\ExitVehicle\\ReceiptDetail.cs",
-              "RelativeToolTip": "ExitVehicle\\ReceiptDetail.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAA5AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-11T15:19:49.098Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "ReceiptDetail.cs [\uB514\uC790\uC778]",
-              "DocumentMoniker": "C:\\Users\\002lm\\Desktop\\C#_github\\ParkingManagementSystem\\source\\ParkingManagementSystem\\ExitVehicle\\ReceiptDetail.cs",
-              "RelativeDocumentMoniker": "ExitVehicle\\ReceiptDetail.cs",
-              "ToolTip": "C:\\Users\\002lm\\Desktop\\C#_github\\ParkingManagementSystem\\source\\ParkingManagementSystem\\ExitVehicle\\ReceiptDetail.cs [\uB514\uC790\uC778]",
-              "RelativeToolTip": "ExitVehicle\\ReceiptDetail.cs [\uB514\uC790\uC778]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-11T15:19:48.018Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "ExitPayment.cs [\uB514\uC790\uC778]",
-              "DocumentMoniker": "C:\\Users\\002lm\\Desktop\\C#_github\\ParkingManagementSystem\\source\\ParkingManagementSystem\\ExitVehicle\\ExitPayment.cs",
-              "RelativeDocumentMoniker": "ExitVehicle\\ExitPayment.cs",
-              "ToolTip": "C:\\Users\\002lm\\Desktop\\C#_github\\ParkingManagementSystem\\source\\ParkingManagementSystem\\ExitVehicle\\ExitPayment.cs [\uB514\uC790\uC778]",
-              "RelativeToolTip": "ExitVehicle\\ExitPayment.cs [\uB514\uC790\uC778]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-11T15:19:45.853Z"
             }
           ]
         }

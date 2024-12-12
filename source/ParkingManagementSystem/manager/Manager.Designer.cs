@@ -29,22 +29,22 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem(new string[] {
             "NIKE",
             "50,000원",
             "20% 할인"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem(new string[] {
             "빵빵이의 빵집",
             "20,000원",
             "10% 할인"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem(new string[] {
             "모수",
             "150,000원",
             "30% 할인"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem(new string[] {
             "일반 차량(Standard)",
             "10분당 1,000원"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem10 = new System.Windows.Forms.ListViewItem(new string[] {
             "경차(Compact)",
             "10분당 500원"}, -1);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -133,9 +133,9 @@
             this.lvStoreDiscount.GridLines = true;
             this.lvStoreDiscount.HideSelection = false;
             this.lvStoreDiscount.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2,
-            listViewItem3});
+            listViewItem6,
+            listViewItem7,
+            listViewItem8});
             this.lvStoreDiscount.Location = new System.Drawing.Point(18, 20);
             this.lvStoreDiscount.Name = "lvStoreDiscount";
             this.lvStoreDiscount.Size = new System.Drawing.Size(289, 140);
@@ -178,8 +178,8 @@
             this.lvParkingFee.GridLines = true;
             this.lvParkingFee.HideSelection = false;
             this.lvParkingFee.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem4,
-            listViewItem5});
+            listViewItem9,
+            listViewItem10});
             this.lvParkingFee.Location = new System.Drawing.Point(20, 20);
             this.lvParkingFee.Name = "lvParkingFee";
             this.lvParkingFee.Size = new System.Drawing.Size(275, 140);

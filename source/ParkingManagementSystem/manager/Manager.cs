@@ -35,9 +35,15 @@ namespace manager
                     {
                         if (reader.Read())
                         {
-                            lblTotalSpots.Text = $"총 잔여 자리: {reader["TotalSpots"]}";
-                            lblStandardAvailable.Text = $"일반석 빈 자리: {reader["StandardAvailable"]}";
-                            lblDisabledAvailable.Text = $"장애석 빈 자리: {reader["DisabledAvailable"]}";
+                            // 읽은 데이터를 변환
+                            int standardAvailable = Convert.ToInt32(reader["StandardAvailable"]);
+                            int disabledAvailable = Convert.ToInt32(reader["DisabledAvailable"]);
+                            int totalAvailable = standardAvailable + disabledAvailable;
+
+                            // 라벨 업데이트
+                            lblTotalSpots.Text = $"총 잔여 자리: {totalAvailable}";
+                            lblStandardAvailable.Text = $"일반석 빈 자리: {standardAvailable}";
+                            lblDisabledAvailable.Text = $"장애석 빈 자리: {disabledAvailable}";
                         }
                     }
                 }
