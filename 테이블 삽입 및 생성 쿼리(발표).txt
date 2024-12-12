@@ -1,0 +1,245 @@
+conn system/system
+
+-- ParkingAdmin 사용자가 존재하면 삭제
+BEGIN
+    FOR user_rec IN (
+        SELECT 1 
+        FROM dba_users 
+        WHERE username = 'PARKINGADMIN'
+    ) LOOP
+        EXECUTE IMMEDIATE 'DROP USER ParkingAdmin CASCADE';
+    END LOOP;
+END;
+/
+
+
+-- ParkingAdmin 사용자 생성
+CREATE USER ParkingAdmin IDENTIFIED BY 1111;
+
+-- 권한 부여
+GRANT CREATE SESSION TO ParkingAdmin;
+GRANT RESOURCE, CREATE VIEW, CREATE TABLE TO ParkingAdmin;
+
+SET LINESIZE 300
+SET PAGESIZE 50
+
+conn ParkingAdmin/1111
+
+-- 외래 키 제약 조건 삭제
+BEGIN
+    EXECUTE IMMEDIATE 'ALTER TABLE Receipt DROP CONSTRAINT fk_vehicle';
+EXCEPTION
+    WHEN OTHERS THEN NULL; -- 외래 키가 없으면 오류 무시
+END;
+/
+
+BEGIN
+    EXECUTE IMMEDIATE 'ALTER TABLE StoreDiscount DROP CONSTRAINT fk_vehicle_discount';
+EXCEPTION
+    WHEN OTHERS THEN NULL; -- 외래 키가 없으면 오류 무시
+END;
+/
+
+-- 테이블 삭제
+BEGIN
+    EXECUTE IMMEDIATE 'DROP TABLE StoreDiscount CASCADE CONSTRAINTS';
+EXCEPTION
+    WHEN OTHERS THEN NULL; -- 테이블이 없으면 오류 무시
+END;
+/
+
+BEGIN
+    EXECUTE IMMEDIATE 'DROP TABLE Receipt CASCADE CONSTRAINTS';
+EXCEPTION
+    WHEN OTHERS THEN NULL; -- 테이블이 없으면 오류 무시
+END;
+/
+
+BEGIN
+    EXECUTE IMMEDIATE 'DROP TABLE Vehicle CASCADE CONSTRAINTS';
+EXCEPTION
+    WHEN OTHERS THEN NULL; -- 테이블이 없으면 오류 무시
+END;
+/
+
+BEGIN
+    EXECUTE IMMEDIATE 'DROP TABLE ParkingSpot CASCADE CONSTRAINTS';
+EXCEPTION
+    WHEN OTHERS THEN NULL; -- 테이블이 없으면 오류 무시
+END;
+/
+
+-- 시퀀스 삭제
+BEGIN
+    EXECUTE IMMEDIATE 'DROP SEQUENCE ReceiptSeq';
+EXCEPTION
+    WHEN OTHERS THEN NULL; -- 시퀀스가 없으면 오류 무시
+END;
+/
+
+BEGIN
+    EXECUTE IMMEDIATE 'DROP SEQUENCE VehicleSeq';
+EXCEPTION
+    WHEN OTHERS THEN NULL; -- 시퀀스가 없으면 오류 무시
+END;
+/
+
+BEGIN
+    EXECUTE IMMEDIATE 'DROP SEQUENCE DiscountSeq';
+EXCEPTION
+    WHEN OTHERS THEN NULL; -- 시퀀스가 없으면 오류 무시
+END;
+/
+
+-- Vehicle ID 시퀀스 생성
+CREATE SEQUENCE VehicleSeq START WITH 1 INCREMENT BY 1;
+
+-- Vehicle 테이블 생성
+CREATE TABLE Vehicle (
+    vehicle_id NUMBER PRIMARY KEY,
+    vehicle_number VARCHAR2(10),
+    vehicle_type VARCHAR2(10) CHECK (vehicle_type IN ('Standard', 'Compact'))
+);
+
+-- ParkingSpot 테이블 생성
+CREATE TABLE ParkingSpot (
+    spot_number NUMBER PRIMARY KEY,
+    is_disabled NUMBER(1) DEFAULT 0,
+    is_occupied NUMBER(1) DEFAULT 0,
+    vehicle_id NUMBER UNIQUE,
+    vehicle_number VARCHAR2(10),
+    CONSTRAINT fk_vehicle_spot FOREIGN KEY (vehicle_id) REFERENCES Vehicle(vehicle_id)
+);
+
+-- Receipt 테이블 생성
+CREATE TABLE Receipt (
+    receipt_id NUMBER PRIMARY KEY,
+    vehicle_id NUMBER NOT NULL,
+    vehicle_number VARCHAR2(10),
+    parking_fee_before_discount NUMBER NOT NULL,
+    discount_amount NUMBER DEFAULT 0,
+    total_fee NUMBER NOT NULL,
+    parking_duration NUMBER NOT NULL,
+    start_time DATE,
+    end_time DATE,
+    store_name VARCHAR2(50), -- 매장 이름 저장 (외래 키 없이 단순 정보)
+    CONSTRAINT fk_vehicle FOREIGN KEY (vehicle_id) REFERENCES Vehicle(vehicle_id)
+);
+
+-- Receipt ID 시퀀스 생성
+CREATE SEQUENCE ReceiptSeq START WITH 1 INCREMENT BY 1;
+
+-- 세션 내 기본 날짜 형식을 설정하여 시/분/초까지 포함하도록 변경
+ALTER SESSION SET NLS_DATE_FORMAT = 'YYYY-MM-DD HH24:MI:SS';
+
+-- StoreDiscount 테이블 생성
+CREATE TABLE StoreDiscount (
+    discount_id NUMBER PRIMARY KEY, -- StoreDiscount만의 PK로 사용
+    vehicle_id NUMBER NOT NULL, -- Vehicle 테이블의 FK로 사용
+    store_name VARCHAR2(50) NOT NULL,
+    discount_percentage NUMBER DEFAULT 0,
+    discount_condition NUMBER NOT NULL,
+    discount_date DATE DEFAULT SYSDATE, -- 할인 날짜 기록
+    CONSTRAINT fk_vehicle_discount FOREIGN KEY (vehicle_id) REFERENCES Vehicle(vehicle_id)
+);
+
+CREATE SEQUENCE DiscountSeq START WITH 1 INCREMENT BY 1;
+
+-- ParkingSpot 초기 데이터 삽입
+BEGIN
+    FOR i IN 1..25 LOOP
+        INSERT INTO ParkingSpot (spot_number, is_disabled) VALUES (i, 0);
+    END LOOP;
+    FOR i IN 26..30 LOOP
+        INSERT INTO ParkingSpot (spot_number, is_disabled) VALUES (i, 1);
+    END LOOP;
+END;
+/
+
+-- 차량 데이터 삽입
+INSERT INTO Vehicle (vehicle_id, vehicle_number, vehicle_type)
+VALUES (VehicleSeq.NEXTVAL, '57사 5264', 'Standard');
+INSERT INTO Vehicle (vehicle_id, vehicle_number, vehicle_type)
+VALUES (VehicleSeq.NEXTVAL, '63바 3812', 'Compact');
+INSERT INTO Vehicle (vehicle_id, vehicle_number, vehicle_type)
+VALUES (VehicleSeq.NEXTVAL, '18라 4921', 'Standard');
+INSERT INTO Vehicle (vehicle_id, vehicle_number, vehicle_type)
+VALUES (VehicleSeq.NEXTVAL, '72나 3847', 'Compact');
+INSERT INTO Vehicle (vehicle_id, vehicle_number, vehicle_type)
+VALUES (VehicleSeq.NEXTVAL, '51다 9384', 'Standard');
+INSERT INTO Vehicle (vehicle_id, vehicle_number, vehicle_type)
+VALUES (VehicleSeq.NEXTVAL, '24가 8461', 'Compact');
+INSERT INTO Vehicle (vehicle_id, vehicle_number, vehicle_type)
+VALUES (VehicleSeq.NEXTVAL, '45마 9172', 'Standard');
+INSERT INTO Vehicle (vehicle_id, vehicle_number, vehicle_type)
+VALUES (VehicleSeq.NEXTVAL, '13바 2846', 'Compact');
+INSERT INTO Vehicle (vehicle_id, vehicle_number, vehicle_type)
+VALUES (VehicleSeq.NEXTVAL, '91나 4826', 'Standard');
+INSERT INTO Vehicle (vehicle_id, vehicle_number, vehicle_type)
+VALUES (VehicleSeq.NEXTVAL, '82라 7492', 'Compact');
+
+-- 차량 주차 데이터 및 할인 데이터 삽입
+BEGIN
+    -- 차량 1
+    INSERT INTO StoreDiscount (discount_id, vehicle_id, store_name, discount_percentage, discount_condition, discount_date)
+    VALUES (DiscountSeq.NEXTVAL, 1, '모수', 15, 5000, SYSDATE);
+    INSERT INTO Receipt (receipt_id, vehicle_id, vehicle_number, parking_fee_before_discount, discount_amount, total_fee, parking_duration, start_time, end_time, store_name)
+    VALUES (ReceiptSeq.NEXTVAL, 1, '57사 5264', 4000, 600, 3400, 40, TO_DATE('2024-11-01 14:00:00', 'YYYY-MM-DD HH24:MI:SS'), TO_DATE('2024-11-01 14:40:00', 'YYYY-MM-DD HH24:MI:SS'), '모수');
+
+    -- 차량 2
+    INSERT INTO StoreDiscount (discount_id, vehicle_id, store_name, discount_percentage, discount_condition, discount_date)
+    VALUES (DiscountSeq.NEXTVAL, 2, '빵빵이의 빵집', 10, 3000, SYSDATE);
+    INSERT INTO Receipt (receipt_id, vehicle_id, vehicle_number, parking_fee_before_discount, discount_amount, total_fee, parking_duration, start_time, end_time, store_name)
+    VALUES (ReceiptSeq.NEXTVAL, 2, '63바 3812', 3000, 300, 2700, 30, TO_DATE('2024-11-03 11:30:00', 'YYYY-MM-DD HH24:MI:SS'), TO_DATE('2024-11-03 12:00:00', 'YYYY-MM-DD HH24:MI:SS'), '빵빵이의 빵집');
+
+    -- 차량 3
+    INSERT INTO StoreDiscount (discount_id, vehicle_id, store_name, discount_percentage, discount_condition, discount_date)
+    VALUES (DiscountSeq.NEXTVAL, 3, 'NIKE', 20, 8000, SYSDATE);
+    INSERT INTO Receipt (receipt_id, vehicle_id, vehicle_number, parking_fee_before_discount, discount_amount, total_fee, parking_duration, start_time, end_time, store_name)
+    VALUES (ReceiptSeq.NEXTVAL, 3, '18라 4921', 5000, 1000, 4000, 50, TO_DATE('2024-11-05 15:00:00', 'YYYY-MM-DD HH24:MI:SS'), TO_DATE('2024-11-05 15:50:00', 'YYYY-MM-DD HH24:MI:SS'), 'NIKE');
+
+    -- 차량 4
+    INSERT INTO StoreDiscount (discount_id, vehicle_id, store_name, discount_percentage, discount_condition, discount_date)
+    VALUES (DiscountSeq.NEXTVAL, 4, '모수', 15, 6000, SYSDATE);
+    INSERT INTO Receipt (receipt_id, vehicle_id, vehicle_number, parking_fee_before_discount, discount_amount, total_fee, parking_duration, start_time, end_time, store_name)
+    VALUES (ReceiptSeq.NEXTVAL, 4, '72나 3847', 4500, 675, 3825, 45, TO_DATE('2024-11-07 09:20:00', 'YYYY-MM-DD HH24:MI:SS'), TO_DATE('2024-11-07 10:05:00', 'YYYY-MM-DD HH24:MI:SS'), '모수');
+
+    -- 차량 5
+    INSERT INTO StoreDiscount (discount_id, vehicle_id, store_name, discount_percentage, discount_condition, discount_date)
+    VALUES (DiscountSeq.NEXTVAL, 5, '빵빵이의 빵집', 10, 4000, SYSDATE);
+    INSERT INTO Receipt (receipt_id, vehicle_id, vehicle_number, parking_fee_before_discount, discount_amount, total_fee, parking_duration, start_time, end_time, store_name)
+    VALUES (ReceiptSeq.NEXTVAL, 5, '51다 9384', 4000, 400, 3600, 40, TO_DATE('2024-11-09 13:00:00', 'YYYY-MM-DD HH24:MI:SS'), TO_DATE('2024-11-09 13:40:00', 'YYYY-MM-DD HH24:MI:SS'), '빵빵이의 빵집');
+
+    -- 차량 6
+    INSERT INTO StoreDiscount (discount_id, vehicle_id, store_name, discount_percentage, discount_condition, discount_date)
+    VALUES (DiscountSeq.NEXTVAL, 6, 'NIKE', 25, 9000, SYSDATE);
+    INSERT INTO Receipt (receipt_id, vehicle_id, vehicle_number, parking_fee_before_discount, discount_amount, total_fee, parking_duration, start_time, end_time, store_name)
+    VALUES (ReceiptSeq.NEXTVAL, 6, '24가 8461', 6000, 1500, 4500, 60, TO_DATE('2024-11-11 17:10:00', 'YYYY-MM-DD HH24:MI:SS'), TO_DATE('2024-11-11 18:10:00', 'YYYY-MM-DD HH24:MI:SS'), 'NIKE');
+
+    -- 차량 7
+    INSERT INTO StoreDiscount (discount_id, vehicle_id, store_name, discount_percentage, discount_condition, discount_date)
+    VALUES (DiscountSeq.NEXTVAL, 7, '모수', 15, 7000, SYSDATE);
+    INSERT INTO Receipt (receipt_id, vehicle_id, vehicle_number, parking_fee_before_discount, discount_amount, total_fee, parking_duration, start_time, end_time, store_name)
+    VALUES (ReceiptSeq.NEXTVAL, 7, '45마 9172', 3500, 525, 2975, 35, TO_DATE('2024-11-13 14:00:00', 'YYYY-MM-DD HH24:MI:SS'), TO_DATE('2024-11-13 14:35:00', 'YYYY-MM-DD HH24:MI:SS'), '모수');
+
+    -- 차량 8
+    INSERT INTO StoreDiscount (discount_id, vehicle_id, store_name, discount_percentage, discount_condition, discount_date)
+    VALUES (DiscountSeq.NEXTVAL, 8, '빵빵이의 빵집', 12, 3500, SYSDATE);
+    INSERT INTO Receipt (receipt_id, vehicle_id, vehicle_number, parking_fee_before_discount, discount_amount, total_fee, parking_duration, start_time, end_time, store_name)
+    VALUES (ReceiptSeq.NEXTVAL, 8, '13바 2846', 5000, 600, 4400, 50, TO_DATE('2024-11-15 16:00:00', 'YYYY-MM-DD HH24:MI:SS'), TO_DATE('2024-11-15 16:50:00', 'YYYY-MM-DD HH24:MI:SS'), '빵빵이의 빵집');
+
+    -- 차량 9
+    INSERT INTO StoreDiscount (discount_id, vehicle_id, store_name, discount_percentage, discount_condition, discount_date)
+    VALUES (DiscountSeq.NEXTVAL, 9, 'NIKE', 18, 7500, SYSDATE);
+    INSERT INTO Receipt (receipt_id, vehicle_id, vehicle_number, parking_fee_before_discount, discount_amount, total_fee, parking_duration, start_time, end_time, store_name)
+    VALUES (ReceiptSeq.NEXTVAL, 9, '91나 4826', 7000, 1260, 5740, 70, TO_DATE('2024-11-17 10:30:00', 'YYYY-MM-DD HH24:MI:SS'), TO_DATE('2024-11-17 11:40:00', 'YYYY-MM-DD HH24:MI:SS'), 'NIKE');
+
+    -- 차량 10
+    INSERT INTO StoreDiscount (discount_id, vehicle_id, store_name, discount_percentage, discount_condition, discount_date)
+    VALUES (DiscountSeq.NEXTVAL, 10, '모수', 20, 10000, SYSDATE);
+    INSERT INTO Receipt (receipt_id, vehicle_id, vehicle_number, parking_fee_before_discount, discount_amount, total_fee, parking_duration, start_time, end_time, store_name)
+    VALUES (ReceiptSeq.NEXTVAL, 10, '82라 7492', 8000, 1600, 6400, 80, TO_DATE('2024-11-19 09:00:00', 'YYYY-MM-DD HH24:MI:SS'), TO_DATE('2024-11-19 10:20:00', 'YYYY-MM-DD HH24:MI:SS'), '모수');
+END;
+/
+
+COMMIT;
